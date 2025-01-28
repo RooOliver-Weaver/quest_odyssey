@@ -1,0 +1,9 @@
+<ul>
+ <% @characters.each do |character| %>
+  <li>
+    <%= link_to character.name, character_path(character) %>
+    <%= character.class %>
+    <%= character.race %> <%= character.level %>
+  </li>
+ <% end %>
+</ul>

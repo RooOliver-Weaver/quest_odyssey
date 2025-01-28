@@ -1,0 +1,79 @@
+<%= simple_form_for @character do |f| %>
+  <header>
+    <section class="charname">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </section>
+    <section class="misc">
+      <ul>
+        <li>
+          <%= f.label :speciality %>
+          <%= f.text_field :speciality %>
+          <%= f.label :level %>
+          <%= f.input :level, collection: 0..20 %>
+        </li>
+        <li>
+         <%= f.label :background %>
+          <%= f.text_field :background %>
+        </li>
+        <li>
+         <h4>User</h4>
+          <%= @user.nickname %>
+        </li>
+        <li>
+          <%= f.label :race %>
+          <%= f.text_field :race %>
+        </li>
+        <li>
+          <%= f.label :alignment %>
+          <%= f.text_field :alignment %>
+        </li>
+      </ul>
+    </section>
+  </header>
+  <main>
+    <section class="attributes">
+      <div class="scores">
+        <ul>
+          <li>
+            <div class="score">
+              <%= f.label :strength %>
+              <%= f.text_field :strength %>
+            </div>
+          </li>
+          <li>
+            <div class="score">
+              <%= f.label :dexterity %>
+              <%= f.text_field :dexterity %>
+            </div>
+          </li>
+          <li>
+            <div class="score">
+              <%= f.label :constitution %>
+              <%= f.text_field :constitution %>
+            </div>
+          </li>
+          <li>
+            <div class="score">
+                <%= f.label :wisdom %>
+              <%= f.text_field :wisdom %>
+            </div>
+          </li>
+          <li>
+            <div class="score">
+              <%= f.label :intelligence %>
+              <%= f.text_field :intelligence %>
+            </div>
+          </li>
+          <li>
+            <div class="score">
+            <%= f.label :charisma %>
+              <%= f.text_field :charisma %>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+    <%= f.submit %>
+<% end %>

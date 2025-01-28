@@ -11,26 +11,36 @@
 @import "components/index";
 @import "pages/index";
 
-html, body {
+:root {
+  --pink: hotpink;
+  --gray-dark: #222;
+  --gray: #343434;
+  --burgundy: #38090e;
+  --teal: #282c34;
+  --green: #323e36;
+  --rust: #b24b34;
+  --orange: #e86724;
+  --yellow: #fe9c33;
+  --speed: 0.3s;
+  --base-font-size: 16px;
+}
+
+body {
   min-height: 100%;
   width: 100%;
   margin: 0;
+  font-family: "Faculty Glyphic";
+  background-color: var(--teal);
+  color: white;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin: 0;
+  font-family: "Grenze Gotisch";
 }
 
 a {
   color: white;
   text-decoration: none;
-}
-
-
-body {
-  font-family: 'Lato', Helvetica, Arial, sans-serif;
-  background-color: var(--gray);
-  color: white;
 }
 
 .wrapper {

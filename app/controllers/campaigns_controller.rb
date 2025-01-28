@@ -25,6 +25,6 @@ class CampaignsController < ApplicationController
   private
 
   def campaign_params
-    params.require(:campaign).permit(:name, :setting, :description, :next_session, :notes, :active, :dm_notes, :user_id)
+    params.require(:campaign).permit(:name, :setting, :description, :next_session, :notes, :active, :dm_notes)
   end
 end

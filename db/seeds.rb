@@ -8,7 +8,8 @@ users = User.create!([
   { email: "dm@example.com", password: "password123" },
   { email: "player1@example.com", password: "password123" },
   { email: "player2@example.com", password: "password123" },
-  { email: "player3@example.com", password: "password123" }
+  { email: "player3@example.com", password: "password123" },
+  { email: "test@test.com", password: "password" }
 ])
 
 puts "Created #{users.count} users."

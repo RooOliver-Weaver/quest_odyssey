@@ -1,12 +1,12 @@
 class CampaignsController < ApplicationController
   skip_before_action :authenticate_user!
+  before_action :set_campaign, only: %i[show edit update destroy]
 
   def index
     @campaigns = Campaign.all
   end
 
   def show
-    @campaign = Campaign.find(params[:id])
   end
 
   def new
@@ -15,7 +15,7 @@ class CampaignsController < ApplicationController
 
   def create
     @campaign = Campaign.new(campaign_params)
-    @campign.user = current_user
+    @campaign.user = current_user
     if @campaign.save!
       redirect_to campaign_path(@campaign)
     else
@@ -24,7 +24,6 @@ class CampaignsController < ApplicationController
   end
 
   def edit
-    @campaign = Campaign.find(params[:id])
   end
 
   def update
@@ -41,7 +40,16 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def destroy
+    @campaign.destroy!
+    redirect_to campaigns_path
+  end
+
   private
+
+  def set_campaign
+    @campaign = Campaign.find(params[:id])
+  end
 
   def campaign_params
     params.require(:campaign).permit(:name, :setting, :description, :next_session, :notes, :active, :dm_notes)

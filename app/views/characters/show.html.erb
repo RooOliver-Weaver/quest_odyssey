@@ -1,0 +1,59 @@
+<div class= "container">
+<label for="charname">Character Name</label> <%= @character.name  %>
+<ul>
+  <li>
+    <label for="classlevel">Class & Level</label> <%= @character.speciality.capitalize %> <%= @character.level %>
+  </li>
+  <li>
+    <label for="background">Background</label><%= @character.background %>
+  <li>
+    <label for="playername">Player Name</label><%= @character.user.nickname.capitalize %>
+  </li>
+  <li>
+    <label for="race">Race</label><%= @character.race %>
+  </li>
+  <li>
+    <label for="alignment">Alignment</label><%= @character.alignment %>
+  </li>
+</ul>
+  <div class="attributes">
+  <h3>Attributes</h3>
+    <ul>
+      <li>
+        <div class="attribute">
+          <label for="Strengthscore">Strength</label><%= @character.stats['strength'] %>
+        </div>
+      </li>
+      <li>
+        <div class="attribute">
+          <label for="Dexterityscore">Dexterity</label><%= @character.stats['dexterity'] %>
+        </div>
+      </li>
+      <li>
+        <div class="attribute">
+          <label for="Constitutionscore">Constitution</label><%= @character.stats['constitution'] %>
+      </li>
+      <li>
+        <div class="attribute">
+          <label for="Wisdomscore">Wisdom</label><%= @character.stats['wisdom'] %>
+      </li>
+      <li>
+        <div class="attribute">
+          <label for="Intelligencescore">Intelligence</label><%= @character.stats['intelligence'] %>
+        </div>
+      </li>
+      <li>
+        <div class="attribute">
+          <label for="Charismascore">Charisma</label>
+          <%= @character.stats['charisma'] %>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <h3>Biography</h3>
+    <p> <%= @character.biography %></p>
+  </div>
+</div>
+
+<%= link_to "Back to Characters", characters_path %>

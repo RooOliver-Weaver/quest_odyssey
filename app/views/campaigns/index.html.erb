@@ -1,0 +1,22 @@
+<%= turbo_frame_tag :campaign_list do %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Campaigns</h1>
+      </div>
+    </div>
+    <div class="row">
+      <% @campaigns.each do |campaign| %>
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= campaign.name %></h5>
+              <p class="card-text"><%= campaign.description %></p>
+              <%= link_to 'View Campaign', campaign_path(campaign), class: 'btn btn-primary' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

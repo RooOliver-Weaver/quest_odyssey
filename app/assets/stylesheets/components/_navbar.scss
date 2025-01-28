@@ -19,6 +19,7 @@
   float: left;
   overflow-x: hidden;
   transition: width var(--speed);
+  z-index: 1000;
 }
 
 .navbar-logo {

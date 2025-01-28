@@ -33,8 +33,14 @@ body {
   color: white;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
 .page-content {
+  flex: 1;
   margin-left: 6.25rem;
   padding: 1rem;
   width: calc(100% - 6.25rem);

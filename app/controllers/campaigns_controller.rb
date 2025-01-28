@@ -8,6 +8,7 @@ class CampaignsController < ApplicationController
   def show
     @campaign = Campaign.find(params[:id])
   end
+
   def new
     @campaign = Campaign.new
   end
@@ -22,10 +23,24 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def edit
+    @campaign = Campaign.find(params[:id])
+  end
+
+  def update
+    if @campaign.update(campaign_params)
+      format.html { redirect_to campaign_path(@campaign) }
+      format.json
+    else
+      format.html { render "update-show", status: :unprocessable_entity }
+      format.json
+    end
+  end
+
   private
 
   def campaign_params
     params.require(:campaign).permit(:name, :setting, :description, :next_session, :notes, :active, :dm_notes)
   end
-  
+
 end

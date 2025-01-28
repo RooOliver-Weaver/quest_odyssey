@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_28_125136) do
     t.date "next_session"
     t.bigint "user_id", null: false
     t.text "notes"
-    t.boolean "active"
+    t.boolean "active", default: false
     t.text "dm_notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

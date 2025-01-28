@@ -1,28 +1,96 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+/* Define color variables */
+:root {
+  --pink: hotpink;
+  --gray-dark: #222;
+  --gray: #343434;
+  --speed: 0.3s;
+  --base-font-size: 16px;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+
+.navbar {
+  position: fixed;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 6.25rem;
+  background-color: var(--gray-dark);
+  float: left;
+  overflow-x: hidden;
+  transition: width var(--speed);
+  z-index: 1000;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
-
-.navbar-lewagon .navbar-brand img:hover {
-  transform: rotate(270deg) 5s ease;
+.navbar-logo {
+  width: 100%;
+  text-align: center;
 }
 
 .logo {
-  width: 40px;
-  transition: transform 0.5s ease;
+  width: 6.25rem;
 }
 
 .logo:hover {
   animation: spin 1s linear infinite;
 }
+
+.bttn {
+  // max-height: 1rem;
+  width: calc(100% - 1rem);
+  padding: 0.5rem 0.5rem 0.25rem 0.5rem;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  overflow: hidden;
+  text-align: left;
+  padding-left: 1rem;
+  color: transparent;
+  margin-left: 0.9375rem;
+}
+
+.bttn i {
+  height: 100%;
+  // width: 1em;
+  padding: 0 0.25em 0 0;
+  color: var(--pink);
+  font-size: 2.25rem;
+}
+
+.bttn:hover {
+  border-right: 0.25rem solid pink;
+  padding-right: calc(0.5rem - 0.25rem);
+  background-color: #212121;
+  color: white;
+}
+
+.bttn.active {
+  border-right: 0.25rem solid var(--pink);
+  padding-right: calc(0.5rem - 0.25rem);
+}
+
+
+.navbar:hover {
+  width: 20%;
+}
+
+.navbar:hover .bttn.active {
+  border-right: 0.25rem solid var(--pink);
+  padding-right: calc(0.5rem - 0.25rem);
+}
+
+
+// .main {
+//   position: fixed;
+//   top: 0;
+//   left: 10%;
+//   height: calc(100% - 2rem);
+//   width: calc(90% - 2rem);
+//   padding: 1rem;
+//   float: left;
+//   overflow: auto;
+//   margin-top: 2rem; /* Adjust for the navbar height */
+// }
 
 @keyframes spin {
   0% {
@@ -30,5 +98,35 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    width: 5rem;
+  }
+
+  .navbar:hover {
+    width: 30%;
+  }
+
+  .main {
+    left: 30%;
+    width: 70%;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    width: 4rem;
+  }
+
+  .navbar:hover {
+    width: 50%;
+  }
+
+  .main {
+    left: 50%;
+    width: 50%;
   }
 }

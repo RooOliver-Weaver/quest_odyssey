@@ -1,0 +1,17 @@
+<div>
+  <%= simple_form_for(@campaign) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :setting %>
+    <%= f.input :description %>
+    <%= f.input :active, as: :boolean, default: false %>
+    <%= f.input :notes %>
+    <% if controller_name == 'campaigns' && action_name == 'new'%>
+      <%= f.input :dm_notes %>
+    <% else %>
+      <% if @campaign.user == current_user %>
+        <%= f.input :dm_notes %>
+      <% end %>
+    <% end %>
+    <%= f.button :submit, class: 'btn btn-primary' %>
+  <% end %>
+</div>

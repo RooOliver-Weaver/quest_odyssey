@@ -7,57 +7,70 @@ User.delete_all
 users = User.create!([
   { email: "dm@example.com", password: "password123" },
   { email: "player1@example.com", password: "password123" },
-  { email: "player2@example.com", password: "password123" }
+  { email: "player2@example.com", password: "password123" },
+  { email: "player3@example.com", password: "password123" }
 ])
 
 puts "Created #{users.count} users."
 
+# Generate sample character data
+character_data = [
+  { name: "Thalion", race: "Elf", speciality: "Ranger", level: 5, biography: "An elf who guards the forests." },
+  { name: "Gorak", race: "Half-Orc", speciality: "Barbarian", level: 4, biography: "A fierce warrior seeking redemption." },
+  { name: "Lila", race: "Halfling", speciality: "Rogue", level: 3, biography: "A mischievous thief with a golden heart." },
+  { name: "Myrin", race: "Tiefling", speciality: "Sorcerer", level: 6, biography: "A magic user with an infernal heritage." },
+  { name: "Eldon", race: "Human", speciality: "Cleric", level: 7, biography: "A healer devoted to a sun god." },
+  { name: "Kael", race: "Dragonborn", speciality: "Paladin", level: 8, biography: "A holy knight with draconic blood." },
+  { name: "Zara", race: "Dwarf", speciality: "Fighter", level: 4, biography: "A stout warrior who loves her ale." },
+  { name: "Fenris", race: "Gnome", speciality: "Wizard", level: 5, biography: "A genius inventor and spellcaster." },
+  { name: "Rurik", race: "Dwarf", speciality: "Bard", level: 2, biography: "A storyteller spreading tales of heroism." },
+  { name: "Selene", race: "Elf", speciality: "Druid", level: 6, biography: "A protector of the natural world." }
+]
+
 # Create characters
-characters = Character.create!([
-  {
-    name: "Thalion",
-    user: users[1],
-    race: "Elf",
-    speciality: "Ranger",
-    level: 5,
-    stats: { strength: 12, dexterity: 18, constitution: 14, intelligence: 10, wisdom: 15, charisma: 11 },
-    biography: "An elf who guards the forests and fights for nature."
-  },
-  {
-    name: "Gorak",
-    user: users[2],
-    race: "Half-Orc",
-    speciality: "Barbarian",
-    level: 4,
-    stats: { strength: 18, dexterity: 12, constitution: 16, intelligence: 8, wisdom: 10, charisma: 9 },
-    biography: "A fierce warrior with a tragic past, seeking redemption."
-  }
-])
+characters = character_data.map do |char|
+  Character.create!(
+    char.merge(
+      user: users.sample,
+      stats: {
+        strength: rand(8..18),
+        dexterity: rand(8..18),
+        constitution: rand(8..18),
+        intelligence: rand(8..18),
+        wisdom: rand(8..18),
+        charisma: rand(8..18)
+      }
+    )
+  )
+end
 
 puts "Created #{characters.count} characters."
 
-# Create campaigns
-Campaign.create!([
-  {
-    name: "The Lost Relic",
-    setting: "Forgotten Realms",
-    description: "A perilous journey to find an ancient artifact.",
-    next_session: Date.today + 7,
-    user: users[0], # DM
-    notes: "Prepare the dungeon map and NPC dialogue.",
-    dm_notes: "The artifact is cursed; it should be revealed gradually.",
-    active: true
-  },
-  {
-    name: "Shadows of the Abyss",
-    setting: "Greyhawk",
-    description: "A fight against the forces of darkness threatening the land.",
-    next_session: Date.today + 14,
-    user: users[0], # DM
-    notes: "Introduce the rival adventuring party.",
-    dm_notes: "The rival adventuring party will challenge the group.",
-    active: false
-  }
-])
+# Generate sample campaign data
+campaign_data = [
+  { name: "The Lost Relic", setting: "Forgotten Realms", description: "A journey to find an ancient artifact." },
+  { name: "Shadows of the Abyss", setting: "Greyhawk", description: "Fighting the forces of darkness." },
+  { name: "The Crimson Tide", setting: "Eberron", description: "Battling pirates and sea monsters." },
+  { name: "The Eternal Forest", setting: "Faerûn", description: "Protecting a magical forest from corruption." },
+  { name: "The Iron Citadel", setting: "Dark Sun", description: "Storming an impenetrable fortress." },
+  { name: "Whispers of the Void", setting: "Ravenloft", description: "Investigating a cursed village." },
+  { name: "The Emerald Crown", setting: "Greyhawk", description: "Uncovering a royal conspiracy." },
+  { name: "The Arcane War", setting: "Forgotten Realms", description: "Stopping a war between mages." },
+  { name: "Fury of the Wilds", setting: "Eberron", description: "Fending off monstrous invasions." },
+  { name: "The Frozen Spire", setting: "Faerûn", description: "Climbing a frozen mountain to stop a blizzard." }
+]
 
-puts "Created #{Campaign.count} campaigns."
+# Create campaigns
+campaigns = campaign_data.map do |camp|
+  Campaign.create!(
+    camp.merge(
+      user: users.first, # Assign all to the DM user
+      notes: "Sample notes for #{camp[:name]}",
+      dm_notes: "DM-only notes for #{camp[:name]}",
+      next_session: Date.today + rand(1..30),
+      active: [true, false].sample
+    )
+  )
+end
+
+puts "Created #{campaigns.count} campaigns."

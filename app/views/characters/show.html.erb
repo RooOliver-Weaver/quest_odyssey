@@ -2,12 +2,12 @@
 <label for="charname">Character Name</label> <%= @character.name  %>
 <ul>
   <li>
-    <label for="classlevel">Class & Level</label> <%= @character.speciality.capitalize %> <%= @character.level %>
+    <label for="classlevel">Class & Level</label> <%= @character.speciality %> <%= @character.level %>
   </li>
   <li>
     <label for="background">Background</label><%= @character.background %>
   <li>
-    <label for="playername">Player Name</label><%= @character.user.nickname.capitalize %>
+    <label for="playername">Player Name</label><%= @character.user.nickname %>
   </li>
   <li>
     <label for="race">Race</label><%= @character.race %>

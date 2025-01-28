@@ -41,7 +41,7 @@ class CampaignsController < ApplicationController
   end
 
   def destroy
-    @campaign.destroy
+    @campaign.destroy!
     redirect_to campaigns_path
   end
 

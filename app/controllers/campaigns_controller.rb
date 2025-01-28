@@ -27,4 +27,5 @@ class CampaignsController < ApplicationController
   def campaign_params
     params.require(:campaign).permit(:name, :setting, :description, :next_session, :notes, :active, :dm_notes)
   end
+  
 end

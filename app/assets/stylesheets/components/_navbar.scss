@@ -5,7 +5,7 @@
   left: 0;
   height: 100%;
   width: 6.25rem;
-  background-color: var(--gray-dark);
+  background-color: var(--green);
   float: left;
   overflow-x: hidden;
   transition: width var(--speed);
@@ -43,19 +43,19 @@
   height: 100%;
   // width: 1em;
   padding: 0 0.25em 0 0;
-  color: var(--pink);
+  color: var(--rust);
   font-size: 2.25rem;
 }
 
 .bttn:hover {
-  border-right: 0.25rem solid pink;
+  border-right: 0.25rem solid var(--orange);
   padding-right: calc(0.5rem - 0.25rem);
   background-color: #212121;
   color: white;
 }
 
 .bttn.active {
-  border-right: 0.25rem solid var(--pink);
+  border-right: 0.25rem solid var(--rust);
   padding-right: calc(0.5rem - 0.25rem);
 }
 
@@ -65,7 +65,7 @@
 }
 
 .navbar:hover .bttn.active {
-  border-right: 0.25rem solid var(--pink);
+  border-right: 0.25rem solid var(--rust);
   padding-right: calc(0.5rem - 0.25rem);
 }
 

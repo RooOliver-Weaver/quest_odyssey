@@ -1,4 +1,11 @@
 class Character < ApplicationRecord
+  store_attribute :stats, :strength, :integer, default: 10
+  store_attribute :stats, :dexterity, :integer, default: 10
+  store_attribute :stats, :constitution, :integer, default: 10
+  store_attribute :stats, :intelligence, :integer, default: 10
+  store_attribute :stats, :wisdom, :integer, default: 10
+  store_attribute :stats, :charisma, :integer, default: 10
+
   belongs_to :user
 
   validates :name, :race, :speciality, :level, presence: true

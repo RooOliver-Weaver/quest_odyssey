@@ -11,7 +11,8 @@ class CharactersController < ApplicationController
   end
 
   def new
-    @character = Character.new()
+    @user = current_user
+    @character = Character.new(user: @user)
   end
 
   def create

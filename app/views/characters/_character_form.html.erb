@@ -1,5 +1,4 @@
-<%= simple_form for @character do |f| %>
-<form class="charsheet">
+<%= simple_form_for @character do |f| %>
   <header>
     <section class="charname">
       <%= f.label :name %>
@@ -19,7 +18,7 @@
         </li>
         <li>
          <h4>User</h4>
-          <%= current_user %>
+          <%= @user.nickname %>
         </li>
         <li>
           <%= f.label :race %>
@@ -33,48 +32,48 @@
     </section>
   </header>
   <main>
-    <section>
-      <section class="attributes">
-        <div class="scores">
-          <ul>
-            <li>
-              <div class="score">
-                <%= f.label :stats['strength'] %>
-                <%= f.text_field :stats['strength'] %>
-              </div>
-            </li>
-            <li>
-              <div class="score">
-                <%= f.label :stats['dexterity'] %>
-                <%= f.text_field :stats['dexterity'] %>
-              </div>
-            </li>
-            <li>
-              <div class="score">
-                <%= f.label :stats['constitution'] %>
-                <%= f.text_field :stats['constitution'] %>
-              </div>
-            </li>
-            <li>
-              <div class="score">
-                 <%= f.label :stats['wisdom'] %>
-                <%= f.text_field :stats['wisdom'] %>
-              </div>
-            </li>
-            <li>
-              <div class="score">
-                <%= f.label :stats['intelligence'] %>
-                <%= f.text_field :stats['intelligence'] %>
-              </div>
-            </li>
-            <li>
-              <div class="score">
-              <%= f.label :stats['charisma'] %>
-                <%= f.text_field :stats['charisma'] %>
-              </div>
-            </li>
-          </ul>
-        </div>
+    <section class="attributes">
+      <div class="scores">
+        <ul>
+          <li>
+            <div class="score">
+              <%= f.label :strength %>
+              <%= f.text_field :strength %>
+            </div>
+          </li>
+          <li>
+            <div class="score">
+              <%= f.label :dexterity %>
+              <%= f.text_field :dexterity %>
+            </div>
+          </li>
+          <li>
+            <div class="score">
+              <%= f.label :constitution %>
+              <%= f.text_field :constitution %>
+            </div>
+          </li>
+          <li>
+            <div class="score">
+                <%= f.label :wisdom %>
+              <%= f.text_field :wisdom %>
+            </div>
+          </li>
+          <li>
+            <div class="score">
+              <%= f.label :intelligence %>
+              <%= f.text_field :intelligence %>
+            </div>
+          </li>
+          <li>
+            <div class="score">
+            <%= f.label :charisma %>
+              <%= f.text_field :charisma %>
+            </div>
+          </li>
+        </ul>
+      </div>
     </section>
   </main>
+    <%= f.submit %>
 <% end %>

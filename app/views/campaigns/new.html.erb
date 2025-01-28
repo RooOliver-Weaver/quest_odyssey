@@ -1,0 +1,10 @@
+<div>
+  <h1>New Campaign</h1>
+  <%= simple_form_for(@campaign) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :setting %>
+    <%= f.input :description %>
+    <%= f.input :active, as: :boolean, default: false %>
+    <%= f.button :submit, class: 'btn btn-primary' %>
+  <% end %>
+</div>

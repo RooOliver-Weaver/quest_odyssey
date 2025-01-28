@@ -1,17 +1,27 @@
-<h1><%= @campaign.name %></h1>
-<h3><%= @campaign.setting %></h3>
-<p><%= @campaign.description %></p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="card col-md-8 offset-md-2">
+      <div class="card-header">
+        <h1 class="card-title"><%= @campaign.name %></h1>
+        <h3 class="card-subtitle"><%= @campaign.setting %></h3>
+      </div>
+      <div class="card-body">
+        <p><%= @campaign.description %></p>
 
+        <p><strong>Notes:</strong></p>
+        <p><%= @campaign.notes %></p>
 
-<p><strong>Notes:</strong></p>
-<p><%= @campaign.notes %></p>
+        <% if @campaign.user == current_user %>
+          <p><strong>GM Notes:</strong></p>
+          <p><%= @campaign.gm_notes %></p>
+        <% end %>
 
-
-<% if @campaign.user == current_user %>
-  <p><strong>GM Notes:</strong></p>
-  <%= @campaign.gm_notes %>
-<% end %>
-
-<%= link_to 'Edit', edit_campaign_path(@campaign), class: 'btn btn-primary' %>
-<%= link_to 'Back', campaigns_path, class: 'btn btn-primary' %>
-<%= link_to 'Delete', campaign_path(@campaign), turbo_method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-secondary' %>
+        <div class="d-flex mt-4">
+          <%= link_to "Edit", edit_campaign_path(@campaign), class: "btn btn-warning mx-2" %>
+          <%= link_to "Back", campaigns_path, class: "btn btn-secondary mx-2" %>
+          <%= link_to "Delete", campaign_path(@campaign), turbo_method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger mx-2" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

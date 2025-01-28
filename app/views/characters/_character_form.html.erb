@@ -1,0 +1,80 @@
+<%= simple_form for @character do |f| %>
+<form class="charsheet">
+  <header>
+    <section class="charname">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </section>
+    <section class="misc">
+      <ul>
+        <li>
+          <%= f.label :speciality %>
+          <%= f.text_field :speciality %>
+          <%= f.label :level %>
+          <%= f.input :level, collection: 0..20 %>
+        </li>
+        <li>
+         <%= f.label :background %>
+          <%= f.text_field :background %>
+        </li>
+        <li>
+         <h4>User</h4>
+          <%= current_user %>
+        </li>
+        <li>
+          <%= f.label :race %>
+          <%= f.text_field :race %>
+        </li>
+        <li>
+          <%= f.label :alignment %>
+          <%= f.text_field :alignment %>
+        </li>
+      </ul>
+    </section>
+  </header>
+  <main>
+    <section>
+      <section class="attributes">
+        <div class="scores">
+          <ul>
+            <li>
+              <div class="score">
+                <%= f.label :stats['strength'] %>
+                <%= f.text_field :stats['strength'] %>
+              </div>
+            </li>
+            <li>
+              <div class="score">
+                <%= f.label :stats['dexterity'] %>
+                <%= f.text_field :stats['dexterity'] %>
+              </div>
+            </li>
+            <li>
+              <div class="score">
+                <%= f.label :stats['constitution'] %>
+                <%= f.text_field :stats['constitution'] %>
+              </div>
+            </li>
+            <li>
+              <div class="score">
+                 <%= f.label :stats['wisdom'] %>
+                <%= f.text_field :stats['wisdom'] %>
+              </div>
+            </li>
+            <li>
+              <div class="score">
+                <%= f.label :stats['intelligence'] %>
+                <%= f.text_field :stats['intelligence'] %>
+              </div>
+            </li>
+            <li>
+              <div class="score">
+              <%= f.label :stats['charisma'] %>
+                <%= f.text_field :stats['charisma'] %>
+              </div>
+            </li>
+          </ul>
+        </div>
+    </section>
+  </main>
+<% end %>

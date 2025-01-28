@@ -28,12 +28,16 @@ class CampaignsController < ApplicationController
   end
 
   def update
-    if @campaign.update(campaign_params)
-      format.html { redirect_to campaign_path(@campaign) }
-      format.json
-    else
-      format.html { render "update-show", status: :unprocessable_entity }
-      format.json
+    @campaign = Campaign.find_by(id: params[:id])
+
+    respond_to do |format|
+      if @campaign && @campaign.update(campaign_params)
+        format.html { redirect_to campaign_path(@campaign), notice: 'Campaign updated successfully.' }
+        format.json { render :show, status: :ok, location: @campaign }
+      else
+        format.html { render :edit, alert: 'Failed to update campaign.' }
+        format.json { render json: @campaign.errors, status: :unprocessable_entity }
+      end
     end
   end
 

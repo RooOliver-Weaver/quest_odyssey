@@ -15,7 +15,7 @@ class CampaignsController < ApplicationController
 
   def create
     @campaign = Campaign.new(campaign_params)
-    @campign.user = current_user
+    @campaign.user = current_user
     if @campaign.save!
       redirect_to campaign_path(@campaign)
     else

@@ -22,3 +22,11 @@
       </div>
     </div>
   </div>
+
+<div class="container mt-5">
+  <%= month_calendar do |date| %>
+    <div class="day">
+      <%= date.day %>
+    </div>
+  <% end %>
+</div>

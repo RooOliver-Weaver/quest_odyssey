@@ -29,6 +29,11 @@
 .logo {
   width: 6.25rem;
 }
+
+.logo:hover {
+  animation: spin 1s linear infinite;
+}
+
 .bttn {
   // max-height: 1rem;
   width: calc(100% - 1rem);
@@ -86,7 +91,15 @@
 //   margin-top: 2rem; /* Adjust for the navbar height */
 // }
 
-/* Responsive design */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media (max-width: 768px) {
   .navbar {
     width: 5rem;

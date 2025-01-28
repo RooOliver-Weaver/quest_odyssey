@@ -10,3 +10,33 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+html, body {
+  min-height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+
+body {
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  background-color: var(--gray);
+  color: white;
+}
+
+
+.page-content {
+  margin-left: 6.25rem;
+  padding: 1rem;
+  width: calc(100% - 6.25rem);
+  transition: width var(--speed);
+}

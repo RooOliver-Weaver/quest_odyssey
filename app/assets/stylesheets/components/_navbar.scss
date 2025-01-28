@@ -10,3 +10,25 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.navbar-lewagon .navbar-brand img:hover {
+  transform: rotate(270deg) 5s ease;
+}
+
+.logo {
+  width: 40px;
+  transition: transform 0.5s ease;
+}
+
+.logo:hover {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

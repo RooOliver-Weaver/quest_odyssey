@@ -3,8 +3,22 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+
+  authenticated :user do
+    root to: "pages#dashboard", as: :authenticated_root
+  end
+
   root to: "pages#home"
-  resources :campaigns
+  resources :campaigns do
+    post :invite, on: :member  # Sends an invite
+  end
+
+  resources :campaign_characters, only: [:update, :destroy] do
+    member do
+      post :accept
+    end
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

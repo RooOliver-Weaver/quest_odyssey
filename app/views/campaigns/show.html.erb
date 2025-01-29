@@ -11,17 +11,31 @@
         <p><strong>Notes:</strong></p>
         <p><%= @campaign.notes %></p>
 
-        <% if @campaign.user == current_user %>
-          <p><strong>GM Notes:</strong></p>
+        <% if policy(@campaign).dm_notes? %>
+          <p><strong>DM Notes:</strong></p>
           <p><%= @campaign.dm_notes %></p>
         <% end %>
 
         <div class="d-flex mt-4">
-          <%= link_to "Edit", edit_campaign_path(@campaign), class: "btn btn-warning mx-2" %>
+          <% if policy(@campaign).update? %>
+            <%= link_to "Edit", edit_campaign_path(@campaign), class: "btn btn-warning mx-2" %>
+          <% end %>
           <%= link_to "Back", campaigns_path, class: "btn btn-secondary mx-2" %>
-          <%= link_to "Delete", campaign_path(@campaign), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }, class: "btn btn-danger mx-2" %>
+          <% if policy(@campaign).destroy? %>
+            <%= link_to "Delete", campaign_path(@campaign), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }, class: "btn btn-danger mx-2" %>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<% if policy(@campaign).invite? %>
+  <%= form_with url: invite_campaign_path(@campaign), method: :post, local: true do |form| %>
+    <h2>Invite Users to this Campaign</h2>
+
+    <%= form.label :user_id, 'Select a user to invite' %>
+    <%= form.collection_select :user_id, User.where.not(id: @campaign.user.id), :id, :nickname, prompt: "Select a user" %>
+    <%= form.submit "Send Invite" %>
+  <% end %>
+<% end %>

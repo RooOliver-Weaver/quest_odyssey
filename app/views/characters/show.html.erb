@@ -1,51 +1,55 @@
-<div class= "container">
-<label for="charname">Character Name</label> <%= @character.name  %>
-<ul>
-  <li>
-    <label for="classlevel">Class & Level</label> <%= @character.speciality %> <%= @character.level %>
-  </li>
-  <li>
-    <label for="background">Background</label><%= @character.background %>
-  <li>
-    <label for="playername">Player Name</label><%= @character.user.nickname %>
-  </li>
-  <li>
-    <label for="race">Race</label><%= @character.race %>
-  </li>
-  <li>
-    <label for="alignment">Alignment</label><%= @character.alignment %>
-  </li>
-</ul>
+
+<div class= "container row">
+   <div class="col-3">
+    <h3><%= @character.name %>: Level <%= @character.level %>   <%= @character.speciality.capitalize %> </h3>
+    <%= image_tag @character.portrait %>
+    <ul>
+      <li>
+        <label for="background">Background: </label> <%= @character.background %>
+      <li>
+        <label for="race">Race: </label> <%= @character.race %>
+      </li>
+      <li>
+        <label for="alignment">Alignment: </label> <%= @character.alignment %>
+      </li>
+      <li>
+        <label for="playername">Player Name: </label> <%= @character.user.nickname.capitalize %>
+      </li>
+    </ul>
+  </div>
+  <div class="col-9">
+
   <div class="attributes">
   <h3>Attributes</h3>
     <ul>
       <li>
         <div class="attribute">
-          <label for="Strengthscore">Strength</label><%= @character.stats['strength'] %>
+          <label for="Strengthscore"><%= image_tag "attribute_icons/Attribute_Strength.webp", class: "attr-icon" %> Strength: </label> <%= @character.stats['strength'] %>
         </div>
       </li>
       <li>
         <div class="attribute">
-          <label for="Dexterityscore">Dexterity</label><%= @character.stats['dexterity'] %>
+          <label for="Dexterityscore"><%= image_tag "attribute_icons/Attribute_Dexterity.webp", class: "attr-icon" %> Dexterity: </label> <%= @character.stats['dexterity'] %>
         </div>
       </li>
       <li>
         <div class="attribute">
-          <label for="Constitutionscore">Constitution</label><%= @character.stats['constitution'] %>
+          <label for="Constitutionscore"><%= image_tag "attribute_icons/Attribute_Constitution.webp", class: "attr-icon" %> Constitution: </label> <%= @character.stats['constitution'] %>
+            </div>
       </li>
       <li>
         <div class="attribute">
-          <label for="Wisdomscore">Wisdom</label><%= @character.stats['wisdom'] %>
+          <label for="Wisdomscore"> <%= image_tag "attribute_icons/Attribute_Wisdom.webp", class: "attr-icon" %> Wisdom: </label> <%= @character.stats['wisdom'] %>
+            </div>
       </li>
       <li>
         <div class="attribute">
-          <label for="Intelligencescore">Intelligence</label><%= @character.stats['intelligence'] %>
+          <label for="Intelligencescore"><%= image_tag "attribute_icons/Attribute_Intellect.webp", class: "attr-icon" %> Intelligence: </label> <%= @character.stats['intelligence'] %>
         </div>
       </li>
       <li>
         <div class="attribute">
-          <label for="Charismascore">Charisma</label>
-          <%= @character.stats['charisma'] %>
+          <label for="Charismascore"><%= image_tag "attribute_icons/Attribute_Charisma.webp", class: "attr-icon" %>Charisma: </label> <%= @character.stats['charisma'] %>
         </div>
       </li>
     </ul>
@@ -55,5 +59,5 @@
     <p> <%= @character.biography %></p>
   </div>
 </div>
-
+</div>
 <%= link_to "Back to Characters", characters_path %>

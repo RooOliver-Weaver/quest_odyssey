@@ -1,6 +1,7 @@
 class CampaignsController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :set_campaign, only: %i[show edit update destroy]
+  before_action :authorize_user, only: %i[edit update destroy]
 
   def index
     @campaigns = Campaign.all
@@ -53,6 +54,10 @@ class CampaignsController < ApplicationController
 
   def campaign_params
     params.require(:campaign).permit(:name, :setting, :description, :next_session, :notes, :active, :dm_notes)
+  end
+
+  def authorize_user
+    authorize @campaign
   end
 
 end

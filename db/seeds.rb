@@ -1,3 +1,5 @@
+require 'open-uri'
+
 # Clear existing data
 Campaign.delete_all
 Character.delete_all
@@ -5,33 +7,39 @@ User.delete_all
 
 # Create users
 users = User.create!([
-  { email: "dm@example.com", password: "password123" },
-  { email: "player1@example.com", password: "password123" },
-  { email: "player2@example.com", password: "password123" },
-  { email: "player3@example.com", password: "password123" },
-  { email: "test@test.com", password: "password" }
+  { email: "dm@example.com", password: "password123", nickname: "DM" },
+  { email: "player1@example.com", password: "password123", nickname: "Doopus" },
+  { email: "player2@example.com", password: "password123", nickname: "Derpus" },
+  { email: "player3@example.com", password: "password123", nickname: "Noopus" },
+  { email: "test@test.com", password: "password", nickname: "Slurpus" }
 ])
 
 puts "Created #{users.count} users."
 
 # Generate sample character data
 character_data = [
-  { name: "Thalion", race: "Elf", speciality: "Ranger", level: 5, biography: "An elf who guards the forests." },
-  { name: "Gorak", race: "Half-Orc", speciality: "Barbarian", level: 4, biography: "A fierce warrior seeking redemption." },
-  { name: "Lila", race: "Halfling", speciality: "Rogue", level: 3, biography: "A mischievous thief with a golden heart." },
-  { name: "Myrin", race: "Tiefling", speciality: "Sorcerer", level: 6, biography: "A magic user with an infernal heritage." },
-  { name: "Eldon", race: "Human", speciality: "Cleric", level: 7, biography: "A healer devoted to a sun god." },
-  { name: "Kael", race: "Dragonborn", speciality: "Paladin", level: 8, biography: "A holy knight with draconic blood." },
-  { name: "Zara", race: "Dwarf", speciality: "Fighter", level: 4, biography: "A stout warrior who loves her ale." },
-  { name: "Fenris", race: "Gnome", speciality: "Wizard", level: 5, biography: "A genius inventor and spellcaster." },
-  { name: "Rurik", race: "Dwarf", speciality: "Bard", level: 2, biography: "A storyteller spreading tales of heroism." },
-  { name: "Selene", race: "Elf", speciality: "Druid", level: 6, biography: "A protector of the natural world." }
+  { name: "Thalion", race: "Elf", speciality: "Ranger", level: 5, biography: "An elf who guards the forests.", alignment: "Neutral Good", background: "Steward of the Forest", portrait: "db/character_portraits/thalion.png" },
+  { name: "Gorak", race: "Half-Orc", speciality: "Barbarian", level: 4, biography: "A fierce warrior seeking revenge.", alignment: "Lawful Evil", background: "Tyrannical Overlord",  portrait: "db/character_portraits/gorak.webp"},
+  { name: "Lila", race: "Halfling", speciality: "Rogue", level: 3, biography: "A mischievous thief with a golden heart.", alignment: "Chaotic Neutral", background: "Wandering Trickster", portrait: "db/character_portraits/lila.webp"},
+  { name: "Myrin", race: "Tiefling", speciality: "Sorcerer", level: 6, biography: "A magic user with an infernal heritage.", alignment: "Chaotic Good", background: "Reformed Outlaw", portrait: "db/character_portraits/myrin.png" },
+  { name: "Eldon", race: "Human", speciality: "Cleric", level: 7, biography: "A healer devoted to a sun god.", alignment:"Lawful Good", background: "Cleric of the Radiant Order", portrait: "db/character_portraits/eldon.png" },
+  { name: "Kael", race: "Dragonborn", speciality: "Paladin", level: 8, biography: "A holy knight with draconic blood.", alignment:"Lawful Neutral", background: "Draconic Templars", portrait: "db/character_portraits/kael.jpg" },
+  { name: "Zara", race: "Dwarf", speciality: "Fighter", level: 4, biography: "A stout warrior who loves her ale.", alignment: "Neutral Good", background: "The Wayward Mercenaries", portrait: "db/character_portraits/zara.png" },
+  { name: "Fenris", race: "Gnome", speciality: "Wizard", level: 5, biography: "A genius inventor and spellcaster.", alignment: "True Neutral", background: "Head of the Enigmatech Guild", portrait: "db/character_portraits/fenris.png"},
+  { name: "Rurik", race: "Dwarf", speciality: "Bard", level: 2, biography: "A wandering bard, with a shadowy past who delights in shocking listeners with tales of violence.", alignment: "Neutral Evil", background: "Bloodstained Assassin", portrait: "db/character_portraits/rurik.png" },
+  { name: "Selene", race: "Elf", speciality: "Druid", level: 6, biography: "Once a protector of the natural world, now demented with anger against those who wrong the natural world.", alignment: "Chaotic Evil", background: "Deranged Cult Leader", portrait: "db/character_portraits/selene.png" }
 ]
 
 # Create characters
 characters = character_data.map do |char|
-  Character.create!(
-    char.merge(
+   new_character = Character.create!(
+      name: char[:name],
+      race: char[:race],
+      speciality: char[:speciality],
+      level: char[:level],
+      biography: char[:biography],
+      alignment: char[:alignment],
+      background: char[:background],
       user: users.sample,
       stats: {
         strength: rand(8..18),
@@ -42,7 +50,15 @@ characters = character_data.map do |char|
         charisma: rand(8..18)
       }
     )
-  )
+  p "#{new_character.name} has been added by #{new_character.user}"
+  if (new_character.portrait.attach(
+    io: File.open(char[:portrait]),
+    filename: File.basename(char[:portrait])
+    ) )
+    p "Portait has been sucessfully added to #{new_character.name}"
+  else
+    p "Unsucessful attempt at adding portait to #{new_character.name}"
+  end
 end
 
 puts "Created #{characters.count} characters."

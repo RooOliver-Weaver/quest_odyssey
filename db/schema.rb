@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_29_131621) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_29_155419) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -99,6 +99,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_29_131621) do
     t.string "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "campaign_id", null: false
+    t.index ["campaign_id"], name: "index_sessions_on_campaign_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -123,4 +125,5 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_29_131621) do
   add_foreign_key "character_sessions", "campaign_characters"
   add_foreign_key "character_sessions", "sessions"
   add_foreign_key "characters", "users"
+  add_foreign_key "sessions", "campaigns"
 end

@@ -1,7 +1,42 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
+  <% timeslots = [
+  "Monday Morning",
+  "Monday Midday",
+  "Monday Evening",
+  "Tuesday Morning",
+  "Tuesday Midday",
+  "Tuesday Evening",
+  "Wednesday Morning",
+  "Wednesday Midday",
+  "Wednesday Evening",
+  "Thursday Morning",
+  "Thursday Midday",
+  "Thursday Evening",
+  "Friday Morning",
+  "Friday Midday",
+  "Friday Evening",
+  "Saturday Morning",
+  "Saturday Midday",
+  "Saturday Evening",
+  "Sunday Morning",
+  "Sunday Midday",
+  "Sunday Evening"
+] %>
+
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
+
+    <p>Select one or more day/time slots:</p>
+
+  <% timeslots.each do |time_slot| %>
+    <div>
+      <%= check_box_tag "user[availability][]", time_slot,
+          (@user.availability || []).include?(time_slot) %>
+      <%= label_tag "user[availability][]", time_slot %>
+    </div>
+  <% end %>
+
 
   <div class="form-inputs">
     <%= f.input :email, required: true, autofocus: true %>

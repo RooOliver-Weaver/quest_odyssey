@@ -25,6 +25,35 @@
   animation: spin 1s linear infinite;
 }
 
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-item {
+  position: relative;
+}
+
+.menu-link {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.menu-item.has-dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  z-index: 1100;
+  width: 200px;
+  padding-left: 20px;
+}
+
+.menu-item.has-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
 .bttn {
   // max-height: 1rem;
   width: calc(100% - 1rem);
@@ -115,6 +144,18 @@
   .navbar:hover {
     width: 30%;
   }
+
+  .logo {
+    width: 5rem;
+  }
+
+  .bttn i {
+    font-size: 2rem;
+  }
+
+  .bttn p {
+    font-size: 0.75rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -126,9 +167,20 @@
     width: 50%;
   }
 
-  .main {
-    left: 50%;
-    width: 50%;
+  .logo {
+    width: 4rem;
+  }
+
+  .bttn {
+    margin-left: 0.2rem;
+  }
+
+  .bttn i {
+    font-size: 1.5rem;
+  }
+
+  .bttn p {
+    font-size: 0.5rem;
   }
 }
 

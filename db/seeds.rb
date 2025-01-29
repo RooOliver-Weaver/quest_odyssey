@@ -5,27 +5,27 @@ User.delete_all
 
 # Create users
 users = User.create!([
-  { email: "dm@example.com", password: "password123" },
-  { email: "player1@example.com", password: "password123" },
-  { email: "player2@example.com", password: "password123" },
-  { email: "player3@example.com", password: "password123" },
-  { email: "test@test.com", password: "password" }
+  { email: "dm@example.com", password: "password123", nickname: "CriticalHitKing" },
+  { email: "player1@example.com", password: "password123", nickname: "DungeonDelver77" },
+  { email: "player2@example.com", password: "password123", nickname: "ArcaneArchitect" },
+  { email: "player3@example.com", password: "password123", nickname: "StealthyDagger"  },
+  { email: "test@test.com", password: "password", nickname: "MysticMapper"  }
 ])
 
 puts "Created #{users.count} users."
 
 # Generate sample character data
 character_data = [
-  { name: "Thalion", race: "Elf", speciality: "Ranger", level: 5, biography: "An elf who guards the forests." },
-  { name: "Gorak", race: "Half-Orc", speciality: "Barbarian", level: 4, biography: "A fierce warrior seeking redemption." },
-  { name: "Lila", race: "Halfling", speciality: "Rogue", level: 3, biography: "A mischievous thief with a golden heart." },
-  { name: "Myrin", race: "Tiefling", speciality: "Sorcerer", level: 6, biography: "A magic user with an infernal heritage." },
-  { name: "Eldon", race: "Human", speciality: "Cleric", level: 7, biography: "A healer devoted to a sun god." },
-  { name: "Kael", race: "Dragonborn", speciality: "Paladin", level: 8, biography: "A holy knight with draconic blood." },
-  { name: "Zara", race: "Dwarf", speciality: "Fighter", level: 4, biography: "A stout warrior who loves her ale." },
-  { name: "Fenris", race: "Gnome", speciality: "Wizard", level: 5, biography: "A genius inventor and spellcaster." },
-  { name: "Rurik", race: "Dwarf", speciality: "Bard", level: 2, biography: "A storyteller spreading tales of heroism." },
-  { name: "Selene", race: "Elf", speciality: "Druid", level: 6, biography: "A protector of the natural world." }
+  { name: "Thalion", race: "Elf", speciality: "rogue", level: 5, biography: "An elf who guards the forests." },
+  { name: "Gorak", race: "Half-Orc", speciality: "barbarian", level: 4, biography: "A fierce warrior seeking redemption." },
+  { name: "Lila", race: "Halfling", speciality: "rogue", level: 3, biography: "A mischievous thief with a golden heart." },
+  { name: "Myrin", race: "Tiefling", speciality: "sorcerer", level: 6, biography: "A magic user with an infernal heritage." },
+  { name: "Eldon", race: "Human", speciality: "cleric", level: 7, biography: "A healer devoted to a sun god." },
+  { name: "Kael", race: "Dragonborn", speciality: "fighter", level: 8, biography: "A holy knight with draconic blood." },
+  { name: "Zara", race: "Dwarf", speciality: "fighter", level: 4, biography: "A stout warrior who loves her ale." },
+  { name: "Fenris", race: "Gnome", speciality: "wizard", level: 5, biography: "A genius inventor and spellcaster." },
+  { name: "Rurik", race: "Dwarf", speciality: "bard", level: 2, biography: "A storyteller spreading tales of heroism." },
+  { name: "Selene", race: "Elf", speciality: "bard", level: 6, biography: "A protector of the natural world." }
 ]
 
 # Create characters

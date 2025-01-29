@@ -1,4 +1,3 @@
 class Session < ApplicationRecord
-  belongs_to :character
-  belongs_to :campaign
+ belongs_to :campaign
 end

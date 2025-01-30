@@ -18,3 +18,11 @@
 <% @joined_campaigns.each do |campaign| %>
   <p>You are a member of <%= link_to campaign.campaign.name, campaign_path(campaign.campaign) %></p>
 <% end %>
+
+<h1>My Calendar</h1>
+
+<h1>Weekly Calendar</h1>
+
+<%= week_calendar(number_of_weeks: 1) do |date| %>
+  <%= date %>
+<% end %>

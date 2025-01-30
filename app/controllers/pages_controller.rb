@@ -9,6 +9,4 @@ class PagesController < ApplicationController
     @pending_invites = current_user.campaign_characters.where(invite: nil)
     @joined_campaigns = current_user.campaign_characters.where(invite: true)
   end
-
-
 end

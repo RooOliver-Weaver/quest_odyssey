@@ -9,6 +9,7 @@ class CampaignsController < ApplicationController
 
   def show
     @campaign_character = CampaignCharacter.new
+    @message = Message.new
   end
 
   def new

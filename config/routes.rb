@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :campaigns do
     resources :campaign_characters, only: [:create]
+    resources :sessions
   end
 
   resources :campaign_characters, only: [:update, :destroy]

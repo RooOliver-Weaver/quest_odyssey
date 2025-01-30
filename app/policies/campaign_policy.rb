@@ -25,7 +25,13 @@ class CampaignPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def dm_notes?
+    record.user == user
+  end
 
+  def invite?
+    record.user == user
+  end
 
   class Scope < ApplicationPolicy::Scope
   end

@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema[7.1].define(version: 2025_01_29_155419) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_29_203629) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,16 +43,20 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_29_155419) do
   end
 
   create_table "campaign_characters", force: :cascade do |t|
-    t.bigint "character_id", null: false
+    t.bigint "character_id"
     t.bigint "campaign_id", null: false
-    t.integer "hit_points", null: false
-    t.integer "death_saves"
+    t.integer "hit_points"
+    t.jsonb "death_saves"
     t.jsonb "inventory"
     t.jsonb "stats"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.integer "level"
+    t.boolean "invite"
     t.index ["campaign_id"], name: "index_campaign_characters_on_campaign_id"
     t.index ["character_id"], name: "index_campaign_characters_on_character_id"
+    t.index ["user_id"], name: "index_campaign_characters_on_user_id"
   end
 
   create_table "campaigns", force: :cascade do |t|
@@ -122,6 +125,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_29_155419) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "campaign_characters", "campaigns"
   add_foreign_key "campaign_characters", "characters"
+  add_foreign_key "campaign_characters", "users"
   add_foreign_key "campaigns", "users"
   add_foreign_key "character_sessions", "campaign_characters"
   add_foreign_key "character_sessions", "sessions"

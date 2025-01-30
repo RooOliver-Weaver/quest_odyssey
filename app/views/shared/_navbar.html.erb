@@ -2,40 +2,48 @@
   <div class="navbar-logo">
     <%= image_tag "icon_quest_odyssey.png", class: "logo" %>
   </div>
-  <a href="<%= root_path %>" data-action="click->navbar#setActive" data-target="navbar.home" class="home bttn">
-    <i class="fa-solid fa-dungeon"></i>
-    <p class="hidden-text">Home</p>
-    <div class="dropdown-menu">
-    </div>
-  </a>
-  <a href="<%= characters_path %>"data-action="click->navbar#setActive" data-target="navbar.characters" class="characters bttn">
-    <i class="fa-solid fa-user-ninja"></i>
-    <p class="hidden-text">Characters</p>
-    <div class="dropdown-menu">
-      <ul>
-        <li>All</li>
-        <li>New</li>
-      </ul>
-    </div>
-  </a>
-  <a href="<%= campaigns_path %>" data-action="click->navbar#setActive" data-target="navbar.campaigns" class="campaigns bttn">
-    <i class="fa-solid fa-dice"></i>
-    <p class="hidden-text">Campaigns</p>
-    <div class="dropdown-menu">
-      <ul>
-        <li>All</li>
-        <li>New</li>
-      </ul>
-    </div>
-  </a>
-  <a href="#" data-action="click->navbar#setActive" data-target="navbar.calendar" class="calendar bttn">
-    <i class="fa-solid fa-calendar-xmark"></i>
-    <p class="hidden-text">Calendar</p>
-    <div class="dropdown-menu">
-      <ul>
-        <li>All</li>
-        <li>New</li>
-      </ul>
-    </div>
-  </a>
+  <ul class="menu">
+    <li class="menu-item">
+      <a href="<%= root_path %>" data-action="click->navbar#setActive" data-target="navbar.home" class="home bttn">
+        <i class="fa-solid fa-dungeon"></i>
+        <p class="hidden-text">Home</p>
+      </a>
+    </li>
+    <li class="menu-item has-dropdown" data-action="mouseover->navbar#showDropdown mouseout->navbar#hideDropdown">
+    <a href="<%= characters_path %>"data-action="click->navbar#setActive" data-target="navbar.characters" class="characters bttn">
+      <i class="fa-solid fa-user-ninja"></i>
+      <p class="hidden-text">Characters</p>
+      <div class="dropdown-menu">
+        <ul>
+          <li>All</li>
+          <li>New</li>
+        </ul>
+      </div>
+    </a>
+    </li>
+    <li class="menu-item has-dropdown" data-action="mouseover->navbar#showDropdown mouseout->navbar#hideDropdown">
+    <a href="<%= campaigns_path %>" data-action="click->navbar#setActive" data-target="navbar.campaigns" class="campaigns bttn">
+      <i class="fa-solid fa-dice"></i>
+      <p class="hidden-text">Campaigns</p>
+      <div class="dropdown-menu">
+        <ul>
+          <li>All</li>
+          <li>New</li>
+        </ul>
+      </div>
+    </a>
+    </li>
+      <li class="menu-item has-dropdown" data-action="mouseover->navbar#showDropdown mouseout->navbar#hideDropdown">
+        <a href="#" data-action="click->navbar#setActive" data-target="navbar.calendar" class="calendar bttn">
+          <i class="fa-solid fa-calendar-xmark"></i>
+          <p class="hidden-text">Calendar</p>
+          <div class="dropdown-menu">
+            <ul>
+              <li>All</li>
+              <li>New</li>
+            </ul>
+          </div>
+        </a>
+    </li>
+  </ul>
 </div>

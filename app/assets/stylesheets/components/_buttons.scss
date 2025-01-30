@@ -24,7 +24,7 @@
                 inset 0 -2px 5px 1px #b17d10,
                 inset 0 -1px 1px 3px rgba(250,227,133,1);
   border: 1px solid rgba(165,93,7,.6);
-  color: var(--burgundy);
+  color: white;
 }
 }
 
@@ -35,4 +35,32 @@
 .reset-btn{
   margin-left:25%;
   margin-top: 15px;
+}
+.view-camp {
+  font-size: 25px;
+  border: none;
+  color: yellow;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  display: flex;
+  justify-content: center;
+&:hover  {
+  background-size: 150% 150%;
+  color: orange
+
+}
+}
+.delete-camp {
+  font-size: 25px;
+  border: none;
+  color:red;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  display: flex;
+  justify-content: center;
+&:hover  {
+  background-size: 150% 150%;
+  color: orange
+
+}
 }

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'calendars/show'
   devise_for :users , controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
@@ -11,8 +12,13 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :campaigns do
     resources :campaign_characters, only: [:create]
+    resources :sessions
     resources :messages, only: [:create]
   end
+
+
+  get '/calendars', to: 'calendars#index'
+
 
   resources :campaign_characters, only: [:update, :destroy]
 

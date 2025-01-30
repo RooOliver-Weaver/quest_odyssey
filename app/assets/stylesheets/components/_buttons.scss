@@ -27,8 +27,6 @@
   color: white;
 }
 }
-
-
 .login-btn{
   margin-left: 45%;
 }
@@ -36,6 +34,7 @@
   margin-left:25%;
   margin-top: 15px;
 }
+
 .view-camp {
   font-size: 25px;
   border: none;
@@ -53,14 +52,26 @@
 .delete-camp {
   font-size: 25px;
   border: none;
-  color:red;
+  color:rgb(89, 3, 3);
   cursor: pointer;
   transition: all .2s ease-in-out;
   display: flex;
   justify-content: center;
 &:hover  {
   background-size: 150% 150%;
-  color: orange
-
+  color: rgb(255, 0, 0)
+}
+}
+.edit-camp{
+  font-size: 25px;
+  border: none;
+  color:#4998d7;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  display: flex;
+  justify-content: center;
+&:hover  {
+  background-size: 150% 150%;
+  color: rgb(0, 17, 170);
 }
 }

@@ -14,6 +14,7 @@
             <div class="d-flex justify-content-evenly">
               <a class="view-camp" href="<%= campaign_path(campaign) %>" ><i class="fa-solid fa-scroll"></i></a>
               <a class="delete-camp" href="<%= campaign_path(campaign) %>" data-turbo-method="delete" data-turbo-confirm="Are you sure?"><i class="fa-solid fa-bomb"></i></a>
+              <a class="edit-camp" href="<%= edit_campaign_path(campaign) %>"><i class="fa-solid fa-wand-sparkles"></i></a>
             </div>
           </div>
 

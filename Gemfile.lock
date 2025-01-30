@@ -301,6 +301,8 @@ GEM
       websocket (~> 1.0)
     simple_calendar (3.1.0)
       rails (>= 6.1)
+    solid_cable (1.0.3)
+      rails (< 9)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -370,6 +372,7 @@ DEPENDENCIES
   selenium-webdriver
   simple_calendar
   simple_form!
+  solid_cable
   sprockets-rails
   stimulus-rails
   store_attribute

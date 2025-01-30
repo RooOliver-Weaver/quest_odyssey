@@ -1,6 +1,8 @@
 require 'open-uri'
 
 # Clear existing data
+CampaignCharacter.delete_all
+CharacterSession.delete_all
 Campaign.delete_all
 Character.delete_all
 User.delete_all

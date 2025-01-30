@@ -10,6 +10,7 @@
   overflow-x: hidden;
   transition: width var(--speed);
   z-index: 1000;
+  font-family: "Grenze Gotisch";
 }
 
 .navbar.open {
@@ -52,7 +53,7 @@
   margin-top: auto;
   padding-bottom: 1rem;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.75rem;
 
   .fa-person-through-window {
     color: var(--yellow);

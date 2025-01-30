@@ -1,0 +1,16 @@
+.characters-list {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  width: 100%;
+}
+
+.thumbnail {
+  height: 6rem;
+}
+
+.character-card {
+  display: flex;
+  flex-shrink: 0;
+  width: 150px;
+}

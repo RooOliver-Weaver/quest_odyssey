@@ -1,79 +1,38 @@
-<%= simple_form_for @character do |f| %>
-  <header>
-    <section class="charname">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </section>
-    <section class="misc">
-      <ul>
-        <li>
-          <%= f.label :speciality %>
-          <%= f.text_field :speciality %>
-          <%= f.label :level %>
-          <%= f.input :level, collection: 0..20 %>
-        </li>
-        <li>
-         <%= f.label :background %>
-          <%= f.text_field :background %>
-        </li>
-        <li>
-         <h4>User</h4>
-          <%= @user.nickname %>
-        </li>
-        <li>
-          <%= f.label :race %>
-          <%= f.text_field :race %>
-        </li>
-        <li>
-          <%= f.label :alignment %>
-          <%= f.text_field :alignment %>
-        </li>
-      </ul>
-    </section>
-  </header>
-  <main>
-    <section class="attributes">
-      <div class="scores">
-        <ul>
-          <li>
-            <div class="score">
-              <%= f.label :strength %>
-              <%= f.text_field :strength %>
-            </div>
-          </li>
-          <li>
-            <div class="score">
-              <%= f.label :dexterity %>
-              <%= f.text_field :dexterity %>
-            </div>
-          </li>
-          <li>
-            <div class="score">
-              <%= f.label :constitution %>
-              <%= f.text_field :constitution %>
-            </div>
-          </li>
-          <li>
-            <div class="score">
-                <%= f.label :wisdom %>
-              <%= f.text_field :wisdom %>
-            </div>
-          </li>
-          <li>
-            <div class="score">
-              <%= f.label :intelligence %>
-              <%= f.text_field :intelligence %>
-            </div>
-          </li>
-          <li>
-            <div class="score">
-            <%= f.label :charisma %>
-              <%= f.text_field :charisma %>
-            </div>
-          </li>
-        </ul>
+
+  <%= simple_form_for @character do |f| %>
+    <div class="d-flex justify-content-center">
+      <div class="row g-2 col-9">
+
+        <div >
+          <%= f.input :name %>
+          <div class="d-flex justify-content-evenly my-3">
+            <%= f.select :speciality, ["Barbarian", "Wizard", "Rogue", "Bard", "Cleric", "Fighter", "Sorcerer", "Druid", "Ranger", "Paladin"],
+                          prompt: "Choose a class" %>
+            <%= f.select :level, (0..20), prompt: "Choose a level" %>
+          </div>
+          <%= f.input :background  %>
+        </div>
+
+        <div>
+          <%= f.input :race %>
+          <%= f.input :alignment %>
+        </div>
+
+        <div class="char-attr row">
+          <div class="col-md-6">
+            <%= f.input :strength %>
+            <%= f.input :dexterity %>
+            <%= f.input :constitution %>
+          </div>
+          <div class="col-md-6">
+            <%= f.input :wisdom %>
+            <%= f.input :intelligence %>
+            <%= f.input :charisma %>
+          </div>
+        </div>
       </div>
-    </section>
-  </main>
-    <%= f.submit %>
-<% end %>
+    </div>
+
+    <%= f.button :submit, @character.new_record? ? "Create Character" : "Update Character", class:"new-btn" %>
+
+  <% end %>

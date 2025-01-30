@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = [ "home", "characters", "campaigns", "calendar" ];
+  static targets = [ "navbar", "home", "characters", "campaigns", "calendar" ];
 
   connect() {
     this.setActiveOnPageLoad();
@@ -10,6 +10,12 @@ export default class extends Controller {
     console.log("Characters Target: ", this.charactersTarget);
     console.log("Campaigns Target: ", this.campaignsTarget);
     console.log("Calendar Target: ", this.calendarTarget);
+    console.log("Navbar Target: ", this.navbarTarget);
+  }
+
+  toggle(event) {
+    event.preventDefault();
+    this.navbarTarget.classList.toggle("open");
   }
 
   setActive(event) {

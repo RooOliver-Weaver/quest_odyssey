@@ -4,13 +4,13 @@
         <a href="#" data-action="click->navbar#toggle" ><%= image_tag "icon_quest_odyssey.png", class: "logo" %></a>
       </div>
       <div class="navbar-item">
-        <a href="<%= root_path %>" data-action="click->navbar#setActive" data-target="navbar.home" class="home navbttn">
+        <a href="<%= root_path %>" data-action="click->navbar#setActive" data-navbar-target="home" class="home navbttn">
           <i class="fa-solid fa-dungeon"></i>
           <p class="hidden-text">Home</p>
         </a>
       </div>
       <div class="navbar-item">
-      <a href="<%= characters_path %>"data-action="click->navbar#setActive" data-target="navbar.characters" class="characters navbttn">
+      <a href="<%= characters_path %>"data-action="click->navbar#setActive" data-navbar-target="characters" class="characters navbttn">
         <i class="fa-solid fa-user-ninja"></i>
         <p class="hidden-text">Characters</p>
       </a>

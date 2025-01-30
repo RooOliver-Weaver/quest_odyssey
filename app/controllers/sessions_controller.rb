@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       end
     end
       p player_availability
-      p player_availability.sort.first[0]
+      # p player_availability.sort.first[0]
       suggestion = player_availability.sort.first[0]
     if @session.save(player_availability: player_availability)
       redirect_to campaign_path(@campaign), notice: "Session created for #{suggestion}. Invites sent successfully."

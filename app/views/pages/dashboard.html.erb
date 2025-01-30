@@ -8,7 +8,10 @@
       <div class="">
         <% @campaigns.each do |campaign| %>
           <%= link_to campaign_path(campaign) do %>
-            <div class="campaign-card" style="min-width: 300px; max-width: 300px;">
+            <div class="campaign-card">
+              <div class="campaign-card-image">
+                <%= image_tag 'dnd_camp.png', class: "thumbnail" %>
+              </div>
               <div class="campaign-card-content">
                 <h5 class="campaign-card-title"><%= campaign.name %></h5>
                 <p class="campaign-card-text"><%= campaign.description %></p>
@@ -28,10 +31,10 @@
   </div>
 
   <div class="characters-list">
-    <div class="characters" >
+    <div class="characters">
         <% @characters.each do |character| %>
           <%= link_to character_path(character) do %>
-            <div class="character-card" style="min-width: 300px; max-width: 300px;">
+            <div class="character-card" >
               <div class="character-card-image">
                 <%= image_tag character.portrait, class: "thumbnail" %>
               </div>
@@ -70,7 +73,8 @@
 <% end %>
 
 
-
-<%= week_calendar(number_of_weeks: 1) do |date| %>
-  <%= date %>
-<% end %>
+<div class="calendar-container">
+  <%= week_calendar(number_of_weeks: 1) do |date| %>
+    <%= date %>
+  <% end %>
+</div>

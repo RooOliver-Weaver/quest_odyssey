@@ -1,40 +1,40 @@
-<div class="navbar" data-controller="navbar">
-  <div class="navbar-logo">
-    <%= image_tag "icon_quest_odyssey.png", class: "logo" %>
-  </div>
-  <ul class="menu">
-    <li class="menu-item">
-      <a href="<%= root_path %>" data-action="click->navbar#setActive" data-target="navbar.home" class="home bttn">
+<div data-controller="navbar" class="navbar" data-navbar-target="navbar">
+  <div class="navbar-menu">
+    <div class="navbar-logo">
+      <a href="#" data-action="click->navbar#toggle" ><%= image_tag "icon_quest_odyssey.png", class: "logo" %></a>
+    </div>
+    <div class="navbar-item">
+      <a href="<%= root_path %>" data-action="click->navbar#setActive" data-target="navbar.home" class="home navbttn">
         <i class="fa-solid fa-dungeon"></i>
         <p class="hidden-text">Home</p>
       </a>
-    </li>
-    <li class="menu-item has-dropdown" data-action="mouseover->navbar#showDropdown mouseout->navbar#hideDropdown">
-    <a href="<%= characters_path %>"data-action="click->navbar#setActive" data-target="navbar.characters" class="characters bttn">
+    </div>
+    <div class="navbar-item">
+    <a href="<%= characters_path %>"data-action="click->navbar#setActive" data-target="navbar.characters" class="characters navbttn">
       <i class="fa-solid fa-user-ninja"></i>
       <p class="hidden-text">Characters</p>
       <div class="dropdown-menu">
-        <ul>
+        <div>
           <li>All</li>
           <li>New</li>
-        </ul>
+        </div>
       </div>
     </a>
-    </li>
-    <li class="menu-item has-dropdown" data-action="mouseover->navbar#showDropdown mouseout->navbar#hideDropdown">
-    <a href="<%= campaigns_path %>" data-action="click->navbar#setActive" data-target="navbar.campaigns" class="campaigns bttn">
+    </div>
+    <div class="navbar-item">
+    <a href="<%= campaigns_path %>" data-action="click->navbar#setActive" data-target="navbar.campaigns" class="campaigns navbttn">
       <i class="fa-solid fa-dice"></i>
       <p class="hidden-text">Campaigns</p>
       <div class="dropdown-menu">
-        <ul>
+        <div>
           <li>All</li>
           <li>New</li>
-        </ul>
+        </div>
       </div>
     </a>
-    </li>
-      <li class="menu-item has-dropdown" data-action="mouseover->navbar#showDropdown mouseout->navbar#hideDropdown">
-        <a href="#" data-action="click->navbar#setActive" data-target="navbar.calendar" class="calendar bttn">
+    </div>
+      <div class="navbar-item">
+        <a href="#" data-action="click->navbar#setActive" data-target="navbar.calendar" class="calendar navbttn">
           <i class="fa-solid fa-calendar-xmark"></i>
           <p class="hidden-text">Calendar</p>
           <div class="dropdown-menu">
@@ -44,6 +44,6 @@
             </ul>
           </div>
         </a>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>

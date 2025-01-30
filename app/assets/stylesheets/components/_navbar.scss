@@ -14,6 +14,16 @@
 
 .navbar.open {
   width: 20%;
+
+  .navbttn {
+    color: white;
+  }
+
+  .navbar-submenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .navbar-logo {
@@ -30,7 +40,6 @@
 }
 
 .navbar-menu {
-  list-style: none;
   padding: 0;
 }
 
@@ -53,7 +62,7 @@
   height: 100%;
   // width: 1em;
   padding: 0 0.25em 0 0;
-  color: var(--rust);
+  color: #b24b34;
   font-size: 2.25rem;
 }
 
@@ -69,8 +78,11 @@
 .navbttn:hover {
   border-right: 0.25rem solid var(--orange);
   padding-right: calc(0.5rem - 0.25rem);
-  background-color: #212121;
-  color: white;
+  // background-color: #212121;
+  // color: white;
+  .fa {
+    color: var(--orange);
+  }
 }
 
 .navbttn.active {
@@ -78,34 +90,14 @@
   padding-right: calc(0.5rem - 0.25rem);
 }
 
-
-// .navbar:hover {
-//   width: 20%;
-// }
-
 .navbar.open .navbttn.active {
   border-right: 0.25rem solid var(--rust);
   padding-right: calc(0.5rem - 0.25rem);
 }
 
-// .navbar a {
-//   position: relative;
-// }
-
-// .navbar a .dropdown-menu {
-//   display: none;
-//   position: absolute;
-//   background-color: var(--green);
-//   padding: 10px;
-//   top: 100%;
-//   left: 0;
-//   z-index: 1100;
-// }
-
-// .navbar a:hover .dropdown-menu {
-//   display: block;
-//   animation: slideDown 0.3s ease-out;
-// }
+.navbar-submenu {
+  display: none;
+}
 
 @keyframes spin {
   0% {

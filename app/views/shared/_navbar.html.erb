@@ -13,23 +13,19 @@
     <a href="<%= characters_path %>"data-action="click->navbar#setActive" data-target="navbar.characters" class="characters navbttn">
       <i class="fa-solid fa-user-ninja"></i>
       <p class="hidden-text">Characters</p>
-      <div class="dropdown-menu">
-        <div>
-          <li>All</li>
-          <li>New</li>
-        </div>
-      </div>
     </a>
+      <div class="navbar-submenu">
+        <a>All</a>
+        <a>New</a>
+      </div>
     </div>
     <div class="navbar-item">
     <a href="<%= campaigns_path %>" data-action="click->navbar#setActive" data-target="navbar.campaigns" class="campaigns navbttn">
       <i class="fa-solid fa-dice"></i>
       <p class="hidden-text">Campaigns</p>
-      <div class="dropdown-menu">
-        <div>
-          <li>All</li>
-          <li>New</li>
-        </div>
+      <div class="navbar-submenu">
+          <a>All</a>
+          <a>New</a>
       </div>
     </a>
     </div>
@@ -37,11 +33,9 @@
         <a href="#" data-action="click->navbar#setActive" data-target="navbar.calendar" class="calendar navbttn">
           <i class="fa-solid fa-calendar-xmark"></i>
           <p class="hidden-text">Calendar</p>
-          <div class="dropdown-menu">
-            <ul>
-              <li>All</li>
-              <li>New</li>
-            </ul>
+          <div class="navbar-submenu">
+              <a>All</a>
+              <a>New</a>
           </div>
         </a>
     </div>

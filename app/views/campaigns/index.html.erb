@@ -1,26 +1,26 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1>Campaigns</h1>
-    </div>
-  </div>
+<div class="camp-index">
+  <h1>Campaigns</h1>
+  <div class="index-container">
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class="d-flex flex-nowrap overflow-auto">
-        <% @campaigns.each do |campaign| %>
-          <div class="card mx-2" style="min-width: 300px; max-width: 300px;">
-            <div class="card-body">
-              <h5 class="card-title"><%= campaign.name %></h5>
-              <p class="card-text"><%= campaign.description %></p>
-              <%= link_to 'View Campaign', campaign_path(campaign), class: 'btn btn-primary' %>
+
+      <% @campaigns.each do |campaign| %>
+          <div class="cards-campaign">
+            <%= image_tag('dnd_camp.png', alt: 'DnD Image') %>
+
+            <div class="camp-info">
+              <h5 ><%= campaign.name %></h5>
+              <p ><%= campaign.description %></p>
+            </div>
+            <div class="d-flex justify-content-evenly">
+              <a class="view-camp" href="<%= campaign_path(campaign) %>" ><i class="fa-solid fa-scroll"></i></a>
+              <a class="delete-camp" href="<%= campaign_path(campaign) %>" data-turbo-method="delete" data-turbo-confirm="Are you sure?"><i class="fa-solid fa-bomb"></i></a>
             </div>
           </div>
-        <% end %>
-      </div>
-    </div>
+
+      <% end %>
+
+
   </div>
 </div>
-
 
 <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-danger" %>

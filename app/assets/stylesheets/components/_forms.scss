@@ -20,9 +20,10 @@
 
 .flexible-textarea {
   height: 100px;
-  overflow-y: auto; /* Adds scroll when max height is reached */
-  resize: vertical; /* Allows manual resizing */
+  overflow-y: auto;
+  resize: vertical;
 }
+
 .devise-links{
   display: flex;
   flex-direction: column;

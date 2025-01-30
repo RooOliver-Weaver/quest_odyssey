@@ -1,17 +1,17 @@
-<div>
+<div >
   <%= simple_form_for(@campaign) do |f| %>
     <%= f.input :name %>
     <%= f.input :setting %>
-    <%= f.input :description %>
+    <%= f.input :description, input_html: { class: "flexible-textarea" }  %>
     <%= f.input :active, as: :boolean, default: false %>
-    <%= f.input :notes %>
+    <%= f.input :notes, input_html: { class: "flexible-textarea" }  %>
     <% if controller_name == 'campaigns' && action_name == 'new'%>
-      <%= f.input :dm_notes %>
+      <%= f.input :dm_notes, input_html: { class: "flexible-textarea" }  %>
     <% else %>
       <% if @campaign.user == current_user %>
         <%= f.input :dm_notes %>
       <% end %>
     <% end %>
-    <%= f.button :submit, class: 'btn btn-primary' %>
+    <%= f.button :submit, class:"new-btn" %>
   <% end %>
 </div>

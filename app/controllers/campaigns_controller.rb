@@ -8,6 +8,7 @@ class CampaignsController < ApplicationController
   end
 
   def show
+    @campaign_character = CampaignCharacter.new
   end
 
   def new
@@ -44,20 +45,6 @@ class CampaignsController < ApplicationController
   def destroy
     @campaign.destroy!
     redirect_to campaigns_path
-  end
-
-  def invite
-    @campaign = Campaign.find(params[:id])
-    recipient = User.find_by(id: params[:user_id])
-
-    if recipient
-      @campaign.campaign_characters.create(user_id: recipient.id, campaign_id: @campaign.id, invite: nil) # NULL means pending
-      flash[:notice] = "#{recipient.nickname} has been invited!"
-    else
-      flash[:alert] = "User not found."
-    end
-
-    redirect_to @campaign
   end
 
   private

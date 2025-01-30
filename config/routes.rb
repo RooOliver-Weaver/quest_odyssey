@@ -10,14 +10,10 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
   resources :campaigns do
-    post :invite, on: :member  # Sends an invite
+    resources :campaign_characters, only: [:create]
   end
 
-  resources :campaign_characters, only: [:update, :destroy] do
-    member do
-      post :accept
-    end
-  end
+  resources :campaign_characters, only: [:update, :destroy]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

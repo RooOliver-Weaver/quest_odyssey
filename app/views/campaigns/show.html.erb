@@ -8,7 +8,17 @@
       <div class="card-body">
         <p><%= @campaign.description %></p>
 
-        <p><strong>Notes:</strong></p>
+        <p>DM: <%= @campaign.user.nickname %></p>
+
+        <p>Current party members:</p>
+        <ul>
+          <% @campaign.campaign_characters.each do |cc| %>
+          <% if cc.character %>
+              <li><%= link_to cc.character.name, character_path(cc.character), class: "text-black" %> (<%= cc.character.user.nickname %>)</li>
+            <% end %>
+          <% end %>
+
+        <p class="mt-4"><strong>Notes:</strong></p>
         <p><%= @campaign.notes %></p>
 
         <% if policy(@campaign).dm_notes? %>
@@ -31,7 +41,7 @@
 </div>
 
 <% if policy(@campaign).invite? %>
-  <%= form_with url: invite_campaign_path(@campaign), method: :post, local: true do |form| %>
+  <%= form_with model: [@campaign, @campaign_character], local: true do |form| %>
     <h2>Invite Users to this Campaign</h2>
 
     <%= form.label :user_id, 'Select a user to invite' %>

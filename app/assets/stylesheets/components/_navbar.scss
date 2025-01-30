@@ -41,6 +41,26 @@
 
 .navbar-menu {
   padding: 0;
+  height: 93vh;
+}
+
+.navbar-items {
+  flex-grow: 1;
+}
+
+.login-out {
+  margin-top: auto;
+  padding-bottom: 1rem;
+  text-align: center;
+  font-size: 2rem;
+
+  .fa-person-through-window {
+    color: var(--yellow);
+  }
+
+  .fa-person-through-window:hover {
+    color: var(--orange);
+  }
 }
 
 .navbttn {

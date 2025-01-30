@@ -1,43 +1,48 @@
 <div data-controller="navbar" class="navbar" data-navbar-target="navbar">
   <div class="navbar-menu">
-    <div class="navbar-logo">
-      <a href="#" data-action="click->navbar#toggle" ><%= image_tag "icon_quest_odyssey.png", class: "logo" %></a>
-    </div>
-    <div class="navbar-item">
-      <a href="<%= root_path %>" data-action="click->navbar#setActive" data-target="navbar.home" class="home navbttn">
-        <i class="fa-solid fa-dungeon"></i>
-        <p class="hidden-text">Home</p>
-      </a>
-    </div>
-    <div class="navbar-item">
-    <a href="<%= characters_path %>"data-action="click->navbar#setActive" data-target="navbar.characters" class="characters navbttn">
-      <i class="fa-solid fa-user-ninja"></i>
-      <p class="hidden-text">Characters</p>
-    </a>
-      <div class="navbar-submenu">
-        <a>All</a>
-        <a>New</a>
+      <div class="navbar-logo">
+        <a href="#" data-action="click->navbar#toggle" ><%= image_tag "icon_quest_odyssey.png", class: "logo" %></a>
       </div>
-    </div>
-    <div class="navbar-item">
-    <a href="<%= campaigns_path %>" data-action="click->navbar#setActive" data-target="navbar.campaigns" class="campaigns navbttn">
-      <i class="fa-solid fa-dice"></i>
-      <p class="hidden-text">Campaigns</p>
-      <div class="navbar-submenu">
-          <a>All</a>
-          <a>New</a>
-      </div>
-    </a>
-    </div>
       <div class="navbar-item">
-        <a href="#" data-action="click->navbar#setActive" data-target="navbar.calendar" class="calendar navbttn">
-          <i class="fa-solid fa-calendar-xmark"></i>
-          <p class="hidden-text">Calendar</p>
-          <div class="navbar-submenu">
-              <a>All</a>
-              <a>New</a>
-          </div>
+        <a href="<%= root_path %>" data-action="click->navbar#setActive" data-target="navbar.home" class="home navbttn">
+          <i class="fa-solid fa-dungeon"></i>
+          <p class="hidden-text">Home</p>
         </a>
+      </div>
+      <div class="navbar-item">
+      <a href="<%= characters_path %>"data-action="click->navbar#setActive" data-target="navbar.characters" class="characters navbttn">
+        <i class="fa-solid fa-user-ninja"></i>
+        <p class="hidden-text">Characters</p>
+      </a>
+        <div class="navbar-submenu">
+          <a href="#">All</a>
+          <a href="#">New</a>
+        </div>
+      </div>
+      <div class="navbar-item">
+      <a href="<%= campaigns_path %>" data-action="click->navbar#setActive" data-target="navbar.campaigns" class="campaigns navbttn">
+        <i class="fa-solid fa-dice"></i>
+        <p class="hidden-text">Campaigns</p>
+        <div class="navbar-submenu">
+            <a href="#">All</a>
+            <a href="#">New</a>
+        </div>
+      </a>
+      </div>
+        <div class="navbar-item">
+          <a href="#" data-action="click->navbar#setActive" data-target="navbar.calendar" class="calendar navbttn">
+            <i class="fa-solid fa-calendar-xmark"></i>
+            <p class="hidden-text">Calendar</p>
+            <div class="navbar-submenu">
+                <a href="#">All</a>
+                <a href="#">New</a>
+            </div>
+          </a>
     </div>
   </div>
+    <div class="login-out">
+     <%= link_to new_user_session_path do %>
+        <i class="fa-solid fa-person-through-window"></i>
+      <% end %>
+    </div>
 </div>

@@ -96,7 +96,7 @@
   white-space: nowrap;
 }
 
-.navbttn:hover {
+.on-hov:hover {
   border-right: 0.25rem solid var(--orange);
   padding-right: calc(0.5rem - 0.25rem);
   // background-color: #212121;
@@ -118,6 +118,16 @@
 
 .navbar-submenu {
   display: none;
+  font-size: 1.5rem;
+  width: calc(100% - 1rem);
+  margin-left: 0.9375rem;
+}
+
+.navbar-submenu a {
+  display: block;
+  width: 100%;
+  padding: 0 10px;
+  text-align: center;
 }
 
 @keyframes spin {

@@ -1,4 +1,10 @@
-.character-card {
+.character-index-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.character-show-card {
   overflow: hidden;
   height: 120px;
   background: var(--burgundy);
@@ -10,19 +16,19 @@
   border-radius: 5px;
 }
 
-.character-card img {
+.character-show-card img {
   overflow: hidden;
   height: 120px;
   border: 1px solid var(--yellow);
 }
 
-.character-card h2 {
+.character-show-card h2 {
   font-size: 30px;
   font-weight: bold;
   margin: 0;
 }
 
-.character-card p {
+.character-show-card p {
   font-size: 18px;
   line-height: 1.4;
   opacity: .7;
@@ -39,7 +45,7 @@
   }
 }
 
-.character-card .character-card-infos {
+.character-show-card .character-show-card-infos {
   padding-left: 10px;
   width: 135px;
 }

@@ -41,8 +41,14 @@
     </div>
   </div>
     <div class="login-out">
-     <%= link_to new_user_session_path do %>
-        <i class="fa-solid fa-person-through-window"></i>
+      <% if !current_user %>
+        <%= link_to new_user_session_path do %>
+          <i class="fa-solid fa-person-through-window"></i>
+        <% end %>
+      <% else %>
+        <%= link_to destroy_user_session_path, data: { turbo_method: :delete } do %>
+          <i class="fa-solid fa-person-through-window"></i>
+        <% end %>
       <% end %>
     </div>
 </div>

@@ -20,11 +20,11 @@
               <h5 ><%= campaign.name %></h5>
               <p ><%= campaign.description %></p>
               <div>
-                <% if campaign.campaign_characters %>
-                  <% campaign.campaign_characters.each do |cc| %>
-                    <p><%= cc.character %></p>
-                  <% end %>
-                <% end %>
+                <%# <% if campaign.campaign_characters %>
+                  <%# <% campaign.campaign_characters.each do |cc| %>
+                    <%# <p><%= cc.character %>
+                  <%# <% end %>
+                <%# <% end %>
               </div>
             </div>
 
@@ -36,5 +36,3 @@
 
   </div>
 </div>
-
-<%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-danger" %>

@@ -34,6 +34,7 @@
   overflow-y: auto;
   max-height: 300px;
   padding-bottom: 10px;
+  font-family: 'Pirata One';
 }
 
 .chat-form {
@@ -57,4 +58,16 @@
   width: 200px;
   height: 30px;
   padding: 5px;
+}
+
+.chat-box a {
+  color: var(--rust);
+}
+
+.chat-box i {
+  font-size: 0.5rem;
+}
+
+.chat-box p {
+  font-family: 'Faculty Glyphic';
 }

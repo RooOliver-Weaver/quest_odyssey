@@ -72,6 +72,7 @@
 //   }
 // }
 
+
 .calendar-navigation {
   display: flex;
   justify-content: space-between;
@@ -86,7 +87,7 @@
 .simple-calendar {
   background-color: var(--burgundy);
   width: 50%;
-  margin: auto;
+  margin: 0 auto;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgb(177, 75, 52);
@@ -94,8 +95,8 @@
   font-family: "Faculty Glyphic";
   position: fixed;
   bottom: 4rem;
-  left: 7rem;
-  margin: 0;
+  // left: 7rem;
+  // margin: 0;
   font-size: 1rem;
 
 

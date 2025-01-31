@@ -7,26 +7,24 @@ export default class extends Controller {
   connect() {
     this.scrollToBottom();
 
-    console.log("Connected to chat-scroll controller");
+    document.addEventListener('turbo:before-stream-render', this.scrollToBottom.bind(this));
 
-    const currentUserId = parseInt(document.body.dataset.currentUserId, 10);
-    if (this.userIdValue === currentUserId) {
-      this.element.classList.add('sent');
-      this.element.classList.remove('received');
-    } else {
-      this.element.classList.add('received');
-      this.element.classList.remove('sent');
-    }
-    this.scrollToBottom();
+    document.addEventListener('turbo:render', this.scrollToBottom.bind(this));
+
+    window.addEventListener("chatbox:opened", this.reconnect.bind(this));
   }
 
   scrollToBottom() {
-    this.messagesTarget.scrollTop = this.messagesTarget.scrollHeight;
-    console.log("Scrolled to bottom");
+    setTimeout(() => {
+      if (this.messagesTarget) {
+        this.messagesTarget.scrollTop = this.messagesTarget.scrollHeight;
+      }
+    }, 0);
   }
 
-  newMessageAppeared() {
+  reconnect() {
     this.scrollToBottom();
-    console.log("New message appeared");
+    document.addEventListener('turbo:before-stream-render', this.scrollToBottom.bind(this));
+    document.addEventListener('turbo:render', this.scrollToBottom.bind(this));
   }
 }

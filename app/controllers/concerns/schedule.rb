@@ -25,7 +25,7 @@ module Schedule
   def genenerate_invites(session, campaign)
     campaign.campaign_characters.each do |character|
       @character_session = CharacterSession.create(@session, character)
-      invite_session_path(@campaign), method: :post, local: true do
+    end
   end
 
 

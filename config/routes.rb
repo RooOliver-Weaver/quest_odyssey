@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :campaigns do
     resources :campaign_characters, only: [:create]
-    resources :sessions
+    resources :sessions do
+      resources :character_session, only: [:create, :update, :destory]
+    end
     resources :messages, only: [:create]
   end
 

@@ -1,0 +1,54 @@
+.character-card {
+  overflow: hidden;
+  height: 120px;
+  background: var(--burgundy);
+  box-shadow: 0 0 10px rgba(255, 254, 254, 0.592);
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  width: 500px;
+  border-radius: 5px;
+}
+
+.character-card img {
+  overflow: hidden;
+  height: 120px;
+  border: 1px solid var(--yellow);
+}
+
+.character-card h2 {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.character-card p {
+  font-size: 18px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.additional-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 60px;
+  p {
+    font-size: 15px;
+  }
+}
+
+.character-card .character-card-infos {
+  padding-left: 10px;
+  width: 135px;
+}
+
+.infos {
+  flex: 2;
+  display: flex;
+}
+
+#player_name {
+  color: var(--yellow);
+}

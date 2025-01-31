@@ -1,7 +1,7 @@
 <div id="message-<%= message.id %>">
   <small>
-    <strong><%= message.user.nickname %></strong>
-    <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+    <strong><%= message.user.nickname %> (<%= message.user == message.campaign.user ? "DM" : link_to(message.campaign.campaign_characters.find_by(user: message.user)&.character.name, character_path(message.campaign.campaign_characters.find_by(user: message.user)&.character)).html_safe %>)</strong>
+    <i><%= message.created_at.strftime("%l:%M %p") %></i>
   </small>
   <p><%= message.content %></p>
 </div>

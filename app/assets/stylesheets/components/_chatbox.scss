@@ -14,13 +14,19 @@
 
 .chat-box {
   position: absolute;
-  bottom: 30px;
+  bottom: 60px;
   right: 0;
   width: 300px;
   height: 400px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  color: black;
+  padding: 0 15px;
+  background-image: url('/assets/scroll-background.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .chat-messages {
@@ -31,6 +37,7 @@
 }
 
 .chat-form {
+  margin-top: 10px;
   display: flex;
   align-items: center;
   gap: 5px;

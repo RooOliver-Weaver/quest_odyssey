@@ -52,34 +52,6 @@
 
 <%= button_to "Create Next Session", campaign_sessions_path(@campaign), class: "btn btn-secondary mx-2" %>
 
-<%# <% if current_user == @campaign.user || @campaign.campaign_characters.any? { |cc| current_user == cc.user } %>
-  <%# <div class="container chat"> %>
-    <%# <h1>Your party chat for <%= @campaign.name %></h1>
-
-      <%# <div style="height: 300px; overflow-y: scroll;" data-controller="chat-scroll" data-chat-scroll-target="messages" class="scrollable-chat"> %>
-        <%# <%= turbo_stream_from "campaign_#{@campaign.id}_messages" %>
-        <%# <div id="messages" class="messages"> %>
-          <%# <% @campaign.messages.each do |message| %>
-            <%# <%= render "campaigns/message", message: message %>
-          <%# <% end %>
-        <%# </div> %>
-      <%# </div> %>
-    <%# </div> %>
-
-    <%# <%= simple_form_for [@campaign, @message], %>
-      <%# html: {class: "d-flex container", %>
-              <%# data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }} do |f| %>
-    <%# %>
-      <%# <%= f.input :content, %>
-        <%# label: false, %>
-        <%# placeholder: "Message your party", %>
-        <%# wrapper_html: {class: "flex-grow-1"} %>
-      <%# %>
-      <%# <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-    <%# <% end %>
-  <%# </div> %>
-<%# <% end %>
-
 <% if current_user == @campaign.user || @campaign.campaign_characters.any? { |cc| current_user == cc.user } %>
   <div data-controller="chatbox" class="chat-container">
     <button data-action="click->chatbox#toggle" class="chat-toggle">

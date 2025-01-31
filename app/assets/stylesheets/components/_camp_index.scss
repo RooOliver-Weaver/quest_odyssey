@@ -9,19 +9,22 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 20px;
-
+  align-items: start;
 }
+
+
 
 
 .cards-campaign {
   overflow: hidden;
   background: var(--green);
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  width: 350px;
+  width: 100%;
+  max-width: 350px;
   height: 450px;
   border-radius: 5px;
   position: relative;
-  margin: 30px;
+  gap: 30px;
   img{
     height: 200px;
     width: 100%;

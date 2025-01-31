@@ -626,3 +626,47 @@ form.charsheet main section.features div textarea {
   padding: 5px;
   height: 43em;
 }
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--green);
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 5px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+.dropdown-content img {
+  width: 50px;
+  height: auto;
+  margin: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.dropdown-content img:hover {
+  transform: scale(1.1);
+}
+
+.selected-image-placeholder {
+  width: 100px;
+  height: auto;
+  border: 2px solid var(--orange);
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.selected-image {
+  width: 100px;
+  height: auto;
+  border: 2px solid var(--orange);
+  border-radius: 5px;
+  margin-top: 10px;
+}

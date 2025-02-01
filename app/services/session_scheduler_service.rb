@@ -1,15 +1,10 @@
-module Schedule
-  extend ActiveSupport::Concern
-
-  def get_player_availability(@campaign)
-    player_availability = {}
-    campaign.users.each do |user|
-      user.availability.each do |time_slot|
-        !(player_availability.include?(time_slot)) ? player_availability[time_slot] = 1 : player_availability[time_slot] += 1
-        end
-      end
-    player_availability
+module SessionSchedulerService
+  def def initialize(session)
+    @session = session
   end
+
+
+
 
   def generate_session(availability_hash, session)
     if player_availability.empty?

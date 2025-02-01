@@ -4,45 +4,51 @@
         <a href="#" data-action="click->navbar#toggle" ><%= image_tag "icon_quest_odyssey.png", class: "logo" %></a>
       </div>
       <div class="navbar-item">
-        <a href="<%= root_path %>" data-action="click->navbar#setActive" data-navbar-target="home" class="home navbttn">
+        <a href="<%= root_path %>" data-action="click->navbar#setActive" data-navbar-target="home" class="home navbttn on-hov">
           <i class="fa-solid fa-dungeon"></i>
           <p class="hidden-text">Home</p>
         </a>
       </div>
       <div class="navbar-item">
-      <a href="<%= characters_path %>"data-action="click->navbar#setActive" data-navbar-target="characters" class="characters navbttn">
+      <a href="<%= characters_path %>"data-action="click->navbar#setActive" data-navbar-target="characters" class="characters navbttn on-hov">
         <i class="fa-solid fa-user-ninja"></i>
         <p class="hidden-text">Characters</p>
       </a>
         <div class="navbar-submenu">
-          <a href="#">All</a>
-          <a href="#">New</a>
+          <a href="<%= characters_path %>" class="on-hov">All</a>
+          <a href="<%= new_character_path %>" class="on-hov">New</a>
         </div>
       </div>
       <div class="navbar-item">
-      <a href="<%= campaigns_path %>" data-action="click->navbar#setActive" data-target="navbar.campaigns" class="campaigns navbttn">
+      <a href="<%= campaigns_path %>" data-action="click->navbar#setActive" data-target="navbar.campaigns" class="campaigns navbttn on-hov">
         <i class="fa-solid fa-dice"></i>
         <p class="hidden-text">Campaigns</p>
         <div class="navbar-submenu">
-            <a href="#">All</a>
-            <a href="#">New</a>
+            <a href="<%= campaigns_path %>" class="on-hov">All</a>
+            <a href="<%= new_campaign_path %>" class="on-hov">New</a>
         </div>
       </a>
       </div>
         <div class="navbar-item">
-          <a href="#" data-action="click->navbar#setActive" data-target="navbar.calendar" class="calendar navbttn">
+          <a href="<%= calendars_path %>" data-action="click->navbar#setActive" data-target="navbar.calendar" class="calendar navbttn on-hov">
             <i class="fa-solid fa-calendar-xmark"></i>
             <p class="hidden-text">Calendar</p>
             <div class="navbar-submenu">
-                <a href="#">All</a>
-                <a href="#">New</a>
+                <a href="<%= edit_user_registration_path %>" class="on-hov">Availability</a>
+                <a href="#" class="on-hov">New</a>
             </div>
           </a>
     </div>
   </div>
     <div class="login-out">
-     <%= link_to new_user_session_path do %>
-        <i class="fa-solid fa-person-through-window"></i>
+      <% if !current_user %>
+        <%= link_to new_user_session_path do %>
+          <i class="fa-solid fa-person-through-window"></i>
+        <% end %>
+      <% else %>
+        <%= link_to destroy_user_session_path, data: { turbo_method: :delete } do %>
+          <i class="fa-solid fa-person-through-window"></i>
+        <% end %>
       <% end %>
     </div>
 </div>

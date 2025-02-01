@@ -63,6 +63,7 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem "simple_calendar"
 gem "solid_cable"
+gem "dotenv-rails"
 
 group :development, :test do
   gem "dotenv-rails"

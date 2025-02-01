@@ -1,9 +1,9 @@
 
 <div class= "container">
 <div class="border-container">
-    <div class="image-container">
+    <div class="image-container-character">
       <div class="character-image">
-        <%= image_tag @character.portrait %>
+        <%= image_tag 'default_character.jpeg', class: 'char-image' %>
       </div>
       <div class="basic-character-info">
         <h3>Name: <%= @character.name %></h3>
@@ -17,7 +17,7 @@
           <li>
             <label for="alignment">Alignment: </label> <%= @character.alignment %>
           </li>
-          <li>
+          <li id="playername">
             <label for="playername">Player Name: </label> <%= @character.user.nickname.capitalize %>
           </li>
         </ul>
@@ -59,12 +59,24 @@
         </ul>
       </div>
       <div class="hp-info">
-        <h3>Hit Points</h3>
-        <p>20</p>
-        <h3>Armor Class</h3>
-        <p>12</p>
-        <button>Throws</button>
-        <button>Skills</button>
+        <div class="hp">
+          <ul>
+            <li>
+              <div class="hp-attribute">
+                <h4>Hit Points</h4><h1>20</h1>
+              </div>
+            </li>
+            <li>
+              <div class="hp-attribute">
+                <h4>Armor Class</h4><h1>12</h1>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="throw-buttons">
+          <button class= "throw-btn">Throws</button>
+          <button class= "throw-btn">Skills</button>
+        </div>
       </div>
       <div class="biography">
         <ul class="nav nav-tabs" id="myTab" role="tablist">

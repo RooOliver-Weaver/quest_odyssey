@@ -28,8 +28,6 @@ gem "jbuilder"
 
 gem "pg_search"
 
-gem "pundit"
-
 gem "hirb"
 
 gem 'cloudinary'

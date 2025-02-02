@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_31_131713) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_30_161435) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_31_131713) do
     t.bigint "character_id"
     t.bigint "campaign_id", null: false
     t.integer "hit_points"
-    t.integer "death_saves"
+    t.jsonb "death_saves"
     t.jsonb "inventory"
     t.jsonb "stats"
     t.datetime "created_at", null: false
@@ -95,7 +95,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_31_131713) do
     t.datetime "updated_at", null: false
     t.string "background"
     t.string "alignment"
-    t.string "portrait"
     t.index ["user_id"], name: "index_characters_on_user_id"
   end
 

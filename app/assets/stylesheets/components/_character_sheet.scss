@@ -9,13 +9,19 @@ ul {
   justify-content: center;
 
   ul {
+    padding: 15px;
+    margin: 10px;
     display: flex;
+    background-color: var(--teal);
+    border-radius: 5px;
+    border: 5px solid var(--yellow);
+    box-shadow: 1px 1px 20px black;
 
     li {
-      padding: 10px;
       width: 80px;
-      margin: 30px;
+      margin: 15px;
       height: 90px;
+      font-size: 17px;
     }
   }
 }
@@ -30,10 +36,12 @@ ul {
     padding: 10px;
     border-radius: 8px;
     height: 70px;
+    background-color: var(--gray-dark);
   }
 
   p {
     margin-bottom: 5px;
+    font-size: 18px;
   }
 }
 .attributes-container {
@@ -45,6 +53,7 @@ ul {
 .container {
   padding: 10px;
   background-color: var(--burgundy);
+  background-image: url('vintage-grungy-textured-paper-background.jpg');
 }
 .border-container {
   height: 800px;
@@ -59,25 +68,124 @@ ul {
   width: 280px;
   margin-bottom: 10px;
   border: 2px solid #fff;
+  box-shadow: 2px 2px 10px black;
 }
 
 .basic-character-info {
   padding: 10px;
-  border: 1px solid;
+  width: 280px;
+
+  li {
+    font-size: 18px;
+  };
+}
+
+#playername {
+  color: var(--yellow);
+  font-weight: bold;
 }
 
 label {
   opacity: 0.7;
-  color: var(--yellow)
+  color: var(--yellow);
+  font-size: 17px;
 }
 
 .hp-info {
   margin-top: 30px;
-    justify-content: space-evenly;
-    display: flex;
+  display: flex;
 }
 
 .biography {
   margin-top: 60px;
   margin-left: 60px;
+}
+
+.hp {
+  border-radius: 2px;
+  padding: 10px;
+  border: 4px solid var(--orange);
+  opacity: 0.7;
+  margin-left: 90px;
+  box-shadow: 2px 2px 10px black;
+
+  ul {
+    display: flex;
+    border: 2px solid var(--yellow);
+    background-color: var(--teal);
+  }
+
+ li {
+  padding:10px;
+ }
+
+ h1 {
+  border:2px solid var(--yellow);
+  padding: 5px;
+  border-radius: 8px;
+  color: #f1ba04;
+ }
+}
+
+.hp-attribute {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.throw-buttons {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  margin: 50px;
+}
+
+.throw-btn {
+  display: inline-block;
+  outline: none;
+  font-size: 25px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: .3em;
+  width: auto;
+  height: auto;
+  padding: 0 1em;
+  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(241, 219, 175, 0.4),
+              inset 0 -2px 5px 1px rgba(139,66,8,1),
+              inset 0 -1px 1px 3px rgba(250,227,133,1);
+  background-image: linear-gradient(160deg, #a54e07, #b47e11, #fef1a2, #bc881b, #a54e07);
+  border: 1px solid #a55d07;
+  color:var(--burgundy);
+  text-shadow: 0 2px 2px rgba(250, 227, 133, 1);
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  margin: 5%;
+
+& :hover {
+  background-size: 150% 150%;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23),
+                inset 0 -2px 5px 1px #b17d10,
+                inset 0 -1px 1px 3px rgba(250,227,133,1);
+  border: 1px solid rgba(165,93,7,.6);
+  color: white;
+}
+}
+
+.nav-tabs {
+  --bs-nav-tabs-link-active-color: var(--yellow);
+  --bs-nav-tabs-link-active-border-color: var(--yellow) var(--yellow);
+ }
+
+.nav {
+  --bs-nav-link-color: var(--yellow);
+  --bs-nav-link-hover-color: white;
+ }
+
+ .biography {
+  font-size: 20px;
+ }
+
+.tab-content {
+  background-image: url('../../images/attribute_icons/vintage-grungy-textured-paper-background.jpg');
 }

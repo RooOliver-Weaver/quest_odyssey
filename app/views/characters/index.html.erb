@@ -1,9 +1,24 @@
-<ul>
- <% @characters.each do |character| %>
-  <li>
-    <%= link_to character.name, character_path(character) %>
-    <%= character.class %>
-    <%= character.race %> <%= character.level %>
-  </li>
- <% end %>
-</ul>
+<div class="row">
+  <% @characters.each do |character| %>
+    <div class="col-md-6 mb-4">
+      <%= link_to character_path(character) do %>
+        <div class="character-show-card">
+          <%= image_tag 'default_character.jpeg', class: "character-image" %>
+          <div class="infos">
+            <div class="character-show-card-infos">
+              <h2> <%= character.name %></h2>
+              <p> <%= character.race %> <%= character.level %> </p>
+            </div>
+            <div class="additional-info">
+              <div>
+                <p>Class: <%= character.speciality %> </p>
+                <p>Alignment: <%= character.alignment %></p>
+              </div>
+              <p id="player_name"> Player name: <%= character.user.nickname.capitalize %> </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

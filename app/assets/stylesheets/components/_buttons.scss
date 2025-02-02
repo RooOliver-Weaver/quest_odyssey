@@ -34,29 +34,25 @@
   margin-left:25%;
   margin-top: 15px;
 }
-
-.view-camp {
-  font-size: 25px;
-  border: none;
-  color: yellow;
-  cursor: pointer;
-  transition: all .2s ease-in-out;
+.camp-btns{
+  position: absolute;
+  top: 10px;
+  z-index: 10;
   display: flex;
-  justify-content: center;
-&:hover  {
-  background-size: 150% 150%;
-  color: orange
+  justify-content: space-between;
+  width: 100%;
 
 }
-}
+
 .delete-camp {
+  position: absolute;
+  z-index: 10;
+  left: 10px;
   font-size: 25px;
   border: none;
-  color:rgb(89, 3, 3);
+  color:var(--rust);
   cursor: pointer;
   transition: all .2s ease-in-out;
-  display: flex;
-  justify-content: center;
 &:hover  {
   background-size: 150% 150%;
   color: rgb(255, 0, 0)
@@ -64,14 +60,19 @@
 }
 .edit-camp{
   font-size: 25px;
+  position: absolute;
+  z-index: 10;
+  right: 10px;
   border: none;
-  color:#4998d7;
+  color:var(--yellow);
   cursor: pointer;
   transition: all .2s ease-in-out;
-  display: flex;
-  justify-content: center;
 &:hover  {
   background-size: 150% 150%;
-  color: rgb(0, 17, 170);
+  color: var(--white);
 }
+}
+.char-btn{
+  width: auto;
+  margin-left: 30%;
 }

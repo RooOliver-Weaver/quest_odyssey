@@ -12,11 +12,18 @@ class SessionsController < ApplicationController
     end
       p player_availability
       # p player_availability.sort.first[0]
-      suggestion = player_availability.sort.first[0]
-    if @session.save(player_availability: player_availability)
-      redirect_to campaign_path(@campaign), notice: "Session created for #{suggestion}. Invites sent successfully."
-    else
-      render 'campaigns/show', alert: 'Failed to send invites.'
-    end
+      if player_availability.empty?
+        flash[:alert] = 'None of your players have provided any availability. Try messaging them'
+        redirect_to campaign_path(@campaign)
+      else
+        @session.player_availability = player_availability
+        suggestion = player_availability.sort.first[0]
+        @session.date = suggestion
+        if @session.save
+          redirect_to campaign_path(@campaign), notice: "Session created for #{suggestion}. Invites sent successfully."
+        else
+          render 'campaigns/show', alert: 'Failed to send invites.'
+        end
+      end
   end
 end

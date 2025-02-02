@@ -30,24 +30,11 @@
             <%= f.input :charisma %>
           </div>
         </div>
-        <div data-controller="character-pic-dropdown">
-          <button type="button" class="dropbtn" data-action="click->character-pic-dropdown#toggleDropdown">
-            Select Character Picture
-          </button>
-          <div class="dropdown-content" data-character-pic-dropdown-target="dropdown">
-            <% character_picture_images.each do |image| %>
-              <img src="<%= asset_path(image) %>" alt="Profile Image" class="dropdown-item"
-                   data-action="click->character-pic-dropdown#selectImage" data-image="<%= url_for(image) %>" />
-            <% end %>
-          </div>
-          <%= f.hidden_field :portrait, id: "character-pic-input" %>
-          <div class="selected-image-container">
-            <img id="selected-image" src="<%= @character.portrait.attached? ? url_for(@character.portrait) : asset_path('default_character.jpeg') %>" alt="Selected Character Image" class="selected-image-placeholder" />
-          </div>
+
+          <%= f.button :submit, @character.new_record? ? "Create Character" : "Update Character", class:"new-btn char-btn" %>
         </div>
       </div>
     </div>
 
-    <%= f.button :submit, @character.new_record? ? "Create Character" : "Update Character", class:"new-btn" %>
 
   <% end %>

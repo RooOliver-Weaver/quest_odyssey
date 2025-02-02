@@ -3,7 +3,7 @@
     <div class="col-md-6 mb-4">
       <%= link_to character_path(character) do %>
         <div class="character-show-card">
-          <% if character.portrait.key %>
+          <% if character.portrait.attached? %>
             <%= cl_image_tag character.portrait.key, class: "character-image" %>
           <% else %>
             <%= image_tag 'default_character.jpeg', class: "character-image" %>

@@ -20,7 +20,7 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.new(campaign_params)
     @campaign.user = current_user
     if @campaign.save!
-      redirect_to campaigns_path
+      redirect_to campaign_path(@campaign)
     else
       render :new, status: :unprocessable_entity
     end

@@ -23,7 +23,7 @@ puts "Created #{users.count} users."
 # Generate sample character data
 character_data = [
 
-  { name: "Thalion", race: "Elf", speciality: "Ranger", level: 5, biography: "An elf who guards the forests.", alignment: "Neutral Good", background: "Steward of the Forest", portrait: "db/character_portraits/thalion.png" },
+  { name: "Thalion", race: "Elf", speciality: "Ranger", level: 5, biography: "An elf who guards the forests.", alignment: "Neutral Good", background: "Steward of the Forest", portrait: "db/character_portraits/thalion.webp" },
   { name: "Gorak", race: "Half-Orc", speciality: "Barbarian", level: 4, biography: "A fierce warrior seeking revenge.", alignment: "Lawful Evil", background: "Tyrannical Overlord",  portrait: "db/character_portraits/gorak.webp"},
   { name: "Lila", race: "Halfling", speciality: "Rogue", level: 3, biography: "A mischievous thief with a golden heart.", alignment: "Chaotic Neutral", background: "Wandering Trickster", portrait: "db/character_portraits/lila.webp"},
   { name: "Myrin", race: "Tiefling", speciality: "Sorcerer", level: 6, biography: "A magic user with an infernal heritage.", alignment: "Chaotic Good", background: "Reformed Outlaw", portrait: "db/character_portraits/myrin.png" },

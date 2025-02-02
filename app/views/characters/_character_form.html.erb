@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-center">
       <div class="row g-2 col-9">
 
-        <div >
+        <div>
           <%= f.input :name %>
           <div class="d-flex justify-content-evenly my-3">
             <%= f.select :speciality, ["Barbarian", "Wizard", "Rogue", "Bard", "Cleric", "Fighter", "Sorcerer", "Druid", "Ranger", "Paladin"],
@@ -31,10 +31,13 @@
           </div>
         </div>
 
+        <div>
+          <%= f.input :portrait, as: :file %>
         </div>
+
       </div>
     </div>
 
-    <%= f.button :submit, @character.new_record? ? "Create Character" : "Update Character", class:"new-btn" %>
+  <%= f.button :submit, @character.new_record? ? "Create Character" : "Update Character", class:"new-btn" %>
 
-  <% end %>
+<% end %>

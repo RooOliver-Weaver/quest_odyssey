@@ -68,43 +68,4 @@ class CharactersController < ApplicationController
       redirect_to characters_path
     end
   end
-
-  def file_hash(file)
-    Digest::MD5.hexdigest(file.read)  # Using MD5, you can use other hash functions like SHA1, SHA256
-  end
-
-  # Method to check if image exists in Cloudinary by hash
-  def find_existing_image(file)
-    hash = file_hash(file)
-
-    # Call Cloudinary's API to check if the image with this hash already exists
-    begin
-      response = Cloudinary::Api.resources(context: { file_hash: hash })
-      existing_image = response["resources"].first
-
-      if existing_image
-        # Image exists, return the public_id of the existing image
-        return existing_image['public_id']
-      end
-    rescue Cloudinary::Api::GeneralError => e
-      # Handle any errors if needed (like connection issues, etc.)
-      puts "Error fetching resources: #{e.message}"
-    end
-
-    # If no existing image is found, return nil
-    nil
-  end
-
-  def upload_portrait(image)
-    existing_public_id = find_existing_image(image)
-
-    if existing_public_id
-      # If the image exists, reuse it
-      return existing_public_id
-    else
-      # Otherwise, upload the new image
-      upload = Cloudinary::Uploader.upload(image, public_id: "character_portrait_#{SecureRandom.hex(10)}")
-      return upload['public_id']
-    end
-  end
 end

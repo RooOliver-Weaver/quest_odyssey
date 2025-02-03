@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_30_161435) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_03_165540) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_30_161435) do
     t.bigint "character_id"
     t.bigint "campaign_id", null: false
     t.integer "hit_points"
-    t.integer "death_saves"
+    t.jsonb "death_saves"
     t.jsonb "inventory"
     t.jsonb "stats"
     t.datetime "created_at", null: false
@@ -95,6 +95,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_30_161435) do
     t.datetime "updated_at", null: false
     t.string "background"
     t.string "alignment"
+    t.string "portrait"
     t.index ["user_id"], name: "index_characters_on_user_id"
   end
 
@@ -106,6 +107,40 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_30_161435) do
     t.datetime "updated_at", null: false
     t.index ["campaign_id"], name: "index_messages_on_campaign_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "noticed_events", force: :cascade do |t|
+    t.string "type"
+    t.string "record_type"
+    t.bigint "record_id"
+    t.jsonb "params"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "notifications_count"
+    t.index ["record_type", "record_id"], name: "index_noticed_events_on_record"
+  end
+
+  create_table "noticed_notifications", force: :cascade do |t|
+    t.string "type"
+    t.bigint "event_id", null: false
+    t.string "recipient_type", null: false
+    t.bigint "recipient_id", null: false
+    t.datetime "read_at", precision: nil
+    t.datetime "seen_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_noticed_notifications_on_event_id"
+    t.index ["recipient_type", "recipient_id"], name: "index_noticed_notifications_on_recipient"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "message"
+    t.string "url"
+    t.boolean "read", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -152,5 +187,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_30_161435) do
   add_foreign_key "characters", "users"
   add_foreign_key "messages", "campaigns"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "sessions", "campaigns"
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_31_131713) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_03_153704) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -107,6 +107,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_31_131713) do
     t.datetime "updated_at", null: false
     t.index ["campaign_id"], name: "index_messages_on_campaign_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type", null: false
+    t.bigint "searchable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
   end
 
   create_table "sessions", force: :cascade do |t|

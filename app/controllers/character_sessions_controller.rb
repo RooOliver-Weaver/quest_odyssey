@@ -10,6 +10,7 @@ class CharacterSessionsController < ApplicationController
   end
 
   private
+
   def character_session_params
     params.require(:character).permit(:status)
   end

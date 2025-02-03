@@ -1,6 +1,3 @@
-require "digest"
-require "open-uri"
-
 class CharactersController < ApplicationController
   before_action :set_character, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
@@ -21,10 +18,6 @@ class CharactersController < ApplicationController
   def create
     @character = Character.new(character_params)
     @character.user = current_user
-
-    if params[:character][:portrait].present?
-      @character.portrait = upload_portrait(params[:character][:portrait])
-    end
 
     if @character.save!
       redirect_to character_path(@character)

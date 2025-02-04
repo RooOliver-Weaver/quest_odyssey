@@ -5,7 +5,6 @@ ul {
 }
 
 .attributes {
-  margin-left: 6rem;
   width: 60%;
   margin-top: 2rem;
   display: flex;
@@ -65,6 +64,10 @@ ul {
   padding: 5px;
 }
 
+.character-image {
+  margin-left: 2rem;
+}
+
 .char-image {
   border-radius: 5px;
   margin-top: 45px;
@@ -80,21 +83,25 @@ ul {
 .basic-character-info {
   padding: 10px;
   width: 22rem;
+  margin-left: 4rem;
+  background-color: rgba(0,0,0,0.5);
+
 
   li {
     font-size: 18px;
   };
+
+  label {
+    opacity: 0.7;
+    color: var(--yellow);
+    font-size: 17px;
+  }
 }
 
 #playername {
-  color: var(--yellow);
+  color: var(--pink);
   font-weight: bold;
-}
 
-label {
-  opacity: 0.7;
-  color: var(--yellow);
-  font-size: 17px;
 }
 
 .hp-info {
@@ -105,6 +112,10 @@ label {
 .biography {
   margin-right: 20px;
   margin-top: 20px;
+  font-size: 20px;
+  width: 45rem;
+  max-height: 16rem;
+  max-width: 45rem;
 }
 
 .hp {
@@ -179,8 +190,12 @@ label {
 }
 
 .nav-tabs {
-  --bs-nav-tabs-link-active-color: var(--yellow);
-  --bs-nav-tabs-link-active-border-color: var(--yellow) var(--yellow);
+  --bs-nav-tabs-link-active-color: var(--gray-dark);
+  --bs-nav-tabs-link-active-border-color: var(--gray-dark) var(--gray-dark);
+ }
+
+ .nav-link {
+  color: #ffffff;
  }
 
 .nav {
@@ -188,10 +203,7 @@ label {
   --bs-nav-link-hover-color: white;
  }
 
- .biography {
-  font-size: 20px;
- }
-
 .tab-content {
   background-image: url('../../images/attribute_icons/vintage-grungy-textured-paper-background.jpg');
+  color: var(--gray-dark);
 }

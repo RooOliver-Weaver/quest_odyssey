@@ -55,22 +55,33 @@
                   <div class="equipment-index-titles">
                     <h4 id="card-border-right">Type</h4>
                     <h4>Name</h4>
-                    </div>
-                    <% character.equipment.each do |item| %>
-                      <div class="equipment-index-item">
-                        <p><%= item['type'] %></p>
-                        <p> <%= item['name'] %></p>
-                      </div>
-                    <% end %>
+                  </div>
+                  <% character.equipment.each do |item| %>
+                  <div class="equipment-index-item">
+                    <p><%= item['type'] %></p>
+                    <p> <%= item['name'] %></p>
+                  </div>
+                  <% end %>
                 </div>
                 <div class="index-card-attacks">
                   <h5>Attacks:</h5>
-                  <% character.attacks.each do |attack| %>
-                    <div class="index-card-attacks">
-                      <p><%= attack['name'] %></p>
-                      <p><%= attack['damage'] %></p>
+                  <div class="attack-index-titles">
+                    <h4 id="card-border-right">Weapon</h4>
+                    <h4>Damage</h4>
+                  </div>
+                  <div class="attack-index-item-container">
+                    <div class="attack-index-item-left">
+                      <% character.attacks.each do |attack| %>
+                        <p><%= attack['name'] %></p>
+                      <% end %>
                     </div>
-                  <% end %>
+                    <div class="attack-index-item-right">
+                      <% character.attacks.each do |attack| %>
+                        <p><%= attack['damage'] %></p>
+                      <% end %>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>

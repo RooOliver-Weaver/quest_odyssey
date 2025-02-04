@@ -97,10 +97,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_093759) do
     t.datetime "updated_at", null: false
     t.string "background"
     t.string "alignment"
-    t.text "personality"
-    t.jsonb "equipment", default: []
-    t.jsonb "traits", default: []
-    t.string "portrait"
     t.index ["user_id"], name: "index_characters_on_user_id"
   end
 

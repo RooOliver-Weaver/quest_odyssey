@@ -12,9 +12,6 @@
   align-items: start;
 }
 
-
-
-
 .cards-campaign {
   overflow: hidden;
   background: var(--green);
@@ -54,4 +51,9 @@
 
 .card-campaign:hover {
   transform: scale(1.05);
+}
+
+.search-bar {
+  margin: 20px;
+  width: 400px;
 }

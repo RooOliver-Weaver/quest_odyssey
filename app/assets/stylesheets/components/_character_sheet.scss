@@ -5,8 +5,11 @@ ul {
 }
 
 .attributes {
+  margin-left: 6rem;
+  width: 60%;
+  margin-top: 2rem;
   display: flex;
-  justify-content: center;
+  justify-content: left;
 
   ul {
     padding: 15px;
@@ -52,8 +55,8 @@ ul {
 
 .container {
   padding: 10px;
-  background-color: var(--burgundy);
-  background-image: url('vintage-grungy-textured-paper-background.jpg');
+  background-image: url('char-background-image-2.jpg');
+  background-size: cover;
 }
 .border-container {
   height: 800px;
@@ -63,6 +66,9 @@ ul {
 }
 
 .char-image {
+  border-radius: 5px;
+  margin-top: 45px;
+  margin-left: 45px;
   overflow: hidden;
   height: 100%;
   width: 280px;
@@ -73,7 +79,7 @@ ul {
 
 .basic-character-info {
   padding: 10px;
-  width: 280px;
+  width: 22rem;
 
   li {
     font-size: 18px;
@@ -97,8 +103,8 @@ label {
 }
 
 .biography {
-  margin-top: 60px;
-  margin-left: 60px;
+  margin-right: 20px;
+  margin-top: 20px;
 }
 
 .hp {

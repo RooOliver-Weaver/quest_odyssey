@@ -1,0 +1,18 @@
+
+  <div class="cards-campaign" data-search-target="campaign" data-name="<%= campaign.name.downcase %>">
+    <% if current_user == campaign.user %>
+      <div class="camp-btns">
+        <a class="delete-camp" href="<%= campaign_path(campaign) %>" data-turbo-method="delete" data-turbo-confirm="Are you sure?"><i class="fa-solid fa-bomb"></i></a>
+        <a class="edit-camp" href="<%= edit_campaign_path(campaign) %>"><i class="fa-solid fa-wand-sparkles"></i></a>
+      </div>
+    <% end %>
+
+
+    <%= link_to campaign_path(campaign) do %>
+      <%= image_tag('dnd_camp.png', alt: 'DnD Image') %>
+      <div class="camp-info">
+        <h5><%= campaign.name %></h5>
+        <p><%= campaign.description %></p>
+      </div>
+    <% end %>
+  </div>

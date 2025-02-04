@@ -1,47 +1,42 @@
-<%= simple_form_for @character, data: { controller: "pdf-reader" } do |f| %>
+<%= simple_form_for @character do |f| %>
   <%= csrf_meta_tags %>
-  <div class="d-flex justify-content-center">
-    <div class="row g-2 col-9">
+    <div class="d-flex justify-content-center">
+      <div class="row g-2 col-9">
 
-      <div>
-        <%= f.input :name, data: { pdf_reader_target: "name" } %>
-        <div class="d-flex justify-content-evenly my-3">
-          <%= f.select :speciality, ["Barbarian", "Wizard", "Rogue", "Bard", "Cleric", "Fighter", "Sorcerer", "Druid", "Ranger", "Paladin"],
-                        prompt: "Choose a class", data: { pdf_reader_target: "speciality" } %>
-          <%= f.select :level, (0..20), prompt: "Choose a level", data: { pdf_reader_target: "level" } %>
+        <div >
+          <%= f.input :name %>
+          <div class="d-flex justify-content-evenly my-3">
+            <%= f.select :speciality, ["Barbarian", "Wizard", "Rogue", "Bard", "Cleric", "Fighter", "Sorcerer", "Druid", "Ranger", "Paladin", "Monk", "Warlock"],
+                          prompt: "Choose a class" %>
+            <%= f.select :level, (0..20), prompt: "Choose a level" %>
+          </div>
+          <%= f.input :background  %>
         </div>
-        <%= f.input :background, data: { pdf_reader_target: "background" } %>
-      </div>
 
-      <div>
-        <%= f.input :race, data: { pdf_reader_target: "race" } %>
-        <%= f.input :alignment, data: { pdf_reader_target: "alignment" } %>
-      </div>
-
-      <div class="char-attr row">
-        <div class="col-md-6">
-          <%= f.input :strength, data: { pdf_reader_target: "strength" } %>
-          <%= f.input :dexterity, data: { pdf_reader_target: "dexterity" } %>
-          <%= f.input :constitution, data: { pdf_reader_target: "constitution" } %>
+        <div>
+          <%= f.input :race %>
+          <%= f.input :alignment %>
         </div>
-        <div class="col-md-6">
-          <%= f.input :wisdom, data: { pdf_reader_target: "wisdom" } %>
-          <%= f.input :intelligence, data: { pdf_reader_target: "intelligence" } %>
-          <%= f.input :charisma, data: { pdf_reader_target: "charisma" } %>
+
+        <div class="char-attr row">
+          <div class="col-md-6">
+            <%= f.input :strength %>
+            <%= f.input :dexterity %>
+            <%= f.input :constitution %>
+          </div>
+          <div class="col-md-6">
+            <%= f.input :wisdom %>
+            <%= f.input :intelligence %>
+            <%= f.input :charisma %>
+          </div>
+        </div>
+
+        <div>
+          <%= f.input :portrait, as: :file %>
+        </div>
+
+          <%= f.button :submit, @character.new_record? ? "Create Character" : "Update Character", class:"new-btn char-btn" %>
         </div>
       </div>
-
-      <div>
-        <%= f.input :portrait, as: :file %>
-      </div>
-
-      <div>
-        <%= f.input :pdf, as: :file, input_html: { data: { action: "change->pdf-reader#loadPdf" } } %>
-      </div>
-
     </div>
-  </div>
-
-  <%= f.button :submit, @character.new_record? ? "Create Character" : "Update Character", class:"new-btn" %>
-
 <% end %>

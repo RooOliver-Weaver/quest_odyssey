@@ -23,7 +23,7 @@ class AvailabilityService
         user.availability.each { |time_slot| player_availability[time_slot] += 1 }
       end
     end
-    [player_availability, no_availability]
+    return [player_availability, no_availability]
   end
 
   def generate_availability_response(player_availability, no_availability)

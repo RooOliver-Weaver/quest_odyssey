@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module QuestOdyssey
   class Application < Rails::Application
     config.action_controller.raise_on_missing_callback_actions = false if Rails.version >= "7.1.0"
+    config.autoload_paths << Rails.root.join('app/services')
     config.generators do |generate|
       generate.assets false
       generate.helper false

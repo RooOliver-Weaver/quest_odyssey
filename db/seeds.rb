@@ -59,7 +59,7 @@ characters = character_data.map do |char|
    else
     puts "⚠️ No portrait provided for #{char[:name]}"
    end
-   
+
    character
 end
 
@@ -85,11 +85,15 @@ end
 puts "Created #{campaigns.count} campaigns."
 
 campaign_characters = campaigns.sample(6).map do |camp|
-  5.times do
-    valid_characters = characters.reject { |char| char.user.id == camp.user.id }
-    next if valid_characters.empty?
+  selected_users = []
+
+  rand(3..5).times do
+    valid_characters = characters.reject { |char| char.user.id == camp.user.id || selected_users.include?(char.user.id) }
+    break if valid_characters.empty?
 
     character = valid_characters.sample
+    selected_users << character.user.id
+
     CampaignCharacter.create!(
       campaign: camp,
       character: character,

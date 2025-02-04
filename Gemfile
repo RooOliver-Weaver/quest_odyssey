@@ -64,8 +64,6 @@ gem "sassc-rails"
 gem "simple_calendar"
 gem "solid_cable"
 gem 'active_storage_validations'
-gem 'pdf-reader'
-gem "origami"
 
 group :development, :test do
   gem "dotenv-rails"

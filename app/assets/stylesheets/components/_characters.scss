@@ -8,6 +8,16 @@
   flex-direction: row;
   overflow-x: scroll;
   width: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2);
+}
+
+.characters-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.characters-list::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .characters {
@@ -34,4 +44,5 @@
   border: 1px solid white;
   text-align: center;
   background-color: var(--green);
+  width: 300px;
 }

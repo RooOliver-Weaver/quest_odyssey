@@ -16,7 +16,17 @@
 
   .campaigns-list {
     overflow: auto;
-  overflow-y: scroll;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .campaigns-list::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .campaigns-list::-webkit-scrollbar-track {
+    background: translucent;
   }
 
   .campaigns {

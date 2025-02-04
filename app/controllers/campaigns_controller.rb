@@ -4,8 +4,13 @@ class CampaignsController < ApplicationController
   before_action :authorize_user, only: %i[edit update destroy]
 
   def index
-    @campaigns = Campaign.all
+    if params[:query].present?
+      @campaigns = Campaign.where("name ILIKE ?", "%#{params[:query]}%")
+    else
+      @campaigns = Campaign.all
+    end
   end
+
 
   def show
     @campaign_character = CampaignCharacter.new
@@ -20,7 +25,7 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.new(campaign_params)
     @campaign.user = current_user
     if @campaign.save!
-      redirect_to campaigns_path
+      redirect_to campaign_path(@campaign)
     else
       render :new, status: :unprocessable_entity
     end
@@ -55,7 +60,7 @@ class CampaignsController < ApplicationController
   end
 
   def campaign_params
-    params.require(:campaign).permit(:name, :setting, :description, :next_session, :notes, :active, :dm_notes)
+    params.require(:campaign).permit(:name, :setting, :description, :next_session, :notes, :active, :dm_notes, :image)
   end
 
   def authorize_user

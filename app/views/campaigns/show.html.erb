@@ -1,55 +1,89 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="card col-md-8 offset-md-2">
-      <div class="card-header">
-        <h1 class="card-title"><%= @campaign.name %></h1>
-        <h3 class="card-subtitle"><%= @campaign.setting %></h3>
-      </div>
-      <div class="card-body">
+<div class="camp-container">
+  <a class="back-btn-show" href="<%= (request.referer.present? && !request.referer.include?("/campaigns/new") ? request.referer : campaigns_path) %>"><i class="fa-regular fa-hand-point-left"></i></a>
+
+    <% if current_user == @campaign.user %>
+      <a class="edit-camp next-sess"href="<%= campaign_sessions_path(@campaign)%>"data-turbo-method="post"><i class="fa-regular fa-calendar-plus"></i></a>
+    <% end %>
+
+  <div class="camp-card">
+    <div class="card-header">
+      <h1><%= @campaign.name.capitalize %></h1>
+      <h3 ><%= @campaign.setting %></h3>
+    </div>
+
+    <ul class="nav nav-tabs" id="campaignTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details-tab-pane" type="button" role="tab" aria-controls="details-tab-pane" aria-selected="true">Details</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="members-tab" data-bs-toggle="tab" data-bs-target="#members-tab-pane" type="button" role="tab" aria-controls="members-tab-pane" aria-selected="false">Members</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes-tab-pane" type="button" role="tab" aria-controls="notes-tab-pane" aria-selected="false">Notes</button>
+      </li>
+      <% if policy(@campaign).dm_notes? %>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="dm-notes-tab" data-bs-toggle="tab" data-bs-target="#dm-notes-tab-pane" type="button" role="tab" aria-controls="dm-notes-tab-pane" aria-selected="false">DM Notes</button>
+        </li>
+      <% end %>
+    </ul>
+
+    <div class="camp-tab-content"  id="campaignTabContent">
+      <div class="tab-pane fade show active" id="details-tab-pane" role="tabpanel" aria-labelledby="details-tab" tabindex="0">
         <p><%= @campaign.description %></p>
-
         <p>DM: <%= @campaign.user.nickname %></p>
+      </div>
 
+      <div class="tab-pane fade" id="members-tab-pane" role="tabpanel" aria-labelledby="members-tab" tabindex="0">
         <p>Current party members:</p>
-        <ul>
-          <% @campaign.campaign_characters.each do |cc| %>
+        <% @campaign.campaign_characters.each do |cc| %>
           <% if cc.character %>
-              <li><%= link_to cc.character.name, character_path(cc.character), class: "text-black" %> (<%= cc.character.user.nickname %>)</li>
-            <% end %>
+            <li>
+              <%= link_to cc.character.name, character_path(cc.character) %>
+              (<%= cc.character.user.nickname %>)
+            </li>
           <% end %>
-
-        <p class="mt-4"><strong>Notes:</strong></p>
-        <p><%= @campaign.notes %></p>
-
-        <% if policy(@campaign).dm_notes? %>
-          <p><strong>DM Notes:</strong></p>
-          <p><%= @campaign.dm_notes %></p>
         <% end %>
+      </div>
+      <div class="tab-pane fade" id="notes-tab-pane" role="tabpanel" aria-labelledby="notes-tab" tabindex="0">
+        <p><strong>Notes:</strong></p>
+        <p><%= @campaign.notes %></p>
+      </div>
 
-        <div class="d-flex mt-4">
-          <% if policy(@campaign).update? %>
-            <%= link_to "Edit", edit_campaign_path(@campaign), class: "btn btn-warning mx-2" %>
-          <% end %>
-          <%= link_to "Back", campaigns_path, class: "btn btn-secondary mx-2" %>
-          <% if policy(@campaign).destroy? %>
-            <%= link_to "Delete", campaign_path(@campaign), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }, class: "btn btn-danger mx-2" %>
-          <% end %>
-        </div>
+      <div class="tab-pane fade" id="dm-notes-tab-pane" role="tabpanel" aria-labelledby="dm-notes-tab" tabindex="0">
+        <p><strong>DM Notes:</strong></p>
+        <p><%= @campaign.dm_notes %></p>
+      </div>
+
+      <div class="camp-show-btns">
+        <% if policy(@campaign).update? %>
+          <%= link_to "Edit", edit_campaign_path(@campaign), class:"edit-camp-btn" %>
+        <% end %>
+        <% if policy(@campaign).destroy? %>
+          <%= link_to "Delete", campaign_path(@campaign), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }, class:"delete-camp-btn" %>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
 
-<% if policy(@campaign).invite? %>
-  <%= form_with model: [@campaign, @campaign_character], local: true do |form| %>
-    <h2>Invite Users to this Campaign</h2>
-
-    <%= form.label :user_id, 'Select a user to invite' %>
-    <%= form.collection_select :user_id, User.where.not(id: @campaign.user.id), :id, :nickname, prompt: "Select a user" %>
-    <%= form.submit "Send Invite" %>
+<div class="invite-card m-5">
+  <% if policy(@campaign).invite? %>
+    <%= form_with model: [@campaign, @campaign_character], local: true do |form| %>
+      <h2>Invite Users to this Campaign</h2>
+      <div class="d-flex col-md-3 row g-4">
+        <%= form.label :user_id, 'Select a player to invite:' %>
+        <%= form.collection_select :user_id,
+          User.where.not(id: @campaign.campaign_characters.pluck(:user_id) + [@campaign.user.id]),
+          :id, :nickname,
+          { prompt: "Select a player" },
+          { required: true } %>
+        <%= form.submit "Send Invite", class:"new-btn invite-btn" %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
-
+</div>
+  
 <% if current_user == @campaign.user %>
   <%= button_to "Create Next Session", campaign_sessions_path(@campaign), class: "btn btn-secondary mx-2" %>
 <% end %>

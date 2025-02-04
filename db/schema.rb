@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_092858) do
     t.bigint "character_id"
     t.bigint "campaign_id", null: false
     t.integer "hit_points"
-    t.integer "death_saves"
+    t.jsonb "death_saves"
     t.jsonb "inventory"
     t.jsonb "stats"
     t.datetime "created_at", null: false

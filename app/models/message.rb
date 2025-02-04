@@ -1,6 +1,7 @@
 class Message < ApplicationRecord
   belongs_to :campaign
   belongs_to :user
+  belongs_to :session, optional: :true
 
   after_create_commit :broadcast_message
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_04_141339) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_04_154745) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -106,7 +106,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_141339) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "message_type"
+    t.bigint "session_id"
     t.index ["campaign_id"], name: "index_messages_on_campaign_id"
+    t.index ["session_id"], name: "index_messages_on_session_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -154,6 +156,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_141339) do
   add_foreign_key "character_sessions", "sessions"
   add_foreign_key "characters", "users"
   add_foreign_key "messages", "campaigns"
+  add_foreign_key "messages", "sessions"
   add_foreign_key "messages", "users"
   add_foreign_key "sessions", "campaigns"
 end

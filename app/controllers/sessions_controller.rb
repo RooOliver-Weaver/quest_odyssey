@@ -12,8 +12,17 @@ class SessionsController < ApplicationController
 
   def approve
     @session = Session.find(params[:id])
-    response = SessionStatusService.new(session: @session).confirm_session(params[:status])
-    redirect_to dashboard_path, notice: response[:success]
+    p "Poopy Poopy Poopy #{params[:status]}"
+    response = SessionStatusService.new(@session).confirm_session("#{params[:status]}")
+    if response[:cancelled].exists? && response[:success].exists?
+      redirect_to campaign_path(@session.campaign), notice: response[:cancelled]
+      redirect_to campaign_path(@session.campaign), notice: response[:success]
+    elsif response[:cancelled].exists?
+      redirect_to campaign_path(@session.campaign), notice: response[:cancelled]
+      redirect_to campaign_path(@session.campaign), notice: response[:success]
+    else
+      redirect_to campaign_path(@session.campaign), notice: response[:success]
+    end
   end
 
 

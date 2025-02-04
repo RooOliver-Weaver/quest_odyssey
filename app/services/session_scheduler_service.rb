@@ -29,7 +29,8 @@ class SessionSchedulerService
       @session.destroy!
       SessionMessagesService.new(@session).no_date_found
     else
-      response = @session.player_availability.delete(@session.player_availability.player_availability.sort.first[0])
+      deleted_date = @session.player_availability.sort.first[0]
+      response = @session.player_availability.delete(:deleted_date)
       save_session_availability_and_date(response)
     end
   end

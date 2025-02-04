@@ -15,7 +15,8 @@ class PagesController < ApplicationController
         @pending_schedule_invites.append(character_session) if character_session.pending?
       end
     end
-
+    @dm_messages = Message.where(user: current_user, message_type: "dm_approval")
+    p @dm_messages
     @messages = Message.where(user: current_user, message_type: "player_notification")
 
     @all_party_memeber_statuses = []

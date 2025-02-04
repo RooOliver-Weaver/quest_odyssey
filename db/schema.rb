@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_04_092858) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_04_093759) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_092858) do
     t.bigint "user_id"
     t.integer "level"
     t.boolean "invite"
+    t.text "personal_notes"
     t.index ["campaign_id"], name: "index_campaign_characters_on_campaign_id"
     t.index ["character_id"], name: "index_campaign_characters_on_character_id"
     t.index ["user_id"], name: "index_campaign_characters_on_user_id"

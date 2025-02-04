@@ -1,0 +1,94 @@
+.camp-container{
+  height: 50%vh;
+  background-color: var(--burgundy);
+  margin: 30px;
+  padding: 50px;
+  padding-bottom: 100px;
+}
+.camp-card{
+  h1, h3{
+    text-align: center;
+  }
+}
+.back-btn-show{
+  position: absolute;
+  z-index: 10;
+  font-size: 35px;
+  color:var(--yellow);
+  top: 70px;
+  &:hover  {
+    color: var(--white);
+  }
+}
+.card-header{
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.camp-tab-content{
+  height: 40%vh;
+  max-height: 45%vh;
+  overflow-y:auto;
+  background-image: url('/assets/scroll-background.jpeg');
+  color: black;
+  list-style: none;
+  padding: 20px;
+  object-fit: fill;
+}
+.tab-pane{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 100%vh;
+}
+.edit-camp-btn {
+  font-size: 1em;
+  border-radius: .3em;
+  width: 5em;
+  height: 2em;
+  background-color: var(--yellow);
+  color:var(--burgundy);
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  text-align: center;
+  display: inline-table;
+  margin-right: 10px;
+  padding-top: 3px;
+&:hover {
+  color: white;
+}
+}
+
+.delete-camp-btn {
+  font-size: 1em;
+  border-radius: .3em;
+  width: 5em;
+  height: 2em;
+  background-color: var(--gray);
+  color:var(--yellow);
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  text-align: center;
+  display: inline-table;
+  padding-top: 3px;
+&:hover {
+  color: white;
+}
+}
+.camp-show-btns{
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  width: 12em;
+  margin-top:1em;
+}
+.next-sess{
+  right: 100px;
+  font-size: 40px;
+  top: 65px;
+}
+.show-avatars{
+  display: flex;
+}

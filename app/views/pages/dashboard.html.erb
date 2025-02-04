@@ -1,6 +1,6 @@
 <div class="campaigns-container">
   <div class="title">
-      <h1>All Campaigns</h1>
+      <h1>My Campaigns</h1>
   </div>
 
   <div class="campaigns-list">
@@ -14,7 +14,7 @@
               </div>
               <div class="campaign-card-content">
                 <h5 class="campaign-card-title"><%= campaign.name %></h5>
-                <p class="campaign-card-text"><%= campaign.description %></p>
+                <p class="campaign-card-text"><%= campaign.setting %></p>
                 <%# <%= link_to 'View Campaign', campaign_path(campaign), class: 'btn btn-primary' %>
               </div>
             </div>
@@ -37,11 +37,13 @@
           <%= link_to character_path(character) do %>
             <div class="character-card" >
               <div class="character-card-image">
-                <%= image_tag 'default_character.jpeg', class: "thumbnail" %>
+                <%= image_tag character.portrait, class: "thumbnail" %>
               </div>
               <div class="character-card-content">
                 <h5 class="character-card-title"><%= character.name %></h5>
-                <p class="character-card-text"><%= character.biography %></p>
+                <p class="character-card-text"><%= character.speciality %></p>
+                <p class="character-card-text"><%= character.race %></p>
+                <p class="character-card-text"><%= character.level %></p>
                 <%# <%= link_to 'View Character', character_path(character), class: 'btn btn-primary' %>
               </div>
             </div>

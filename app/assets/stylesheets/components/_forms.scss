@@ -17,7 +17,11 @@
     font-weight: bold;
   }
 }
-
+.form-text {
+  color: rgba(255, 255, 255, 0.682);  /* Change this to your desired color */
+  font-style: italic;
+  font-size: smaller;
+}
 .flexible-textarea {
   height: 100px;
   overflow-y: auto;

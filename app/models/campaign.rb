@@ -5,6 +5,9 @@ class Campaign < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :sessions, dependent: :destroy
   has_many :character_sessions, through: :sessions, dependent: :destroy
+  has_one_attached :image
+  include PgSearch::Model
+  multisearchable against: [:name, :description, :setting]
 
   validates :name, :setting, :description, presence: true
 end

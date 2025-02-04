@@ -1,0 +1,248 @@
+[
+  { "name": "Kaela Stormfury", "race": "Human", "speciality": "Cleric", "level": 7, "alignment": "Lawful Good", "background": "Acolyte", "portrait": "cleric.jpeg", "biography": "Kaela Stormfury, once a wandering orphan, found solace in the warm embrace of the Radiant Order, a sect devoted to the Sun God, Solari. Raised on the streets, she was no stranger to pain, suffering, and the loss of loved ones. The day she was found by a wandering cleric, her life took a transformative turn. The cleric, who saw the potential for greatness in her, took Kaela under their wing, guiding her to find purpose in the light of Solari. As a young cleric, Kaela quickly rose through the ranks of the Radiant Order, proving her devotion and unyielding compassion through acts of healing and kindness. Her hands, once scarred from the harshness of her past, are now instruments of restoration, and her heart, though tempered by hardship, burns with the unrelenting warmth of her god’s love. Kaela is known for her fierce determination to heal the wounded and protect the innocent, using the divine power bestowed upon her to spread light and hope in even the darkest of times. Her weapon of choice is a sturdy, radiant warhammer, engraved with symbols of Solari, which she wields both as a shield for the helpless and a hammer of justice against evil. While she remains ever steadfast in her duty to serve the divine, Kaela struggles with the balance of law and mercy, questioning if her strict adherence to the tenets of her faith ever veers into rigid dogma.", "personality": "Kaela is a calm and wise figure who exudes quiet strength. She has a natural empathy for those who suffer, often going out of her way to help those in need. Her sense of justice is unshakable, and she is fiercely loyal to those she calls allies. However, her past still haunts her at times, and she is driven by a deep fear of losing the ones she cares for, a fear rooted in her orphaned youth. Though she’s disciplined and honorable, she sometimes questions the extent to which the Radiant Order enforces the letter of the law over the spirit of mercy. Despite this internal struggle, Kaela remains resolute in her belief that Solari’s light will guide her to the right path.",
+  "traits": [
+    { "type": "Strength", "trait": "Devotion to Solari and healing; often offers sage advice." },
+    { "type": "Weakness", "trait": "Tends to prioritize the needs of others to her own detriment." },
+    { "type": "Quirk", "trait": "Often hums soft, healing hymns under her breath when performing rituals or in moments of reflection." },
+    { "type": "Motive", "trait": "Seeks to prove that mercy can coexist with justice and that the light of Solari can heal not just the body, but the soul." }
+  ],
+  "equipment": [
+    { "name": "Quarterstaff", "type": "Weapon"},
+    { "name": "Shield", "type": "Armor"}
+  ],
+  "attacks": [
+    { "name": "Quarterstaff", "damage": "1d8 bludgeoning"}
+  ],
+  "stats": {
+    "strength": 14,
+    "dexterity": 12,
+    "constitution": 14,
+    "intelligence": 10,
+    "wisdom": 18,
+    "charisma": 13
+  }},
+  { "name": "Barnabus 'Barney' the Bold", "race": "Human", "speciality": "Bard", "level": 4, "alignment": "Chaotic Neutral", "background": "Entertainer", "portrait": "bard-3.jpeg", "biography": "Barnabus 'Barney' the Bold may not be as talented as he claims to be, but there's one thing he does well—talking his way out of any situation. A self-proclaimed 'legend' in the bardic community, Barney's charisma and boundless confidence often outweigh his actual talents. His ballads, as dramatic as they are exaggerated, can often be heard echoing in taverns and marketplaces, and he spins tales so outlandish that even the gods might question their truth. Though his abilities in combat are often questionable—especially when it comes to swordplay—his unshakeable courage and infectious energy make him a valuable companion in battle. He has a natural knack for inspiring his allies, whether it's with a stirring tune, an impromptu poem, or a seemingly endless string of witty remarks that can lighten any mood. Barnabus is an adventurer at heart, thriving in the chaos of travel and the unpredictability of life. Whether he’s in a dungeon, a forest, or a bustling city, he always manages to find trouble—and sometimes, he even gets out of it. His loyalty to his friends is matched only by his love of the spotlight, always keen to make sure his name is known far and wide.", "personality": "Barney is exuberantly overconfident and often finds himself in situations that even the most seasoned adventurers would shy away from. His sense of humor and love for the dramatic are contagious, but behind the bravado, he’s not as tough as he lets on. He believes wholeheartedly that there’s no such thing as 'bad publicity,' and that he’s destined for greatness—even if the evidence suggests otherwise. However, despite his boastful nature, Barney has a good heart and will always fight for the underdog, especially if it means a new story to tell. Barney loves the thrill of adventure, often putting himself in danger for the sake of a good story or the possibility of gaining new followers. Though chaotic in nature, he has a certain charm that draws people in, and his companions usually find themselves following his lead, if only to ensure he doesn’t talk them into even more trouble.",
+  "traits": [
+    { "type": "Strength", "trait": "Charisma and the ability to rally his allies, even in the most impossible situations." },
+    { "type": "Weakness", "trait": "Can be reckless and often fails to realize when his confidence crosses into arrogance." },
+    { "type": "Quirk", "trait": "Has an elaborate, overly dramatic introduction for himself, even in situations that don't call for it." },
+    { "type": "Motive", "trait": "Seeks fame and glory, but also wants to inspire others to be bold, brave, and embrace life's unpredictability." }
+  ],
+  "equipment": [
+    { "name": "Rapier", "type": "Weapon"},
+    { "name": "Lute", "type": "Instrument"}
+  ],
+  "attacks": [
+    { "name": "Rapier", "damage": "1d8 piercing"}
+  ],
+  "stats": {
+    "strength": 10,
+    "dexterity": 14,
+    "constitution": 12,
+    "intelligence": 13,
+    "wisdom": 10,
+    "charisma": 18
+  }},
+  { "name": "Selene Moonglow", "race": "Elf", "speciality": "Druid", "level": 5, "alignment": "Neutral", "background": "Hermit", "portrait": "druid.jpeg", "biography": "Selene Moonglow’s life has been one of solitude. For decades, she lived alone in the wilds, far from the cities and the noise of mortal affairs, seeking wisdom in the silence of the natural world. But her studies were not solely focused on the earth beneath her feet. Instead, her gaze was often turned upward, toward the night sky, where she found a deep connection to the stars and the celestial forces that govern the universe.Her belief is  simple yet profound: Destiny is written in the heavens, and the stars hold the answers to life’s greatest mysteries. Yet, Selene also understands that mortals are not bound to fate alone—through their actions and choices, they can shape their own path. This duality of fate and free will is central to her philosophy, and it’s a message she shares in cryptic riddles and metaphors that leave most scratching their heads. Her time in isolation has made her a profound and mysterious figure, but it has also made her socially awkward. When she does engage with others, she often struggles to communicate in a way that others can easily understand. Her companions might find themselves frustrated with her enigmatic language, but there is no denying the wisdom she offers—when they can decipher it. Her connection to the stars isn’t just philosophical. As a druid of the Circle of Stars, she has harnessed the power of the cosmos itself, drawing on the constellations for guidance, power, and insight. The stars guide her in the wilds, and when danger strikes, she calls on their energy to protect and aid her companions. But with such great power comes the challenge of controlling it, and Selene often finds herself walking the line between celestial guidance and chaotic cosmic forces.", "personality": "Selene is calm and thoughtful, always weighing her words before speaking. She often speaks in riddles, cryptic phrases, or metaphors that confuse or frustrate those around her, but her wisdom and insights are profound when understood. She has little patience for trivial matters and tends to focus on the bigger picture, which sometimes makes her appear aloof or detached. However, her loyalty to those she trusts is unwavering.",
+  "traits": [
+    { "type": "Strength", "trait": "Deep knowledge of the natural and celestial worlds, often finding patterns and meanings in the stars that others cannot see." },
+    { "type": "Weakness", "trait": "Struggles with social interactions and explaining herself in clear terms, often alienating those around her." },
+    { "type": "Quirk", "trait": "She habitually looks to the stars for guidance before making any important decision, even if the decision is mundane." },
+    { "type": "Motive", "trait": "To help others see the bigger picture and find their true path in life, while understanding that fate is malleable by choice." }
+  ],
+  "equipment": [
+    { "name": "Quarterstaff", "type": "Weapon"},
+    { "name": "Cloak", "type": "Armor"}
+  ],
+  "attacks": [
+    { "name": "Quarterstaff", "damage": "1d6 bludgeoning"}
+  ],
+  "stats": {
+    "strength": 10,
+    "dexterity": 14,
+    "constitution": 12,
+    "intelligence": 15,
+    "wisdom": 18,
+    "charisma": 11
+  }},
+  { "name": "Roderick 'Roddy' Halfpint", "race": "Harfling", "speciality": "Monk", "level": 4, "alignment": "Chaotic Good", "background": "Urchin", "portrait": "monk-2.jpeg", "biography": "Roderick Halfpint, or 'Roddy' as he prefers to be called, knows the streets better than anyone. Orphaned at a young age, he was forced to rely on his wits and speed to survive in the unforgiving underbelly of the city. Roddy learned early on that being small and nimble wasn’t a disadvantage—it was a gift. He could slip through alleyways, pick pockets, and evade danger with ease, and his charm and quick thinking kept him one step ahead of trouble. His fortunes changed when a wandering monk, sensing something unique in the young halfling, took him under his wing. Under the monk’s guidance, Roddy’s street smarts were honed into a disciplined fighting style. He learned the ancient techniques of the Way of the Open Hand, a martial discipline that emphasizes the art of unarmed combat. Roddy became a quick, agile fighter, using his nimbleness and the force of his strikes to protect the weak and bring justice to those who cannot defend themselves. Despite his training, Roddy remains mischievous at heart. He still loves getting into places he shouldn’t, picking locks, sneaking around, and generally causing harmless chaos. His antics often drive his companions mad, but they can always count on him when the stakes are high, for his heart is in the right place, and his loyalty knows no bounds. Roddy's quick reflexes and dexterity make him a force to be reckoned with in combat, and he’ll fight tooth and nail to protect the innocent, all while keeping his sense of humor intact.", "personality": "Roddy is cheeky, mischievous, and always looking for a good time—often at the expense of his companions’ patience. He has a knack for getting into trouble, but his heart is pure, and his intentions are always good. Though he’s quick to crack a joke, Roddy’s deep-seated sense of justice and loyalty make him a formidable ally. His loyalty is to the underdog and the oppressed, and he’ll stop at nothing to protect those in need. He enjoys outwitting opponents and thrives in high-stakes situations where his cunning and agility are put to the test.",
+  "traits": [
+    { "type": "Strength", "trait": "Incredible speed and dexterity, often able to dodge attacks and deliver quick strikes with precision." },
+    { "type": "Weakness", "trait": "His mischievous nature often causes him to be impulsive, and he can get in over his head with schemes and plans." },
+    { "type": "Quirk", "trait": "Roddy always seems to be in the wrong place at the wrong time, whether it’s sneaking into the kitchen to grab a bite or finding himself in the midst of a tavern brawl." },
+    { "type": "Motive", "trait": "To protect the helpless and ensure that no one, no matter their size or background, is ever overlooked or mistreated." }
+  ],
+  "equipment": [
+    { "name": "Quarterstaff", "type": "Weapon"},
+    { "name": "Bracers", "type": "Armor"}
+  ],
+  "attacks": [
+    { "name": "Quarterstaff", "damage": "1d6 bludgeoning"}
+  ],
+  "stats": {
+    "strength": 12,
+    "dexterity": 18,
+    "constitution": 14,
+    "intelligence": 10,
+    "wisdom": 15,
+    "charisma": 11
+  }},
+  { "name": "Rook IronJaw", "race": "Orc", "speciality": "Barbarian", "level": 4, "alignment": "Chaotic Good", "background": "Outlander", "portrait": "barbarian-2.jpeg", "biography": "Rook IronJaw was raised in the heart of a warlike tribe, where strength, courage, and respect for the ancestors were the cornerstones of life. From a young age, he was told the stories of his people—the battles, the victories, and the warriors who had come before him. These tales filled him with pride and purpose, and when he first stepped onto the battlefield, he felt something more: the spirits of his ancestors, whispering in his ears, guiding his every strike. With this newfound power, Rook quickly rose through the ranks to become the tribe’s protector, defending his people with an unyielding fury. His strength, both physical and spiritual, earned him the title of guardian, a living link between the past and present. Now, though, Rook has set out on a journey beyond his tribe, seeking to uncover more about his lineage and prove that he is worthy of the trust placed in him by his ancestors. To his allies, Rook is a steadfast protector, always ready to lay down his life for those who earn his loyalty. To his enemies, he is a force of nature—a whirlwind of rage and power, unstoppable once he’s unleashed. His bond with his ancestors drives him forward, but his quest for knowledge and self-worth is just as strong. He is a warrior at his core, and he’ll fight until his last breath to honor the legacy of his people.", "personality": "Rook IronJaw is a fierce and loyal protector, driven by a deep respect for his ancestors and the traditions of his tribe. His strength is not only physical but spiritual, with the guidance of his forebears in every fight. He has a calm demeanor with those he trusts, but in battle, his rage makes him a force to be reckoned with. His quest for knowledge about his heritage is just as important to him as defending those he holds dear, although his pride and connection to the past can sometimes cloud his judgment. He is guided by honor and tradition, even if that path isn't always clear.",
+  "traits": [
+    { "type": "Strength", "trait": "Rook’s strength is rooted in both his physical power and his spiritual connection to his ancestors, making him a formidable fighter and protector." },
+    { "type": "Weakness", "trait": "Rook's deep reliance on tradition and the teachings of his ancestors can sometimes prevent him from thinking outside the box or adapting to unfamiliar situations." },
+    { "type": "Quirk", "trait": "He often speaks in the poetic, traditional language of his people, sometimes confusing allies who aren’t familiar with the old ways." },
+    { "type": "Motive", "trait": "Rook is driven by the desire to prove himself worthy of the trust placed in him by his ancestors and to uncover the full story of his lineage." }
+  ],
+  "equipment": [
+    { "name": "Greatsword", "type": "Weapon" },
+    { "name": "Warhammer", "type": "Weapon" }
+  ],
+  "attacks": [
+    { "name": "Greatsword", "damage": "2d6 slashing" },
+    { "name": "Warhammer", "damage": "1d8 bludgeoning" }
+  ],
+  "stats": {
+    "strength": 18,
+    "dexterity": 13,
+    "constitution": 16,
+    "intelligence": 8,
+    "wisdom": 12,
+    "charisma": 10
+  }},
+  { "name": "Snags McSnaggletooth", "race": "Goblin", "speciality": "Rogue", "level": 3, "alignment": "Chaotic Neutral", "background": "Pirate", "portrait": "goblin-1.jpeg", "biography": "Snags McSnaggletooth was born in the heart of a bustling port city, where crime was as common as the tides. From a young age, he was immersed in the world of piracy and theft, stealing anything that wasn't nailed down. At just ten years old, he stole his first ship—though it was just a dinghy, it was enough to set him on the path to his “legendary” pirate career. Over the years, his bravado and mischievous antics earned him a reputation, but his true ambitions remain unfulfilled. While he proudly calls himself a captain and blusters with swagger, those who know him understand that his heart yearns for more than just mischief. Beneath the bravado lies a goblin seeking adventure and a true crew to share it with.", "personality": "Snags is a mischievous, daring, and swashbuckling rogue with a sense of bravado that can sometimes border on delusion. He craves adventure and the thrill of the unknown, though his practical skills often fall short of his grandiose claims. Despite his audacity, Snags is driven by a deep desire for respect and camaraderie, hoping one day to find a crew that truly believes in him. His chaotic nature and impulsive actions often lead him into trouble, but he always seems to talk his way out of the tightest situations with a quick wit and a wink.",
+  "traits": [
+    { "type": "Strength", "trait": "Snags’ greatest strength lies in his quick thinking and agility. He is a skilled fighter and master of deception, able to talk his way out of almost any situation." },
+    { "type": "Weakness", "trait": "Snags’ overconfidence and tendency to overestimate his own abilities can often get him into situations that he can’t easily talk his way out of." },
+    { "type": "Quirk", "trait": "He constantly refers to himself as “Captain,” regardless of the lack of a crew or actual ship to command, and speaks with an exaggerated pirate accent." },
+    { "type": "Motive", "trait": "Snags longs to find true adventure and to prove to the world—and himself—that he is more than just a nuisance; he wants to be a legendary pirate captain with a loyal crew behind him." }
+  ],
+  "equipment": [
+    { "name": "Scimitar", "type": "Weapon" },
+    { "name": "Dagger", "type": "Weapon" }
+  ],
+  "attacks": [
+    { "name": "Scimitar", "damage": "1d6 piercing" },
+    { "name": "Dagger", "damage": "1d4 piercing" }
+  ],
+  "stats": {
+    "strength": 8,
+    "dexterity": 18,
+    "constitution": 12,
+    "intelligence": 14,
+    "wisdom": 10,
+    "charisma": 16
+  }},
+  { "name": "Seraphina Nightwhisper", "race": "Tiefling", "speciality": "Sorcerer", "level": 3, "alignment": "Neutral Evil", "background": "Charlatan", "portrait": "ranger-2.jpeg", "biography": "Seraphina Nightwhisper’s early life in the slums taught her that power is taken, not given. Born into poverty, she learned to survive through deception and manipulation, using her innate magical talent to weave illusions that allowed her to deceive even the most discerning eyes. As she grew older, her skill as a con artist evolved, allowing her to infiltrate high society under false identities, steal fortunes, and vanish into the night. Despite the riches and luxury she’s gained, a darker force lingers within her soul—whispers that urge her toward greater power. Driven by an unquenchable thirst for more, Seraphina seeks to unlock her full potential through shadow magic, even if it means sacrificing everything and everyone in her path.", "personality": "Seraphina is a cunning, ambitious sorceress whose charm is as lethal as her spells. She is calculated and manipulative, using her shadow magic to deceive and control those around her. While she may appear charming on the surface, she has no qualms about betraying others to further her own goals. Beneath her cold exterior, Seraphina is haunted by the whispers of a dark presence that urges her to seek greater power, and she is willing to do anything—no matter how corrupt—to attain it. Her thirst for control and dominance makes her a dangerous individual, though she often masks her true intentions with a façade of elegance and grace.",
+  "traits": [
+    { "type": "Strength", "trait": "Seraphina’s mastery over illusions and shadow magic makes her an excellent manipulator, able to deceive and control others to achieve her ends." },
+    { "type": "Weakness", "trait": "Her obsession with unlocking her full potential can cloud her judgment, leading her to make reckless decisions that jeopardize her goals." },
+    { "type": "Quirk", "trait": "Seraphina has a habit of speaking in riddles and half-truths, often leaving her companions unsure of her true intentions." },
+    { "type": "Motive", "trait": "To uncover the full extent of her shadow magic and unlock ultimate power, regardless of the moral cost." }
+  ],
+  "equipment": [
+    { "name": "Quarterstaff", "type": "Weapon" },
+    { "name": "Cloak", "type": "Magic Item" }
+  ],
+  "attacks": [
+    { "name": "Quarterstaff", "damage": "1d6 bludgeoning" }
+  ],
+  "stats": {
+    "strength": 9,
+    "dexterity": 14,
+    "constitution": 13,
+    "intelligence": 12,
+    "wisdom": 11,
+    "charisma": 18
+  }},
+  { "name": "Fenris", "race": "Gnome", "speciality": "Wizard", "level": 3, "alignment": "Neutral Evil", "background": "Charlatan", "portrait": "wizard-1.jpeg", "biography": "Fenris is a brilliant and eccentric inventor, constantly striving to push the boundaries of both magic and technology. A true genius, he has developed numerous magical devices and arcane machines that have revolutionized the field of enchanted engineering. As the head of the Enigmatech Guild, Fenris oversees the development of new magical technologies, blending wizardry with invention to create devices that serve a multitude of purposes—some beneficial, others potentially dangerous. Despite his significant contributions to the world, Fenris remains a neutral force, driven more by curiosity and the pursuit of knowledge than by any particular moral compass. To him, magic and technology are simply tools, and how they are used is of little consequence as long as the pursuit of knowledge continues.", "personality": "Fenris is driven by an insatiable curiosity and a relentless desire to understand how things work—whether it be magic, technology, or the universe itself. He is a brilliant inventor and scholar, but his lack of concern for morality often leads him into morally gray areas. He values intellect and knowledge above all else, preferring to remain neutral in conflicts, viewing them as distractions from his true work. Though he can be aloof and sometimes dismissive of others, Fenris is always eager to share his latest creations and theories, often getting lost in his own excitement when discussing his projects. Despite his eccentricities, he is a steadfast and reliable leader of the Enigmatech Guild, always pushing his team toward new discoveries.",
+  "traits": [
+    { "type": "Strength", "trait": "Fenris’ brilliance as an inventor and spellcaster allows him to create incredibly advanced magical devices, making him a valuable asset in any situation requiring ingenuity." },
+    { "type": "Weakness", "trait": "His obsession with knowledge often blinds him to the ethical implications of his inventions, which can lead to unintended consequences." },
+    { "type": "Quirk", "trait": "Fenris has a habit of talking to himself while working, muttering theories, ideas, and equations out loud, even when no one is around to hear." },
+    { "type": "Motive", "trait": "To further the pursuit of magical and technological knowledge, with no particular interest in how the world around him is affected by his discoveries." }
+  ],
+  "equipment": [
+    { "name": "Quarterstaff", "type": "Weapon" },
+    { "name": "Crystal Orb", "type": "Arcane Focus" }
+  ],
+  "attacks": [
+    { "name": "Quarterstaff", "damage": "1d6 bludgeoning" }
+  ],
+  "stats": {
+    "strength": 8,
+    "dexterity": 14,
+    "constitution": 12,
+    "intelligence": 18,
+    "wisdom": 10,
+    "charisma": 13
+  }},
+  { "name": "Sir Alistair Valiant", "race": "Human", "speciality": "Paladin", "level": 3, "alignment": "Lawful Good", "background": "Noble", "portrait": "paladin-2.jpeg", "biography": "Sir Alistair Valiant was born into nobility, the son of a respected lord known for his commitment to justice and righteousness. From a young age, Alistair was trained in both combat and diplomacy, groomed to lead with honor and defend the innocent. After his father was slain in battle against a band of marauding orcs, Alistair vowed to carry on his legacy, swearing an oath to protect the weak and uphold justice at any cost. As a paladin, he follows the tenets of a righteous deity, his every action guided by the principles of honor, duty, and selflessness. Alistair has earned a reputation for his unwavering commitment to justice, though his strict code sometimes puts him at odds with those more willing to bend the rules for the greater good. His noble heart and unshakable conviction drive him to challenge evil wherever it lurks, and he seeks to bring hope to those who have lost it.", "personality": "Sir Alistair is a man of unwavering integrity and conviction. His honor is paramount, and he is driven by a sense of duty that compels him to protect the innocent and uphold the laws of the land. While he can be stern and serious, Alistair’s heart is kind, and he deeply cares for the well-being of those around him. He tends to take responsibility for the actions of others and holds himself to the highest standards. He can be a bit rigid in his thinking, often viewing the world in terms of black and white, good and evil. However, his sense of duty never falters, and he strives to lead by example, inspiring those around him to do the right thing. His relentless pursuit of justice can sometimes make him seem inflexible, but his heart is always in the right place.",
+  "traits": [
+    { "type": "Strength", "trait": "Sir Alistair’s unwavering commitment to justice makes him a natural leader. His ability to inspire others and stand firm in the face of evil makes him an invaluable ally in times of crisis." },
+    { "type": "Weakness", "trait": "Alistair’s strict code of honor can sometimes make him rigid and inflexible, causing him to struggle when faced with morally complex situations that don’t have a clear answer." },
+    { "type": "Quirk", "trait": "Sir Alistair is known to speak in formal, almost archaic language, especially when addressing his allies or enemies. He holds himself to a high standard and expects the same of those around him." },
+    { "type": "Motive", "trait": "To protect the innocent, uphold justice, and honor the memory of his fallen father by living a life of righteousness." }
+  ],
+  "equipment": [
+    { "name": "Longsword", "type": "Weapon" },
+    { "name": "Shield", "type": "Armor" }
+  ],
+  "attacks": [
+    { "name": "Longsword", "damage": "1d8 slashing" }
+  ],
+  "stats": {
+    "strength": 18,
+    "dexterity": 10,
+    "constitution": 14,
+    "intelligence": 10,
+    "wisdom": 12,
+    "charisma": 16
+  }},
+  { "name": "Veylin 'Shaddowfang' Thorne", "race": "Half-elf", "speciality": "Ranger", "level": 4, "alignment": "Neutral Good", "background": "Folk Hero", "portrait": "paladin-2.jpeg", "biography": "Veylin 'Shadowfang' Thorne grew up on the edge of civilization, where the forests met the mountains. Raised by rangers who protected the land from poachers and marauding beasts, Veylin learned the ways of the wild—how to track, hunt, and survive where others would perish. He once lived a quiet life, but everything changed when his mentor was slain by a monstrous beast that left no trace beyond a claw-marked tree. Since then, Veylin has roamed the wilderness, seeking vengeance and protecting those who cannot protect themselves. With keen eyes that miss nothing and a bow that rarely does either, he is a relentless hunter. He has little patience for city life and its endless politics, preferring the company of wolves to men. Yet, for all his gruffness, he has a strong moral code—he protects the weak, punishes the wicked, and ensures that nature’s balance is maintained.", "personality": "Veylin is quiet, observant, and intensely focused on his surroundings. He speaks only when necessary, and when he does, his words are direct and to the point. He carries the weight of responsibility for the wilderness, feeling it is his duty to act when others turn a blind eye. While not unfriendly, he struggles with expressing emotions and often comes across as brooding. However, once someone earns his trust, they will find a fiercely loyal ally who will fight to his last breath to defend them.",
+  "traits": [
+    { "type": "Strength", "trait": "Master tracker and hunter, able to read the environment like a book." },
+    { "type": "Weakness", "trait": "Finds social interactions awkward and struggles with diplomacy." },
+    { "type": "Quirk", "trait": "Talks to his wolf companion, Shadow, as if it were a person." },
+    { "type": "Motive", "trait": "Seeking vengeance for his fallen mentor while ensuring the natural world is protected." }
+  ],
+  "equipment": [
+    { "name": "Longbow", "type": "Weapon" },
+    { "name": "Twin Swords", "type": "Weapon" }
+  ],
+  "attacks": [
+    { "name": "Longbow", "damage": "1d8 piercing" },
+    { "name": "Twin Swords", "damage": "1d6 slashing (each)" }
+  ],
+  "stats": {
+    "strength": 12,
+    "dexterity": 17,
+    "constitution": 14,
+    "intelligence": 10,
+    "wisdom": 14,
+    "charisma": 10
+  }},
+  { "name": "Kaelen Ironheart", "race": "Mountain Dwarf", "speciality": "Fighter", "level": 4, "alignment": "Lawful Neutral", "background": "Soldier", "portrait": "paladin-2.jpeg", "biography": "Kaelen Ironheart was born into a proud clan of warriors who believed that honour was earned on the battlefield. Trained from childhood in the art of combat, he quickly became a formidable fighter, wielding weapons with deadly efficiency. After serving in the dwarven military for years, he grew disillusioned with the endless politics of war and sought a new path—one where he could fight for his own code rather than the ambitions of kings. Now a wandering mercenary, Kaelen sells his blade to those in need of a strong arm. He doesn’t fight for coin alone; he fights for glory, for justice, and for the thrill of battle. Though he has a gruff demeanor, he believes in honour and loyalty above all else. If he swears an oath, he will never break it, no matter the cost.", "personality": "Kaelen is tough, disciplined, and fiercely protective of those he calls friends. He has little patience for cowards and liars, and he respects strength in all its forms—whether physical, mental, or moral. While he enjoys drinking and a good brawl, he never lets himself get reckless. He values order and believes that every warrior should have a code to live by.",
+  "traits": [
+    { "type": "Strength", "trait": "Master of weapons and battlefield tactics." },
+    { "type": "Weakness", "trait": "Stubborn to a fault and slow to trust outsiders." },
+    { "type": "Quirk", "trait": "Always cleans his weapons before and after battle, considering it a sacred ritual." },
+    { "type": "Motive", "trait": "Seeking to forge his own legend, proving himself as the greatest warrior of his time." }
+  ],
+  "equipment": [
+    { "name": "Greatsword", "type": "Weapon" },
+    { "name": "Warhammer", "type": "Weapon" }
+  ],
+  "attacks": [
+    { "name": "Greatsword", "damage": "2d6 slashing" },
+    { "name": "Warhammer", "damage": "1d8 bludgeoning" }
+  ],
+  "stats": {
+    "strength": 12,
+    "dexterity": 17,
+    "constitution": 14,
+    "intelligence": 10,
+    "wisdom": 14,
+    "charisma": 10
+  }}
+]

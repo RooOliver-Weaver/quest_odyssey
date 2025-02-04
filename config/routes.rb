@@ -19,6 +19,13 @@ Rails.application.routes.draw do
   end
   patch "/sessions/:id/approve", to: "sessions#approve", as: "session_approval"
 
+  resources :notifications, only: [:index] do
+    collection do
+      patch :mark_as_read
+      delete :delete_read
+    end
+  end
+
 
   get '/calendars', to: 'calendars#index'
 

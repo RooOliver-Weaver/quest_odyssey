@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_154745) do
     t.bigint "character_id"
     t.bigint "campaign_id", null: false
     t.integer "hit_points"
-    t.integer "death_saves"
+    t.jsonb "death_saves"
     t.jsonb "inventory"
     t.jsonb "stats"
     t.datetime "created_at", null: false
@@ -54,6 +54,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_154745) do
     t.bigint "user_id"
     t.integer "level"
     t.boolean "invite"
+    t.text "personal_notes"
     t.index ["campaign_id"], name: "index_campaign_characters_on_campaign_id"
     t.index ["character_id"], name: "index_campaign_characters_on_character_id"
     t.index ["user_id"], name: "index_campaign_characters_on_user_id"
@@ -70,6 +71,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_154745) do
     t.text "dm_notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "public"
     t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
@@ -96,6 +98,11 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_154745) do
     t.string "background"
     t.string "alignment"
     t.string "portrait"
+    t.text "personality"
+    t.jsonb "equipment", default: []
+    t.jsonb "traits", default: []
+    t.string "portrait"
+    t.jsonb "attacks", default: []
     t.index ["user_id"], name: "index_characters_on_user_id"
   end
 
@@ -110,6 +117,26 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_154745) do
     t.index ["campaign_id"], name: "index_messages_on_campaign_id"
     t.index ["session_id"], name: "index_messages_on_session_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "message"
+    t.string "url"
+    t.boolean "read", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "occurrence_count", default: 1
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type", null: false
+    t.bigint "searchable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -158,5 +185,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_154745) do
   add_foreign_key "messages", "campaigns"
   add_foreign_key "messages", "sessions"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "sessions", "campaigns"
 end

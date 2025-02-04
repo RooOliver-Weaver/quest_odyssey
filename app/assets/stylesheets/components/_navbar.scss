@@ -11,6 +11,16 @@
   transition: width var(--speed);
   z-index: 1000;
   font-family: "Grenze Gotisch";
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2);
+}
+
+.navbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.navbar::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .navbar.open {

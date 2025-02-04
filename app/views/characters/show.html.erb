@@ -3,7 +3,11 @@
 <div class="border-container">
     <div class="image-container-character">
       <div class="character-image">
-        <%= image_tag 'default_character.jpeg', class: 'char-image' %>
+        <% if @character.portrait.attached? %>
+          <%= cl_image_tag @character.portrait.key, class: "char-image" %>
+        <% else %>
+          <%= image_tag 'default_character.jpeg', class: 'char-image' %>
+        <% end %>
       </div>
       <div class="basic-character-info">
         <h3>Name: <%= @character.name %></h3>

@@ -11,5 +11,6 @@ class Character < ApplicationRecord
 
   validates :name, :race, :speciality, :level, presence: true
   validates :level, numericality: { only_integer: true, default: 0, less_than_or_equal_to: 20}
-  validates :speciality, inclusion: { in: %w(Barbarian Wizard Rogue Bard Cleric Fighter Sorcerer Druid Ranger Paladin), message: "%{value} is not a valid speciality" }
+  validates :speciality, inclusion: { in: %w(Barbarian Wizard Rogue Bard Cleric Fighter Sorcerer Druid Ranger Paladin Monk Warlock), message: "%{value} is not a valid speciality" }
+  validates :portrait, content_type: { in: [:jpeg, :png, :webp, :tiff, :svg], spoofing_protection: true }, size: { less_than: 5.megabytes, message: "is too big" }
 end

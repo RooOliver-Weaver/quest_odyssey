@@ -1,5 +1,5 @@
 .camp-index{
-  margin: auto;
+  // margin: auto;
   text-align: center;
   h1{
     margin: 20px;
@@ -8,37 +8,37 @@
 .camp-index-cards{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 20px;
+  grid-gap:2em;
   align-items: start;
 }
-
-
-
 
 .cards-campaign {
   overflow: hidden;
   background: var(--green);
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   width: 100%;
-  max-width: 350px;
-  height: 450px;
-  border-radius: 5px;
+  max-width: 20em;
+  height: 30em;
+  border-radius: 0.3em;
   position: relative;
   gap: 30px;
+  box-shadow: 0 0 10px rgba(255, 254, 254, 0.592);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   img{
-    height: 200px;
+    height: 14em;
     width: 100%;
     object-fit: cover;
-    margin-bottom: 15px;
+    margin-bottom: 1em;
   }
 }
 
 .camp-info{
-  height: 150px;
+  height: 9em;
   width: 100%;
-  margin: 5px;
 
-  h5{
+  h4{
     padding-left: 10px;
     margin-bottom: 10px;
     background: linear-gradient(90deg, #ffd700, #ffac00, #ffcc33, #ffd700);
@@ -46,12 +46,50 @@
     -webkit-text-fill-color: transparent;
   }
   p{
-    padding: 10px;
-    font-size: 15px;
+    padding: 0.7em;
+    font-size: 1em;
     color: white;
   }
 }
 
 .card-campaign:hover {
   transform: scale(1.05);
+}
+
+.search-bar {
+  margin: 2em;
+  width: 25em;
+}
+
+.campaign-avatars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0.5em;
+}
+
+.avatar-campaign {
+  border-radius: 50%;
+  background-color: #ffac00;
+  box-shadow: 0 0 10px var(--green);
+  width: 3em;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Overlapping Effect */
+.campaign-avatars .avatar-campaign {
+  margin-left: -0.8em; /* Adjust for overlap */
+}
+
+/* When hovering, bring avatar forward */
+.avatar-campaign:hover {
+  z-index: 10;
+  transform: scale(1.5);
 }

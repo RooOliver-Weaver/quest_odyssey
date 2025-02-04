@@ -70,13 +70,13 @@
 <% @pending_schedule_invites.each do |invite| %>
   <p><%= invite.session.campaign.user.nickname %> has called you to adventure on <%= link_to invite.session.date, campaign_sessions_path(invite.session)%>!</p>
 
-  <%= form_with url: campaign_session_character_session(invite), method: :patch, local: true do |form| %>
+  <%= form_with url: campaign_session_character_session_path(invite.session.campaign.id, invite.session.id, invite.id), method: :patch, local: true do |form| %>
     <h3>Return to the adventure? </h3>
     <%= form.hidden_field :status, value: "confirmed" %>
     <%= form.submit "Accept" %>
   <% end %>
   <%= button_to "Decline",
-              campaign_session_character_session_path(invite),
+              campaign_session_character_session_path(invite.session.campaign.id, invite.session.id, invite.id),
               method: :patch,
               params: { status: "cancelled" },
               data: { confirm: "Are you sure you want to decline this invite?" } %>

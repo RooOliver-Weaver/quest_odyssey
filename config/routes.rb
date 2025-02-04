@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :campaigns do
     resources :campaign_characters, only: [:create]
     resources :sessions do
-      resources :character_session, only: [:create, :update, :destory]
+      resources :character_sessions, only: [:create, :update, :destory]
     end
     resources :messages, only: [:create]
   end

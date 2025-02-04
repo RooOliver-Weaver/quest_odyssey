@@ -10,14 +10,7 @@ class SessionSchedulerService
 
 
     response = AvailabilityService.new(@campaign).fetch_player_availability
-    p response
-    if response[:all_missing].present?
-      p "Returning early: all_missing"
-      return { error: response[:all_missing] }
-      p "Returning early: atleast_one_missing"
-    elsif response[:atleast_one_missing].present?
-      return { error: response[:atleast_one_missing] }
-    else
+    if response.length > 1
       p response
       @session.player_availability = response
       suggestion = response.sort.first[0]
@@ -28,8 +21,13 @@ class SessionSchedulerService
       else
         return {error: "Failed to create session. Unknown error (Blame the Old Gods)." }
       end
+    elsif response[:all_missing].present?
+      p "Returning early: all_missing"
+      return { error: response[:all_missing] }
+    elsif response[:atleast_one_missing].present?
+       p "Returning early: atleast_one_missing"
+      return { error: response[:atleast_one_missing] }
     end
-
   end
 
 

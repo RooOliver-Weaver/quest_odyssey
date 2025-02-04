@@ -6,7 +6,7 @@ class SessionMessagesService
 
   def generate_invites
     @session.campaign.campaign_characters.each do |character|
-      @character_session = CharacterSession.create(@session, character)
+      @character_session = CharacterSession.create(session_id: @session.id, campaign_character_id: character.id)
     end
   end
 

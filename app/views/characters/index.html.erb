@@ -1,20 +1,60 @@
 <div class="row">
   <% @characters.each do |character| %>
-    <div class="col-md-6 mb-4">
+    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-4">
       <%= link_to character_path(character) do %>
-        <div class="character-show-card">
-          <%= image_tag 'default_character.jpeg', class: "character-image" %>
-          <div class="infos">
-            <div class="character-show-card-infos">
-              <h2> <%= character.name %></h2>
-              <p> <%= character.race %> <%= character.level %> </p>
-            </div>
-            <div class="additional-info">
-              <div>
-                <p>Class: <%= character.speciality %> </p>
-                <p>Alignment: <%= character.alignment %></p>
+        <div class="character-index-container-test">
+          <div class="character-index-card">
+            <div class="front">
+                <%= image_tag character.portrait, class: "front-image" %>
+              <div class="front-content">
+                <div class="name">
+                  <h2><%= character.name %></h2>
+                </div>
+                <div class="char-info-test">
+                  <h4><%= character.race %></h4>
+                  <div class="hexagon">
+                    <h1><%= character.level %></h1>
+                  </div>
+                  <h4><%= character.speciality %></h4>
+                </div>
+                <div class="char-info-2">
+                  <h4><%= character.background %></h4>
+                </div>
               </div>
-              <p id="player_name"> Player name: <%= character.user.nickname.capitalize %> </p>
+            </div>
+            <div class="back">
+              <div class="back-content-1">
+                <ul>
+                <li>
+                  <div class="index-attribute"><p>STR</p> <h2><%= character.stats['strength'] %></h2></div>
+                </li>
+                <li>
+                  <div class="index-attribute"><p>DEX</p> <h2><%= character.stats['dexterity'] %></h2></div>
+                </li>
+                <li>
+                  <div class="index-attribute"><p>CON</p> <h2><%= character.stats['constitution'] %></h2></div>
+                </li>
+                <li>
+                  <div class="index-attribute"><p>WIS</p> <h2><%= character.stats['wisdom'] %></h2></div>
+                </li>
+                <li>
+                  <div class="index-attribute"><p>INT</p> <h2><%= character.stats['intelligence'] %></h2></div>
+                </li>
+                <li>
+                  <div class="index-attribute"><p>CHA</p> <h2><%= character.stats['charisma'] %></h2></div>
+                </li>
+                </ul>
+              </div>
+              <div class="back-content-2">
+                <div class="index-card-equipment">
+                  <h5>Equipment:</h5>
+                  <p>Some text about the equipment of the character goes here</p>
+                </div>
+                <div class="index-card-attacks">
+                  <h5>Attacks:</h5>
+                  <p>Other text about equipment goest here</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

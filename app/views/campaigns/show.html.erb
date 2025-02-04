@@ -1,15 +1,15 @@
 <div class="camp-container">
-  <a class="back-btn-show" href="<%= (request.referer.present? && !request.referer.include?("/campaigns/new") ? request.referer : campaigns_path) %>"><i class="fa-regular fa-hand-point-left"></i></a>
+  <div class="camp-show-links">
+    <a class="back-btn-show" href="<%= (request.referer.present? && !request.referer.include?("/campaigns/new") ? request.referer : campaigns_path) %>"><i class="fa-regular fa-hand-point-left"></i></a>
 
     <% if current_user == @campaign.user %>
       <a class="edit-camp next-sess"href="<%= campaign_sessions_path(@campaign)%>"data-turbo-method="post"><i class="fa-regular fa-calendar-plus"></i></a>
     <% end %>
+  </div>
 
+  <h1><%= @campaign.name.capitalize %></h1>
   <div class="camp-card">
-    <div class="card-header">
-      <h1><%= @campaign.name.capitalize %></h1>
-      <h3 ><%= @campaign.setting %></h3>
-    </div>
+    <h3 ><%= @campaign.setting %></h3>
 
     <ul class="nav nav-tabs" id="campaignTab" role="tablist">
       <li class="nav-item" role="presentation">
@@ -51,7 +51,7 @@
       </div>
 
       <div class="tab-pane fade " id="notes" role="tabpanel" aria-labelledby="notes" >
-        <p ><strong>Notes:</strong></p
+        <p ><strong>Notes:</strong></p>
         <p><%= @campaign.notes %></p>
       </div>
 
@@ -60,39 +60,22 @@
         <p><%= @campaign.dm_notes %></p>
       </div>
 
-
     </div>
-      <div class="camp-show-btns">
-        <% if policy(@campaign).update? %>
-          <%= link_to "Edit", edit_campaign_path(@campaign), class:"edit-camp-btn" %>
-        <% end %>
-        <% if policy(@campaign).destroy? %>
-          <%= link_to "Delete", campaign_path(@campaign), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }, class:"delete-camp-btn" %>
-        <% end %>
-      </div>
+
+  </div>
+
+  <div class="camp-show-btns">
+    <% if policy(@campaign).update? %>
+      <%= link_to "Edit", edit_campaign_path(@campaign), class:"edit-camp-btn" %>
+    <% end %>
+    <% if policy(@campaign).destroy? %>
+      <%= link_to "Delete", campaign_path(@campaign), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }, class:"delete-camp-btn" %>
+    <% end %>
   </div>
 </div>
 
-<div class="invite-card m-5">
-  <% if policy(@campaign).invite? %>
-    <%= form_with model: [@campaign, @campaign_character], local: true do |form| %>
-      <h2>Invite Users to this Campaign</h2>
-      <div class="d-flex col-md-3 row g-4">
-        <%= form.label :user_id, 'Select a player to invite:' %>
-        <%= form.collection_select :user_id,
-          User.where.not(id: @campaign.campaign_characters.pluck(:user_id) + [@campaign.user.id]),
-          :id, :nickname,
-          { prompt: "Select a player" },
-          { required: true } %>
-        <%= form.submit "Send Invite", class:"new-btn invite-btn" %>
-      </div>
-    <% end %>
-  <% end %>
-</div>
-  
-<% if current_user == @campaign.user %>
-  <%= button_to "Create Next Session", campaign_sessions_path(@campaign), class: "btn btn-secondary mx-2" %>
-<% end %>
+
+
 
 <% if current_user == @campaign.user || @campaign.campaign_characters.any? { |cc| current_user == cc.user } %>
   <div data-controller="chatbox" class="chat-container">

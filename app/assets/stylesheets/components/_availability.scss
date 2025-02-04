@@ -1,0 +1,50 @@
+.edit-pass-pg{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px;
+  p {
+    font-size: smaller;
+}
+}
+
+.calendar {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.calendar table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.calendar th, .calendar td {
+  padding: 10px;
+  text-align: center;
+}
+
+.day-button {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.day-button:hover {
+  background-color: #e0e0e0;
+}
+
+.slots {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.slots div {
+  margin-bottom: 5px;
+}

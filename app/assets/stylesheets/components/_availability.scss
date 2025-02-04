@@ -10,41 +10,34 @@
 }
 }
 
-.calendar {
-  width: 100%;
-  margin-top: 20px;
-}
-
-.calendar table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.calendar th, .calendar td {
+.day-header{
   padding: 10px;
+  background-color: var(--green);
+  border-bottom: 2px solid #cccccc3e;
+  border-radius: 0.3em;
+   &:hover{
+    cursor: pointer;
+    background-color: var(--rust);
+  }
+}
+.availability-header{
+  display: grid;
+  grid-template-columns: repeat(7, minmax(100px, 1fr));
+  grid-gap:0.5em;
   text-align: center;
-}
 
-.day-button {
-  background-color: #f0f0f0;
+}
+.availability-slot {
+  margin-top: 0.4em;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 columns for each weekday */
+  grid-template-rows: repeat(3, 1fr); /* 3 rows for morning, midday, evening */
+  gap: 1rem;
+  text-align: center;
   padding: 10px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
+  background-color: var(--green);
+  border-radius: 0.3em;
 }
-
-.day-button:hover {
-  background-color: #e0e0e0;
-}
-
-.slots {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.slots div {
-  margin-bottom: 5px;
+.apple{
+  border-bottom: 2px solid #cccccc3e;
 }

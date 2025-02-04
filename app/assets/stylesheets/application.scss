@@ -57,26 +57,3 @@ a {
   width: calc(100% - 6.25rem);
   transition: width var(--speed);
 }
-
-
-.flash-notification {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  background: #f8d7da;
-  color: #721c24;
-  padding: 10px 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  animation: fadeIn 0.5s, fadeOut 0.5s 4s forwards;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeOut {
-  to { opacity: 0; transform: translateY(-10px); }
-}

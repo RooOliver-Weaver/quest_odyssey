@@ -63,10 +63,8 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem "simple_calendar"
 gem "solid_cable"
-<<<<<<< HEAD
-=======
+
 gem 'active_storage_validations'
->>>>>>> 46fea8c48e754e1fd4182fc0d5d216f738f54ea2
 
 group :development, :test do
   gem "dotenv-rails"

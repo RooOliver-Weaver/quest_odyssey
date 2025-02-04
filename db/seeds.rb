@@ -35,6 +35,7 @@ characters = character_data.map do |char|
      personality: char[:personality],
      equipment: char[:equipment],
      traits: char[:traits],
+     attacks: char[:attacks],
      stats: char[:stats]
    )
 end

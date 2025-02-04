@@ -1,5 +1,5 @@
 <div class="camp-container">
-  <a class="back-btn-show" href="<%= campaigns_path %>"><i class="fa-regular fa-hand-point-left"></i></a>
+  <a class="back-btn-show" href="<%= (request.referer.present? && !request.referer.include?("/campaigns/new") ? request.referer : campaigns_path) %>"><i class="fa-regular fa-hand-point-left"></i></a>
 
     <% if current_user == @campaign.user %>
       <a class="edit-camp next-sess"href="<%= campaign_sessions_path(@campaign)%>"data-turbo-method="post"><i class="fa-regular fa-calendar-plus"></i></a>
@@ -51,7 +51,7 @@
       </div>
 
       <div class="tab-pane fade " id="notes" role="tabpanel" aria-labelledby="notes" >
-        <p ><strong>Notes:</strong></p>
+        <p ><strong>Notes:</strong></p
         <p><%= @campaign.notes %></p>
       </div>
 
@@ -73,20 +73,26 @@
   </div>
 </div>
 
-
 <div class="invite-card m-5">
   <% if policy(@campaign).invite? %>
     <%= form_with model: [@campaign, @campaign_character], local: true do |form| %>
       <h2>Invite Users to this Campaign</h2>
       <div class="d-flex col-md-3 row g-4">
-        <%= form.label :user_id, 'Select a user to invite :' %>
-        <%= form.collection_select :user_id, User.where.not(id: @campaign.user.id), :id, :nickname, prompt: "Select a user", class: "invite-dropdown" %>
+        <%= form.label :user_id, 'Select a player to invite:' %>
+        <%= form.collection_select :user_id,
+          User.where.not(id: @campaign.campaign_characters.pluck(:user_id) + [@campaign.user.id]),
+          :id, :nickname,
+          { prompt: "Select a player" },
+          { required: true } %>
         <%= form.submit "Send Invite", class:"new-btn invite-btn" %>
       </div>
     <% end %>
   <% end %>
 </div>
-
+  
+<% if current_user == @campaign.user %>
+  <%= button_to "Create Next Session", campaign_sessions_path(@campaign), class: "btn btn-secondary mx-2" %>
+<% end %>
 
 <% if current_user == @campaign.user || @campaign.campaign_characters.any? { |cc| current_user == cc.user } %>
   <div data-controller="chatbox" class="chat-container">

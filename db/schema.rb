@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_04_092858) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_04_125145) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_092858) do
     t.bigint "character_id"
     t.bigint "campaign_id", null: false
     t.integer "hit_points"
-    t.integer "death_saves"
+    t.jsonb "death_saves"
     t.jsonb "inventory"
     t.jsonb "stats"
     t.datetime "created_at", null: false
@@ -54,6 +54,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_092858) do
     t.bigint "user_id"
     t.integer "level"
     t.boolean "invite"
+    t.text "personal_notes"
     t.index ["campaign_id"], name: "index_campaign_characters_on_campaign_id"
     t.index ["character_id"], name: "index_campaign_characters_on_character_id"
     t.index ["user_id"], name: "index_campaign_characters_on_user_id"
@@ -100,6 +101,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_092858) do
     t.text "personality"
     t.jsonb "equipment", default: []
     t.jsonb "traits", default: []
+    t.string "portrait"
+    t.jsonb "attacks", default: []
     t.index ["user_id"], name: "index_characters_on_user_id"
   end
 
@@ -111,6 +114,17 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_092858) do
     t.datetime "updated_at", null: false
     t.index ["campaign_id"], name: "index_messages_on_campaign_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "message"
+    t.string "url"
+    t.boolean "read", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "occurrence_count", default: 1
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
@@ -166,5 +180,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_092858) do
   add_foreign_key "characters", "users"
   add_foreign_key "messages", "campaigns"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "sessions", "campaigns"
 end

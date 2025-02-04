@@ -18,6 +18,7 @@ class CharactersController < ApplicationController
   def create
     @character = Character.new(character_params)
     @character.user = current_user
+
     if @character.save!
       redirect_to character_path(@character)
     else
@@ -44,19 +45,20 @@ class CharactersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_character
-      @character = Character.find(params[:id])
-    end
+  def set_character
+    @character = Character.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def character_params
-      params.require(:character).permit(:name, :race, :speciality, :level, :stats, :biography, :portrait)
-    end
+  # Only allow a list of trusted parameters through.
+  def character_params
+    params.require(:character).permit(:name, :race, :speciality, :level, :biography, :portrait, :alignment, :background,
+                                      :strength, :dexterity, :constitution, :wisdom, :intelligence, :charisma)
+  end
 
-    def authorize_user
-      unless current_user == @character.user
-        flash[:alert] = "You are not authorized to perform this action."
-        redirect_to characters_path
-      end
+  def authorize_user
+    unless current_user == @character.user
+      flash[:alert] = "You are not authorized to perform this action."
+      redirect_to characters_path
     end
+  end
 end

@@ -31,10 +31,12 @@
           </div>
         </div>
 
+        <div>
+          <%= f.input :portrait, as: :file %>
+        </div>
+
           <%= f.button :submit, @character.new_record? ? "Create Character" : "Update Character", class:"new-btn char-btn" %>
         </div>
       </div>
     </div>
-
-
-  <% end %>
+<% end %>

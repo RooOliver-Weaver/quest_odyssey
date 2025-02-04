@@ -5,7 +5,11 @@
         <div class="character-index-container-test">
           <div class="character-index-card">
             <div class="front">
-                <%# <%= image_tag character.portrait, class: "front-image" %> 
+                <% if character.portrait.attached? %>
+                  <%= cl_image_tag character.portrait.key, class: "front-image" %>
+                <% else %>
+                  <%= image_tag 'default_character.jpeg', class: "front-image" %>
+                <% end %>
               <div class="front-content">
                 <div class="name">
                   <h2><%= character.name %></h2>
@@ -48,11 +52,25 @@
               <div class="back-content-2">
                 <div class="index-card-equipment">
                   <h5>Equipment:</h5>
-                  <p>Some text about the equipment of the character goes here</p>
+                  <div class="equipment-index-titles">
+                    <h4 id="card-border-right">Type</h4>
+                    <h4>Name</h4>
+                    </div>
+                    <% character.equipment.each do |item| %>
+                      <div class="equipment-index-item">
+                        <p><%= item['type'] %></p>
+                        <p> <%= item['name'] %></p>
+                      </div>
+                    <% end %>
                 </div>
                 <div class="index-card-attacks">
                   <h5>Attacks:</h5>
-                  <p>Other text about equipment goest here</p>
+                  <% character.attacks.each do |attack| %>
+                    <div class="index-card-attacks">
+                      <p><%= attack['name'] %></p>
+                      <p><%= attack['damage'] %></p>
+                    </div>
+                  <% end %>
                 </div>
               </div>
             </div>

@@ -12,6 +12,9 @@
         <%= f.input :dm_notes, input_html: { class: "flexible-textarea" }  %>
       <% end %>
     <% end %>
+    <div>
+      <%= f.input :image, as: :file %>
+    </div>
     <%= f.button :submit, class:"new-btn" %>
   <% end %>
 </div>

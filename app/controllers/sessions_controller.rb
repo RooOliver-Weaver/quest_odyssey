@@ -1,29 +1,30 @@
 class SessionsController < ApplicationController
+
   def create
     @campaign = Campaign.find(params[:campaign_id])
-    @session = Session.new(campaign_id: @campaign.id )
-
-    p @campaign.users
-    player_availability = {}
-    @campaign.users.each do |user|
-      user.availability.each do |time_slot|
-        !(player_availability.include?(time_slot)) ? player_availability[time_slot] = 1 : player_availability[time_slot] += 1
-      end
+    result = SessionSchedulerService.new(campaign: @campaign).create_session
+    if result[:error]
+      redirect_to campaign_path(@campaign), alert: result[:error]
+    else
+      redirect_to campaign_path(@campaign), notice: result[:success]
     end
-      p player_availability
-      # p player_availability.sort.first[0]
-      if player_availability.empty?
-        flash[:alert] = 'None of your players have provided any availability. Try messaging them'
-        redirect_to campaign_path(@campaign)
-      else
-        @session.player_availability = player_availability
-        suggestion = player_availability.sort.first[0]
-        @session.date = suggestion
-        if @session.save
-          redirect_to campaign_path(@campaign), notice: "Session created for #{suggestion}. Invites sent successfully."
-        else
-          render 'campaigns/show', alert: 'Failed to send invites.'
-        end
-      end
   end
+
+  def approve
+    @session = Session.find(params[:id])
+    p "Poopy Poopy Poopy #{params[:status]}"
+    response = SessionStatusService.new(@session).confirm_session("#{params[:status]}")
+    if response[:cancelled].exists? && response[:success].exists?
+      redirect_to campaign_path(@session.campaign), notice: response[:cancelled]
+      redirect_to campaign_path(@session.campaign), notice: response[:success]
+    elsif response[:cancelled].exists?
+      redirect_to campaign_path(@session.campaign), notice: response[:cancelled]
+      redirect_to campaign_path(@session.campaign), notice: response[:success]
+    else
+      redirect_to campaign_path(@session.campaign), notice: response[:success]
+    end
+  end
+
+
+
 end

@@ -23,7 +23,7 @@ file = File.read(Rails.root.join('db/characters.json'))
 character_data = JSON.parse(file, symbolize_names: true)
 
 characters = character_data.map do |char|
-  Character.create!(
+  character = Character.create!(
      name: char[:name],
      race: char[:race],
      speciality: char[:speciality],
@@ -35,9 +35,32 @@ characters = character_data.map do |char|
      personality: char[:personality],
      equipment: char[:equipment],
      traits: char[:traits],
+     stats: char[:stats],
      attacks: char[:attacks],
-     stats: char[:stats]
    )
+
+   if char[:portrait].present?
+    portrait_path = Rails.root.join("public/images/#{char[:portrait]}")
+      if File.exist?(portrait_path)
+        puts "Attaching portrait for #{char[:name]}: #{portrait_path}"
+        begin
+          character.portrait.attach(
+            io: File.open(portrait_path),
+            filename: File.basename(portrait_path),
+            content_type: "image/jpeg"
+          )
+          puts "✅ Attached portrait for #{char[:name]}"
+        rescue => e
+          puts "❌ Failed to attach portrait for #{char[:name]}: #{e.message}"
+        end
+      else
+        puts "❌ File not found: #{portrait_path} for #{char[:name]}"
+      end
+   else
+    puts "⚠️ No portrait provided for #{char[:name]}"
+   end
+
+   character
 end
 
 puts "Created #{characters.count} characters."
@@ -62,11 +85,15 @@ end
 puts "Created #{campaigns.count} campaigns."
 
 campaign_characters = campaigns.sample(6).map do |camp|
-  5.times do
-    valid_characters = characters.reject { |char| char.user.id == camp.user.id }
-    next if valid_characters.empty?
+  selected_users = []
+
+  rand(3..5).times do
+    valid_characters = characters.reject { |char| char.user.id == camp.user.id || selected_users.include?(char.user.id) }
+    break if valid_characters.empty?
 
     character = valid_characters.sample
+    selected_users << character.user.id
+
     CampaignCharacter.create!(
       campaign: camp,
       character: character,

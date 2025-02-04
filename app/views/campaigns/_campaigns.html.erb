@@ -15,8 +15,19 @@
         <%= image_tag('dnd_camp.png', alt: 'DnD Image') %>
       <% end %>
       <div class="camp-info">
-        <h5><%= campaign.name %></h5>
-        <p><%= campaign.description %></p>
+        <h4><%= campaign.name %></h4>
+        <p><%= campaign.setting %></p>
       </div>
+      
+      <div class="campaign-avatars">
+        <% campaign.campaign_characters.each do |cc| %>
+          <% if cc.character %>
+            <div class="avatar-campaign">
+              <%= link_to cc.character.user.nickname, character_path(cc.character) %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
     <% end %>
   </div>

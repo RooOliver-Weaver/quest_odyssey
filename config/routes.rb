@@ -12,9 +12,12 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :campaigns do
     resources :campaign_characters, only: [:create]
-    resources :sessions
+    resources :sessions do
+      resources :character_sessions, only: [:create, :update, :destory]
+    end
     resources :messages, only: [:create]
   end
+  patch "/sessions/:id/approve", to: "sessions#approve", as: "session_approval"
 
   resources :notifications, only: [:index] do
     collection do

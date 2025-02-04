@@ -5,7 +5,11 @@
         <div class="character-index-container-test">
           <div class="character-index-card">
             <div class="front">
-                <%= image_tag character.portrait, class: "front-image" %>
+                <% if character.portrait.attached? %>
+                  <%= cl_image_tag character.portrait.key, class: "character-image" %>
+                <% else %>
+                  <%= image_tag 'default_character.jpeg', class: "character-image" %>
+                <% end %>
               <div class="front-content">
                 <div class="name">
                   <h2><%= character.name %></h2>

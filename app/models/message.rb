@@ -7,27 +7,41 @@ class Message < ApplicationRecord
   private
 
   def broadcast_message
-
     broadcast_append_to "campaign_#{campaign.id}_messages",
-                          partial: "campaigns/message",
-                          target: "messages",
-                          locals: { message: self }
+                        partial: "campaigns/message",
+                        target: "messages",
+                        locals: { message: self }
 
-    recipients = campaign.users.to_a + [campaign.user]
+    recipients = (campaign.users.to_a + [campaign.user]).uniq
     recipients.reject! { |recipient| recipient == user }
 
+    notification_message = "New message in #{campaign.name}"
+    campaign_url = Rails.application.routes.url_helpers.campaign_path(campaign)
+
     recipients.each do |recipient|
-      Notification.create!(
+      existing_notification = Notification.find_by(
         user: recipient,
-        message: "New message in #{campaign.name} from #{user.nickname}",
-        url: Rails.application.routes.url_helpers.campaign_path(campaign),
+        message: notification_message,
         read: false
       )
+
+      if existing_notification
+        existing_notification.increment!(:occurrence_count)
+      else
+        existing_notification = Notification.create!(
+          user: recipient,
+          message: notification_message,
+          url: campaign_url,
+          read: false,
+          occurrence_count: 1
+        )
+      end
 
       broadcast_append_to "notifications_#{recipient.id}",
                           partial: "notifications/notification",
                           target: "notifications",
-                          locals: { message: self, recipient: recipient }
+                          locals: { message: self, recipient: recipient, notification: existing_notification },
+                          formats: [:turbo_stream]
     end
   end
 end

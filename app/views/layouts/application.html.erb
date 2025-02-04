@@ -20,29 +20,34 @@
       <div class="page-content">
         <%= yield %>
       </div>
-      <%= turbo_stream_from "notifications_#{current_user.id}" %>
-      <div data-controller="notifications" class="d-flex align-items-center justify-content-center">
-        <div class="dropdown">
-          <button class="btn btn-link p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-action="click->notifications#toggle" data-notifications-target="bell">
-            <i class="fas fa-bell"></i>
-            <% unread_notifications_count = @notifications.where(read: false).count %>
-            <% if unread_notifications_count > 0 %>
-              <span class="badge bg-danger" data-notifications-target="badge" style="position: absolute; top: -5px; right: -5px; font-size: 0.7em;">
-                <%= unread_notifications_count %>
-              </span>
-            <% end %>
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="notificationsDropdown" data-notifications-target="dropdown">
-            <% @notifications.each do |notification| %>
-              <li>
-                <a class="dropdown-item" href="<%= notification.url %>">
-                  <%= notification.message %>
-                </a>
-              </li>
-            <% end %>
-          </ul>
+      <% if current_user %>
+        <%= turbo_stream_from "notifications_#{current_user.id}" %>
+        <div data-controller="notifications" class="d-flex align-items-center justify-content-center">
+          <div class="dropdown">
+            <button class="btn btn-link p-0" type="button" data-action="click->notifications#toggle" data-notifications-target="bell">
+              <i class="fas fa-bell"></i>
+              <% unread_notifications_count = @notifications.where(read: false).count %>
+              <% if unread_notifications_count > 0 %>
+                <span class="badge bg-danger" data-notifications-target="badge" style="position: absolute; top: -5px; right: -5px; font-size: 0.7em;">
+                  <%= unread_notifications_count %>
+                </span>
+              <% end %>
+            </button>
+            <ul id="notifications" class="dropdown-menu" aria-labelledby="notificationsDropdown" data-notifications-target="dropdown" style="display: none;">
+              <% @notifications.each do |notification| %>
+                <li>
+                  <a class="dropdown-item" href="<%= notification.url %>">
+                    <%= notification.message %>
+                    <% if notification.occurrence_count > 1 %>
+                      <span class="text-muted">(x<%= notification.occurrence_count %>)</span>
+                    <% end %>
+                  </a>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
-      </div>
+      <% end %>
       <%= render "shared/footer" %>
     </div>
   </body>

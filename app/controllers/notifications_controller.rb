@@ -10,4 +10,9 @@ class NotificationsController < ApplicationController
     current_user.notifications.where(read: false).update_all(read: true)
     head :ok
   end
+
+  def delete_read
+    current_user.notifications.where(read: true).destroy_all
+    head :ok
+  end
 end

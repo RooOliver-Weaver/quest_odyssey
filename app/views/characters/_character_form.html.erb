@@ -6,7 +6,7 @@
         <div >
           <%= f.input :name %>
           <div class="d-flex justify-content-evenly my-3">
-            <%= f.select :speciality, ["Barbarian", "Wizard", "Rogue", "Bard", "Cleric", "Fighter", "Sorcerer", "Druid", "Ranger", "Paladin"],
+            <%= f.select :speciality, ["Barbarian", "Wizard", "Rogue", "Bard", "Cleric", "Fighter", "Sorcerer", "Druid", "Ranger", "Paladin", "Monk", "Warlock"],
                           prompt: "Choose a class" %>
             <%= f.select :level, (0..20), prompt: "Choose a level" %>
           </div>

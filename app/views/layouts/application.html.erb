@@ -26,20 +26,19 @@
           <div class="dropdown">
             <button class="btn btn-link p-0" type="button" data-action="click->notifications#toggle" data-notifications-target="bell">
               <i class="fas fa-bell"></i>
-              <% unread_notifications_count = @notifications.where(read: false).count %>
-              <% if unread_notifications_count > 0 %>
-                <span class="badge bg-danger" data-notifications-target="badge" style="position: absolute; top: -5px; right: -5px; font-size: 0.7em;">
-                  <%= unread_notifications_count %>
-                </span>
-              <% end %>
+              <div id="notifications_badge">
+                <% unread_notifications_count = @notifications.where(read: false).count %>
+                <% if unread_notifications_count > 0 %>
+                  <span class="badge bg-danger" data-notifications-target="badge" style="position: absolute; top: -5px; right: -5px; font-size: 0.7em;">
+                    <%= unread_notifications_count %>
+                  </span>
+                <% end %>
+              </div>
             </button>
             <ul id="notifications" class="dropdown-menu" aria-labelledby="notificationsDropdown" data-notifications-target="dropdown" style="display: none;">
-              <%# check if there are any notifications%>
               <% if @notifications.empty? %>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    No notifications
-                  </a>
+                <li id="no_notifications">
+                  <a class="dropdown-item" href="#">No notifications</a>
                 </li>
               <% else %>
                 <% @notifications.each do |notification| %>

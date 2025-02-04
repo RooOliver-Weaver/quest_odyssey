@@ -42,6 +42,14 @@ class Message < ApplicationRecord
                           target: "notifications",
                           locals: { message: self, recipient: recipient, notification: existing_notification },
                           formats: [:turbo_stream]
+
+      broadcast_update_to "notifications_#{recipient.id}",
+                          target: "notifications_badge",
+                          partial: "notifications/badge",
+                          locals: { user: recipient }
+
+      broadcast_remove_to "notifications_#{recipient.id}",
+                          target: "no_notifications"
     end
   end
 end

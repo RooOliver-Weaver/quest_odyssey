@@ -22,10 +22,18 @@ class CampaignCharacter < ApplicationRecord
     )
 
     broadcast_append_to "notifications_#{recipient.id}",
-    partial: "notifications/notification",
-    target: "notifications",
-    locals: { message: self, recipient: recipient, notification: notification },
-    formats: [:turbo_stream]
+      partial: "notifications/notification",
+      target: "notifications",
+      locals: { message: self, recipient: recipient, notification: notification },
+      formats: [:turbo_stream]
+
+    broadcast_update_to "notifications_#{recipient.id}",
+      target: "notifications_badge",
+      partial: "notifications/badge",
+      locals: { user: recipient }
+
+    broadcast_remove_to "notifications_#{recipient.id}",
+      target: "no_notifications"
 
   end
 end

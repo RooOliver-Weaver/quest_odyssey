@@ -9,7 +9,7 @@
       <%= f.input :dm_notes, input_html: { class: "flexible-textarea" }  %>
     <% else %>
       <% if @campaign.user == current_user %>
-        <%= f.input :dm_notes %>
+        <%= f.input :dm_notes, input_html: { class: "flexible-textarea" }  %>
       <% end %>
     <% end %>
     <div>

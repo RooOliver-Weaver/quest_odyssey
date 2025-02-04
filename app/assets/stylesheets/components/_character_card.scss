@@ -67,6 +67,7 @@
 
 .character-index-container-test:hover > .character-index-card {
   cursor: pointer;
+
   transform: rotateY(180deg);
 }
 
@@ -99,6 +100,31 @@
   border-radius: 10px;
 }
 
+.equipment-index-titles {
+  display: flex;
+  justify-content: space-evenly;
+  border-bottom: 1px solid var(----gray);
+  opacity: 0.8;
+  color: var(--burgundy);
+}
+
+.equipment-index-item {
+  display: flex;
+  justify-content: space-evenly;
+  opacity:0.9;
+}
+
+#card-border-right {
+  padding-right: 30px;
+  border-right: 1px solid var(--yellow);
+}
+
+.index-card-attacks {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 .front-content {
   position: absolute;
   bottom: 0;
@@ -114,7 +140,7 @@
   background-image: url('card-background-char.jpg');
   background-size: 395px 550px;
   background-position: center;
-  transform: rotateY(180deg);
+  // transform: rotateY(180deg);
   padding: 20px;
   display: flex;
 }

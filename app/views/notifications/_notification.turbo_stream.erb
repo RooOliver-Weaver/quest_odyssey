@@ -1,0 +1,12 @@
+<turbo-stream action="append" target="notifications">
+  <template>
+    <li>
+      <a class="dropdown-item" href="<%= notification.url %>">
+        <%= notification.message %>
+        <% if notification.occurrence_count > 1 %>
+          <span class="text-muted">(x<%= notification.occurrence_count %>)</span>
+        <% end %>
+      </a>
+    </li>
+  </template>
+</turbo-stream>

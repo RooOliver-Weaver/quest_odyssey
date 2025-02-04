@@ -5,7 +5,6 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.campaign = @campaign
     @message.user = current_user
-    Rails.logger.debug "Campaign ID: #{@campaign.id}"
     if @message.save
       respond_to do |format|
         format.turbo_stream do

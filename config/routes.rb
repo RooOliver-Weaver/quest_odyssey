@@ -16,6 +16,13 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
+  resources :notifications, only: [:index] do
+    collection do
+      patch :mark_as_read
+      delete :delete_read
+    end
+  end
+
 
   get '/calendars', to: 'calendars#index'
 

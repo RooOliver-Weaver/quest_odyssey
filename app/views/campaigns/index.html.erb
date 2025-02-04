@@ -1,38 +1,19 @@
-<div class="camp-index">
+<div class="camp-index" data-controller="search">
   <h1>Campaigns</h1>
-  <div class="index-container">
 
+  <input type="text"
+         placeholder="Search campaigns..."
+         data-search-target="input"
+         data-action="input->search#filter"
+         class="search-bar">
 
-    <div class="camp-index-cards">
-      <% @campaigns.each do |campaign| %>
-        <div class="cards-campaign">
-          <% if current_user == campaign.user %>
-            <div class="camp-btns">
-              <a class="delete-camp" href="<%= campaign_path(campaign) %>" data-turbo-method="delete" data-turbo-confirm="Are you sure?"><i class="fa-solid fa-bomb"></i></a>
-              <a class="edit-camp" href="<%= edit_campaign_path(campaign) %>"><i class="fa-solid fa-wand-sparkles"></i></a>
-            </div>
-          <% end %>
-
-          <%= link_to campaign_path(campaign) do %>
-            <%= image_tag('dnd_camp.png', alt: 'DnD Image') %>
-
-            <div class="camp-info">
-              <h5 ><%= campaign.name %></h5>
-              <p ><%= campaign.description %></p>
-              <div>
-                <%# <% if campaign.campaign_characters %>
-                  <%# <% campaign.campaign_characters.each do |cc| %>
-                    <%# <p><%= cc.character %>
-                  <%# <% end %>
-                <%# <% end %>
-              </div>
-            </div>
-
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-
-
+  <div id="campaign-results" data-search-target="results" class="camp-index-cards">
+    <% @campaigns.each do |campaign| %>
+      <%= render "campaigns/campaigns", campaign: campaign %>
+    <% end %>
   </div>
 </div>
+
+
+
+ 

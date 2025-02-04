@@ -1,5 +1,6 @@
 require 'json'
 
+Message.delete_all
 CampaignCharacter.delete_all
 CharacterSession.delete_all
 Campaign.delete_all
@@ -12,12 +13,13 @@ users = User.create!([
   { email: "player1@example.com", password: "password123", nickname: "DungeonDelver77" },
   { email: "player2@example.com", password: "password123", nickname: "ArcaneArchitect" },
   { email: "player3@example.com", password: "password123", nickname: "StealthyDagger"  },
-  { email: "test@test.com", password: "password", nickname: "MysticMapper"  }
+  { email: "test@test.com", password: "password", nickname: "MysticMapper"  },
+  { email: "player4@example.com", password: "password123", nickname: "SirRollsALot" }
 ])
 
 puts "Created #{users.count} users."
 
-file = File.read(Rails.root.join('characters.json'))
+file = File.read(Rails.root.join('db/characters.json'))
 character_data = JSON.parse(file, symbolize_names: true)
 
 characters = character_data.map do |char|
@@ -39,7 +41,7 @@ end
 
 puts "Created #{characters.count} characters."
 
-file = File.read(Rails.root.join('campaigns.json'))
+file = File.read(Rails.root.join('db/campaigns.json'))
 campaign_data = JSON.parse(file, symbolize_names: true)
 
 campaigns = campaign_data.map do |camp|
@@ -56,9 +58,9 @@ campaigns = campaign_data.map do |camp|
   )
 end
 
-puts "Created #{capaigns.count} campaigns."
+puts "Created #{campaigns.count} campaigns."
 
-campaign_characters = campaigns.sample.map do |camp|
+campaign_characters = campaigns.sample(6).map do |camp|
   5.times do
     valid_characters = characters.reject { |char| char.user.id == camp.user.id }
     next if valid_characters.empty?

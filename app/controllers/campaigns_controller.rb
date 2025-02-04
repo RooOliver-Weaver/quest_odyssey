@@ -4,8 +4,13 @@ class CampaignsController < ApplicationController
   before_action :authorize_user, only: %i[edit update destroy]
 
   def index
-    @campaigns = Campaign.all
+    if params[:query].present?
+      @campaigns = Campaign.where("name ILIKE ?", "%#{params[:query]}%")
+    else
+      @campaigns = Campaign.all
+    end
   end
+
 
   def show
     @campaign_character = CampaignCharacter.new

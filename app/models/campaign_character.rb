@@ -3,4 +3,29 @@ class CampaignCharacter < ApplicationRecord
   belongs_to :user
   belongs_to :character, optional: true
   has_many :messages
+
+  after_create_commit :broadcast_message
+
+  private
+
+  def broadcast_message
+
+    recipient = (self.user)
+    notification_message = "#{campaign.user.nickname} invited you to #{campaign.name}!"
+    campaign_url = Rails.application.routes.url_helpers.root_path
+
+    notification = Notification.create!(
+      user: recipient,
+      message: notification_message,
+      url: campaign_url,
+      read: false
+    )
+
+    broadcast_append_to "notifications_#{recipient.id}",
+    partial: "notifications/notification",
+    target: "notifications",
+    locals: { message: self, recipient: recipient, notification: notification },
+    formats: [:turbo_stream]
+
+  end
 end

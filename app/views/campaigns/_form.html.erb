@@ -12,6 +12,9 @@
         <%= f.input :dm_notes %>
       <% end %>
     <% end %>
+    <div>
+      <%= f.input :image, as: :file %>
+    </div>
     <%= f.button :submit, class:"new-btn" %>
   <% end %>
 </div>

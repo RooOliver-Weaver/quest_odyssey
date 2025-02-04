@@ -11,17 +11,15 @@ class PagesController < ApplicationController
 
     @pending_schedule_invites = []
     @user.campaign_characters.each do |campaign_character|
-      p campaign_character
       campaign_character.character_sessions.each do |character_session|
-        p character_session
         @pending_schedule_invites.append(character_session) if character_session.pending?
       end
     end
 
+    @messages = Message.where(user: current_user, message_type: "player_notification")
+
     @all_party_memeber_statuses = []
     @user.campaign_characters.each do |campaign_character|
-      p campaign_character
-      p campaign_character.campaign
       campaign_character.campaign.sessions.each do |session|
         session.character_sessions.each do |character_session|
           message = "#{character_session.campaign_character.user.nickname} is currently #{character_session.status}"
@@ -29,7 +27,7 @@ class PagesController < ApplicationController
         end
       end
     end
-    p @all_party_memeber_statuses
+    @all_party_memeber_statuses
 
     @joined_campaigns = current_user.campaign_characters.where(invite: true)
     @characters = Character.where(user: current_user)

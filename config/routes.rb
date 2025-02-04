@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     end
     resources :messages, only: [:create]
   end
+  patch "/sessions/:id/approve", to: "sessions#approve", as: "session_approval"
 
 
   get '/calendars', to: 'calendars#index'

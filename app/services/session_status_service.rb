@@ -1,57 +1,39 @@
 class SessionStatusService
-  def def initialize(session)
+  def initialize(session)
     @session = session
   end
 
 
-  def checkstatusplayers(@session)
-    session.character_sessions.each do |charsession|
-      if charsession.status.cancelled
+  def checkstatusplayers
+    confirmed_players = 0
+
+    @session.character_sessions.each do |charsession|
+      if charsession.cancelled?
         SessionsMessagesService.new(@session).player_unavailable(charsession)
-        break :exited_early
-      elsif charsession.status.confirmed
+      elsif charsession.confirmed?
         confirmed_players += 1
       end
     end
-    if confirmed_players.length == session.character_sessions.length
+    if confirmed_players == @session.character_sessions.length
       SessionMessagesService.new(@session).get_dm_approval
-   elsif :exited_early
-    SessionsMessagesService.new(@session).player_unavailable(charsession)
-    update_session_date(@session)
-   end
+    end
 
   end
 
   def confirm_session(status)
     @session.status = status
-    @session.save
-    if @session.status.confirmed
-      SessionsMessagesService.new(@session).session_confirmed
-    elsif @session.status.rejected
-      SessionsMessagesService.new(@session).session_rejected
-
-
-
-
-  end
-
-  def update_session_date(@session)
-    @session.relay_count =- 1
-    if @session.relay_count == 0
-      @session.destroy!
-      SessionMessagesService.new(@session).no_date_found
-    else
-      new_availabity = @session.player_availability.delete(@session.player_availability.player_availability.sort.first[0])
-      @session.player_availability= new_availabity
-      @suggestion = player_availability.sort.first[0]
-      @session.date = suggestion
-      if @session.save
-        @session.character_session {|charsession| charsession.destroy!}
-        genenerate_invites(@session)
+     if @session.save
+      SessionsMessagesService.new(@session).session_confirm_or_reject(status)
+      if @session.status.rejected?
+        SessionSchedulerService.new(session: @session).update_session_date
+        return {sucess: "Session cancelled. Quest Odyssey will try and find the next best slot"}
+      else
+        return {success: "Session confirmed for #{@session.date}"}
       end
-    end
-
-    private
+     else
+      return {error: "Unknown error. Could not create for #{@session.date} (Blame the Old Gods)"}
+     end
+  end
 
 
 

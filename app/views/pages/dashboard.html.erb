@@ -51,7 +51,14 @@
     </div>
 </div>
 
+<% if !@messages.empty?%>
+<h2>Player Notfications</h2>
 
+<% Message.where(user: current_user, message_type: "player_notification").each do |message| %>
+  <p><%= message.content %></p>
+
+<% end %>
+<% end %>
 <h2>Pending Invites</h2>
 
 <% @pending_invites.each do |invite| %>
@@ -81,6 +88,24 @@
               params: { status: "cancelled" },
               data: { confirm: "Are you sure you want to decline this invite?" } %>
 <% end %>
+
+<h2>DM Approvals</h2>
+
+<% Message.where(user: current_user, message_type: "dm_approval").each do |message| %>
+  <p><%= message.content %></p>
+
+  <%= form_with url: session_approval_path(message.session), method: :patch, local: true do |form| %>
+    <%= form.hidden_field :status, value: "confirmed" %>
+    <%= form.submit "Approve" %>
+  <% end %>
+
+  <%= button_to "Decline",
+                session_approval_path(message.session),
+                method: :patch,
+                params: { status: "rejected" },
+                data: { confirm: "Are you sure you want to reject this session?" } %>
+<% end %>
+
 
 <h2>Joined Campaigns</h2>
 

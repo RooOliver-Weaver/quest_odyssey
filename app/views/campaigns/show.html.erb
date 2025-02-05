@@ -73,7 +73,7 @@
         <%= form_with model: @campaign, url: append_note_campaign_path(@campaign),
                       method: :patch,
                       data: { turbo: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |form| %>
-          <%= form.text_area :notes, value: "" %>
+          <%= form.text_area :notes, value: "", style: "width: 100%; height: 5%;" %>
           <%= form.submit "Save Party Note", class: "new-btn" %>
         <% end %>
       </div>
@@ -86,7 +86,7 @@
         <%= form_with model: @campaign, url: append_dm_note_campaign_path(@campaign),
                       method: :patch,
                       data: { turbo: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |form| %>
-          <%= form.text_area :dm_notes, value: "" %>
+          <%= form.text_area :dm_notes, value: "", style: "width: 100%; height: 5%;" %>
           <%= form.submit "Save DM Note", class: "new-btn" %>
         <% end %>
       </div>
@@ -103,15 +103,13 @@
                         url: append_personal_note_campaign_campaign_character_path(@campaign, @personal_notes_character),
                         method: :patch,
                         data: { turbo: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |form| %>
-            <%= form.text_area :personal_notes, value: "" %>
+            <%= form.text_area :personal_notes, value: "", style: "width: 100%; height: 5%;" %>
             <%= form.submit "Add Personal Note", class: "new-btn" %>
           <% end %>
         </div>
       <% end %>
 
-
     </div>
-
   </div>
 
   <div class="camp-show-btns">
@@ -122,31 +120,22 @@
       <%= link_to "Delete", campaign_path(@campaign), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }, class:"delete-camp-btn" %>
     <% end %>
   </div>
+     <button type="button" class="new-btn invite-toggle-btn" data-bs-toggle="modal" data-bs-target="#inviteModal"> Invite Users </button>
 </div>
 
 
-<div class="invite-card ms-5">
-  <% if policy(@campaign).invite? %>
-    <%= form_with url: campaign_campaign_characters_path(@campaign), method: :post,
-                  data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" },
-                  id: "invite" do |form| %>
-      <h2>Invite Adventurers to this Quest</h2>
-      <div class="d-flex col-md-3 row g-4">
-        <%= form.label :user_id, 'Select a player to invite:' %>
-        <%= form.collection_select 'campaign_character[user_id]',
-          User.where.not(id: @campaign.campaign_characters.pluck(:user_id) + [@campaign.user.id]),
-          :id, :nickname,
-          { prompt: "Select a player" },
-          { required: true } %>
-        <%= form.submit "Send Invite", class:"new-btn invite-btn" %>
+<div class="modal fade" id="inviteModal" tabindex="-1" aria-labelledby="inviteModalLabel" aria-hidden="true">
+    <div class="modal-content modal-dialog">
+      <div class="modal-header">
+        <h4 class="modal-title" id="inviteModalLabel">Invite Users to Campaign</h4>
+        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-    <% end %>
-  <% end %>
+      <div class="modal-body">
+        <%= render partial: "invite" %>
+      </div>
+    </div>
 </div>
 
-<%# <div id="flash"> %>
-  <%# <%= render "shared/flashes", notice: flash[:notice], alert: flash[:alert] %>
-<%# </div> %>
 
 <% if current_user == @campaign.user || @campaign.campaign_characters.any? { |cc| current_user == cc.user } %>
   <div data-controller="chatbox" class="chat-container">

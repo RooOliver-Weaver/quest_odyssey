@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-
+  attr_accessor :current_password
   has_many :characters
   has_many :campaigns
   has_many :campaign_characters
@@ -12,6 +12,5 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
 
 end

@@ -1,5 +1,5 @@
 <div class="edit-pass-pg">
-  <h2>Add Availability <%= resource_name.to_s.humanize %></h2>
+  <h2>Add Availability </h2>
   <p>Select one or more day/time slots:</p>
 
 
@@ -45,10 +45,7 @@
       <%= f.input :password_confirmation,
                   required: false,
                   input_html: { autocomplete: "new-password" } %>
-      <%= f.input :current_password,
-                  hint: "we need your current password to confirm your changes",
-                  required: true,
-                  input_html: { autocomplete: "current-password" } %>
+    
     </div>
 
     <div class="form-actions">

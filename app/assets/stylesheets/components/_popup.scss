@@ -1,0 +1,31 @@
+#inviteModal{
+  margin: auto;
+  h4{
+    background: linear-gradient(90deg, #ffd700, #ffac00, #ffcc33, #ffd700);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+  }
+}
+.modal-header, .modal-body{
+  background-color: var(--green);
+  h4{
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.invite-card{
+margin-top: 1.5rem;
+  select{
+    width: 15rem;
+  }
+}
+.invite-btn{
+  margin-left: 37%;
+  margin-top: 1.5rem;
+}
+.invite-toggle-btn{
+  margin: auto;
+  margin-top: 1.5rem;
+}

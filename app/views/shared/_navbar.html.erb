@@ -38,11 +38,13 @@
                 <a href="#" class="on-hov">New</a>
             </div>
           </a>
+    </div>
+  </div>
           <% if current_user %>
             <%= turbo_stream_from "notifications_#{current_user.id}" %>
             <div data-controller="notifications" class="d-flex align-items-center justify-content-center">
               <div class="dropdown">
-                <button class="btn btn-link p-0" type="button" data-action="click->notifications#toggle" data-notifications-target="bell">
+                <button class="notification-button" type="button" data-action="click->notifications#toggle" data-notifications-target="bell">
                   <i class="fas fa-bell"></i>
                   <div id="notifications_badge">
                     <% unread_notifications_count = @notifications.where(read: false).count %>
@@ -53,7 +55,7 @@
                     <% end %>
                   </div>
                 </button>
-                <ul id="notifications" class="dropdown-menu" aria-labelledby="notificationsDropdown" data-notifications-target="dropdown" style="display: none;">
+                <ul id="notifications" class="notification-menu" aria-labelledby="notificationsDropdown" data-notifications-target="dropdown" style="display: none;">
                   <% if @notifications.empty? %>
                     <li id="no_notifications">
                       <a class="dropdown-item" href="#">No notifications</a>
@@ -74,8 +76,6 @@
               </div>
             </div>
           <% end %>
-    </div>
-  </div>
     <div class="login-out">
       <% if !current_user %>
         <%= link_to new_user_session_path do %>

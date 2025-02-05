@@ -13,10 +13,11 @@ class SessionMessagesService
   end
 
   def player_unavailable(unavailable_character)
-    message_dm = "#{unavailable_character.campaign_character.user.nickname} cannot make the next session. Venture forth anyway?"
-    Message.create!(user: @dm, session: @session, campaign: @session.campaign, content: message_dm, message_type: "dm_approval")
-    message_players = "#{unavailable_character.campaign_character.user.nickname} can not make #{@session.date}"
-    @players.each {|player| Notification.create!(user: player, session: @session, campaign: @session.campaign, content: message_players, message_type: "player_notifcation")}
+    message_players = "#{unavailable_character.campaign_character.user.nickname} can not make #{@session.date} for #{@session.campaign}"
+    @players.each {|player| Notification.create!(user: player, message: message_players}
+    Notification.create!(user: @dm, message: message_players)
+    #message_dm = "#{unavailable_character.campaign_character.user.nickname} cannot make the next session. Venture forth anyway?"
+    #Message.create!(user: @dm, session: @session, campaign: @session.campaign, content: message_dm, message_type: "dm_approval")
   end
 
   def get_dm_approval
@@ -26,13 +27,13 @@ class SessionMessagesService
 
   def session_confirm_or_reject(status)
     message = status == "confirmed" ? "Session Date - #{@session.date} approved by DM!" : "Session - #{@session.date} rejected by DM."
-    @players.each {|player| Notification.create!(user: player, session: @session, campaign: @session.campaign, content: message, message_type: "player_notification") }
+    @players.each {|player| Notification.create!(user: player, message: message) }
   end
 
   def no_date_found
     message = "Unfortunately no date was found for the next session of #{@session.campaign} that met everyone's availability. Try arranging for another week?"
-    Message.create!(user: @dm, session: @session, content: message, message_type: "player_notification")
-    @players.each {|player| Notification.create!(user: player, session: @session, campaign: @session.campaign, content: message, message_type: "player_notification") }
+    Notification.create!(user: @dm, message: message)
+    @players.each {|player| Notification.create!(user: player, message: message) }
   end
 
 

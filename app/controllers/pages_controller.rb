@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
-  # skip_before_action :authenticate_user!, only: [ :home ]
+  skip_before_action :authenticate_user!, only: [ :home ]
 
   def home
+    @public_campaigns = Campaign.where(public: true).limit(2)
   end
 
   def dashboard
@@ -15,19 +16,29 @@ class PagesController < ApplicationController
         @pending_schedule_invites.append(character_session) if character_session.pending?
       end
     end
-    @dm_messages = Message.where(user: current_user, message_type: "dm_approval")
-    @messages = Message.where(user: current_user, message_type: "player_notification")
 
-    @all_party_memeber_statuses = []
-    @user.campaign_characters.each do |campaign_character|
-      campaign_character.campaign.sessions.each do |session|
-        session.character_sessions.each do |character_session|
-          message = "#{character_session.campaign_character.user.nickname} is currently #{character_session.status}"
-          @all_party_memeber_statuses.append(message)
-        end
+    @dm_sessions = Session.joins(:campaign).where(campaigns: { user_id: @user.id })
+
+    @dm_sessions_all_accepted = []
+    @dm_sessions.each do |session|
+      character_sessions = session.character_sessions
+
+      if character_sessions.any? && character_sessions.all? { |cs| cs.status == "confirmed" }
+        message = "All players have accepted for the session on #{session.date}. Venture forth?"
+        @dm_session_full_attendance << [session, message]
+      end
+
+
+    @dm_session_cancellations = []
+    @dm_sessions.each do |session|
+      canceled_characters = session.character_sessions.where(status: "cancelled").map do |character_session|
+      character_session.campaign_character.user.nickname
+      end
+      if canceled_characters.any?
+        message = "#{canceled_characters.to_sentence} cannot make the next session. Venture forth anyway?"
+        @dm_session_cancellations << [session, message]
       end
     end
-    @all_party_memeber_statuses
 
     @joined_campaigns = current_user.campaign_characters.where(invite: true)
     @characters = Character.where(user: current_user)

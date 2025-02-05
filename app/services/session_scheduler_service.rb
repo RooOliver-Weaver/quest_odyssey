@@ -33,6 +33,7 @@ class SessionSchedulerService
     return error_response(response[:dm_missing]) if response[:dm_missing].present?
   end
 
+
   def reschedule_session
     best_date = @session.player_availability.max_by { |_date, votes| votes }&.first
     return unless best_date

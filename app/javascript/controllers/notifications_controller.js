@@ -21,8 +21,10 @@ export default class extends Controller {
     this.markAsRead();
     if (this.dropdownTarget.style.display === "none" || this.dropdownTarget.style.display === "") {
       this.dropdownTarget.style.display = "block";
+      this.dropdownTarget.classList.add("show");
     } else {
       this.dropdownTarget.style.display = "none";
+      this.dropdownTarget.classList.remove("show");
     }
 
     if (this.hasBadgeTarget) {

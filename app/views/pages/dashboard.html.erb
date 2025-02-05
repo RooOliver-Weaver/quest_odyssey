@@ -1,3 +1,5 @@
+
+<h1 class="username">Welcome <%= @user.nickname %></h1>
 <div class="campaigns-container">
   <div class="title">
       <h1>My Campaigns</h1>
@@ -10,7 +12,7 @@
           <%= link_to campaign_path(campaign) do %>
             <div class="campaign-card">
               <div class="campaign-card-image">
-                <%= image_tag 'dnd_camp.png', class: "thumbnail" %>
+                <%= image_tag campaign.image, class: "thumbnail" %>
               </div>
               <div class="campaign-card-content">
                 <h5 class="campaign-card-title"><%= campaign.name %></h5>
@@ -53,14 +55,6 @@
     </div>
 </div>
 
-<% if !@messages.empty?%>
-<h2>Player Notfications</h2>
-
-<% Message.where(user: current_user, message_type: "player_notification").each do |message| %>
-  <p><%= message.content %></p>
-
-<% end %>
-<% end %>
 <h2>Pending Invites</h2>
 
 <% @pending_invites.each do |invite| %>
@@ -93,16 +87,32 @@
 
 <h2>DM Approvals</h2>
 
-<% @dm_messages.each do |message| %>
-  <p><%= message.content %></p>
+<% @dm_session_cancellation.each do |session| %>
+  <p><%= session[1] %></p>
 
-  <%= form_with url: session_approval_path(message.session), method: :patch, local: true do |form| %>
+  <%= form_with url: session_approval_path(session[0]), method: :patch, local: true do |form| %>
     <%= form.hidden_field :status, value: "confirmed" %>
     <%= form.submit "Approve" %>
   <% end %>
 
   <%= button_to "Decline",
-                session_approval_path(message.session),
+                session_approval_path(session),
+                method: :patch,
+                params: { status: "cancelled" },
+                data: { confirm: "Are you sure you want to cancel this session?" } %>
+<% end %>
+
+
+<% @dm_sessions_all_accepted.each do |session| %>
+  <p><%= session[1] %></p>
+
+  <%= form_with url: session_approval_path(session[0]), method: :patch, local: true do |form| %>
+    <%= form.hidden_field :status, value: "confirmed" %>
+    <%= form.submit "Approve" %>
+  <% end %>
+
+  <%= button_to "Decline",
+                session_approval_path(session[0]),
                 method: :patch,
                 params: { status: "cancelled" },
                 data: { confirm: "Are you sure you want to cancel this session?" } %>

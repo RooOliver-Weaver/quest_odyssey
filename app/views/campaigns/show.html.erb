@@ -109,9 +109,7 @@
         </div>
       <% end %>
 
-
     </div>
-
   </div>
 
   <div class="camp-show-btns">
@@ -122,8 +120,21 @@
       <%= link_to "Delete", campaign_path(@campaign), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }, class:"delete-camp-btn" %>
     <% end %>
   </div>
+     <button type="button" class="new-btn invite-toggle-btn" data-bs-toggle="modal" data-bs-target="#inviteModal"> Invite Users </button>
 </div>
 
+
+<div class="modal fade" id="inviteModal" tabindex="-1" aria-labelledby="inviteModalLabel" aria-hidden="true">
+    <div class="modal-content modal-dialog">
+      <div class="modal-header">
+        <h4 class="modal-title" id="inviteModalLabel">Invite Users to Campaign</h4>
+        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render partial: "invite" %>
+      </div>
+    </div>
+</div>
 
 
 <% if current_user == @campaign.user || @campaign.campaign_characters.any? { |cc| current_user == cc.user } %>

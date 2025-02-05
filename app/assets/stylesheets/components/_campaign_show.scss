@@ -1,5 +1,5 @@
 .camp-container{
-  height: 50rem;
+  height: 54rem;
   width: 75rem;
   background-image: url('/assets/char-sheet-background.jpeg');
   margin: 2rem;
@@ -20,6 +20,7 @@
   background-size: contain;
   height: 27rem;
   border-radius: 0.5rem;
+  margin-top: 1.5rem;
   h3{
     text-align: center;
     color: black;
@@ -96,7 +97,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top:2em;
+  margin-top:1em;
 }
 
 .show-avatars{

@@ -1,13 +1,10 @@
-<div class="edit-pass-container">
+<div class="edit-pass-pg">
   <h2>Add Availability <%= resource_name.to_s.humanize %></h2>
   <p>Select one or more day/time slots:</p>
 
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
-
-
-
     <div class="availability-container">
 
       <div class="availability-header">

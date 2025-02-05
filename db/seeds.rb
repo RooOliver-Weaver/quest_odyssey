@@ -1,5 +1,7 @@
 require 'json'
 
+Campaign.purge_all_images
+Character.purge_all_portraits
 Message.delete_all
 Session.delete_all
 Notification.delete_all

@@ -1,33 +1,39 @@
-<div class="simple-month-calendar simple-calendar">
-  <div class="calendar-heading">
-    <time datetime="<%= start_date.strftime('%m-%Y') %>" class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></time>
-
-    <nav>
-      <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
-      <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view %>
-      <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
-    </nav>
-  </div>
-
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <% date_range.slice(0, 7).each do |day| %>
-          <th><%= t('date.abbr_day_names')[day.wday] %></th>
+<div class="calendar-border">
+  <div class="simple-month-calendar simple-calendar">
+    <div class="calendar-heading">
+      <time datetime="<%= start_date.strftime('%m-%Y') %>" class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></time>
+      <div class="nav">
+        <%= link_to calendar.url_for_previous_view do %>
+          <i class="fa-solid fa-square-caret-left"></i>
         <% end %>
-      </tr>
-    </thead>
+        <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view %>
+        <%= link_to calendar.url_for_next_view do %>
+          <i class="fa-solid fa-square-caret-right"></i>
+        <% end %>
+      </div>
+    </div>
 
-    <tbody>
-      <% date_range.each_slice(7) do |week| %>
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <% week.each do |day| %>
-            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
-              <% instance_exec(nil, calendar.sorted_events_for(day), &passed_block) %>
-            <% end %>
+          <% date_range.slice(0, 7).each do |day| %>
+            <th><%= t('date.abbr_day_names')[day.wday] %></th>
           <% end %>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% date_range.each_slice(7) do |week| %>
+          <tr>
+            <% week.each do |day| %>
+              <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+              <%= day.day %>
+                <% instance_exec(nil, calendar.sorted_events_for(day), &passed_block) %>
+              <% end %>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

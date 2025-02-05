@@ -1,20 +1,89 @@
 .invites {
-  width: 60%;
+  width: 55%;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
 
-.pending-invites, .dm-aprovals, .joined-campaigns {
+.pending-invites, .dm-approvals, .joined-campaigns {
   border: 1px solid white;
-  width: 200px;
+  width: 31%;
   height: 200px;
   overflow: auto;
   text-align: center;
   padding: 10px;
   font-size: 1.6rem;
+  position: relative;
+  display: inline;
+  justify-content: center;
+  align-items: center;
+  color: var(--orange);
+
+  .invite-content {
+    margin-top: 40px;
+    font-size: 0.7rem;
+    line-height: 1.1;
+    color: var(--orange);
+
+    a {
+      color: var(--yellow);
+    }
+  }
+
+  .title {
+    position: absolute;
+    justify-self: center;
+    top: 10px;
+    margin: 0 auto;
+    color: white;
+  }
+
+  .form-button {
+
+
+    &:hover {
+
+    }
+  }
 }
 
-.invite-content {
-  font-size: 1rem;
+.pending-invites button,
+.pending-invites input[type="submit"] {
+  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(110,80,20,.4),
+  inset 0 -2px 5px 1px rgba(139,66,8,1),
+  inset 0 -1px 1px 3px rgba(250,227,133,1);
+background-image: linear-gradient(160deg, #a54e07, #b47e11, #fef1a2, #bc881b, #a54e07);
+border: 1px solid #a55d07;
+color:var(--burgundy);
+text-shadow: 0 2px 2px rgba(250, 227, 133, 1);
+cursor: pointer;
+transition: all .2s ease-in-out;
+}
+
+.pending-invites button:hover,
+.pending-invites input[type="submit"]:hover {
+  background-size: 150% 150%;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23),
+                inset 0 -2px 5px 1px #b17d10,
+                inset 0 -1px 1px 3px rgba(250,227,133,1);
+  border: 1px solid rgba(165,93,7,.6);
+  color: white;/* Slightly darker gold on hover */
+}
+
+.colour-dropdown {
+  background-color: var(--green); /* Light background color */
+  color: #333; /* Text color */
+  border: 1px solid #ccc; /* Border color */
+  padding: 8px; /* Padding inside the select */
+  font-size: 14px; /* Font size */
+  width: 100%; /* Make the dropdown full width */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* Change color on hover (for dropdown options) */
+.colour-dropdown option:hover {
+  background-color: #ddd; /* Change the option color when hovering */
+  color: #000; /* Option text color on hover */
 }

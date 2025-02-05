@@ -56,11 +56,6 @@
     </div>
 </div>
 
-
-<h2>DM Approvals</h2>
-
-
-
 <div class="invites">
     <div class="pending-invites">
       <h3>Pending Invites</h3>
@@ -81,7 +76,7 @@
 
       <% @pending_schedule_invites.each do |invite| %>
         <p><%= invite.session.campaign.user.nickname %> has called you to adventure on <%= link_to invite.session.date, campaign_sessions_path(invite.session)%>!</p>
->>>>>>> master
+
 
         <%= form_with url: campaign_session_character_session_path(invite.session.campaign.id, invite.session.id, invite.id), method: :patch, local: true do |form| %>
           <h3>Return to the adventure? </h3>

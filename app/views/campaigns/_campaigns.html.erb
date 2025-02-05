@@ -31,7 +31,7 @@
                 <% end %>
                   <% else %>
                 <%= link_to character_path(cc.character) do %>
-                </div>
+                <div class="avatar-campaigns">
                   <%= image_tag 'default_character.jpeg', alt: "Default Character" %>
                 </div>
                 <% end %>
@@ -43,5 +43,3 @@
 
     <% end %>
   </div>
-
-

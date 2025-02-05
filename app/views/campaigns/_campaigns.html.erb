@@ -22,7 +22,7 @@
         <div class="campaign-avatars">
         <% campaign.campaign_characters.each do |cc| %>
           <% if cc.character %>
-            <div class="avatar-campaign">
+            <div class="avatar-campaign index-avatar">
               <% if cc.character.portrait.attached? %>
                 <%= link_to character_path(cc.character) do %>
                   <%= cl_image_tag cc.character.portrait.key, alt: "Character Portrait" %>

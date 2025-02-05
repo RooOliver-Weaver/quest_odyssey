@@ -3,7 +3,7 @@
   display: inline-block;
   top: 0;
   left: 0;
-  height: 100%;
+  height: 100vh;
   width: 6.25rem;
   background-color: var(--green);
   float: left;
@@ -13,6 +13,7 @@
   font-family: "Grenze Gotisch";
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2);
+  justify-content: space-between;
 }
 
 .navbar::-webkit-scrollbar {
@@ -52,7 +53,7 @@
 
 .navbar-menu {
   padding: 0;
-  height: 93vh;
+  height: 87vh;
 }
 
 .navbar-items {
@@ -60,8 +61,9 @@
 }
 
 .login-out {
-  margin-top: auto;
-  padding-bottom: 1rem;
+  position: sticky;
+  margin-top: 1rem;
+  // padding-bottom: 1rem;
   text-align: center;
   font-size: 1.75rem;
 
@@ -210,4 +212,79 @@
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+.notification-container {
+  position: relative;
+}
+
+.notification-button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--orange);
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+#notifications_badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 0.75rem;
+}
+
+#notifications_badge .badge {
+  background-color: var(--yellow);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 50%;
+}
+
+.notification-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--dark-green);
+  width: auto;
+  z-index: 1050;
+}
+
+.notification-menu.show {
+  display: block;
+}
+
+.notification-menu .dropdown-Item {
+  color: var(--burgundy);
+  font-size: 1.2rem;
+}
+
+
+.notification-menu .dropdown-item:hover {
+  background-color: var(--dark-green);
+  color: var(--yellow); /* Highlight color */
+}
+
+/* No notifications message */
+#no_notifications {
+  text-align: center;
+  color: #ccc;
+  font-style: italic;
+}
+
+/* Styles for when the notification bell has unread notifications */
+.notification-button {
+  position: relative;
+}
+
+.notification-button .badge {
+  display: none; /* Hide by default */
+}
+
+.notification-button .badge.show {
+  display: inline-block; /* Show the badge when there are unread notifications */
 }

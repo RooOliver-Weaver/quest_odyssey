@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_04_125145) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_04_183351) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,15 +72,16 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_125145) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "public"
+    t.string "image"
     t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
   create_table "character_sessions", force: :cascade do |t|
     t.bigint "campaign_character_id", null: false
     t.bigint "session_id", null: false
-    t.boolean "pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "pending", null: false
     t.index ["campaign_character_id"], name: "index_character_sessions_on_campaign_character_id"
     t.index ["session_id"], name: "index_character_sessions_on_session_id"
   end
@@ -100,7 +101,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_125145) do
     t.text "personality"
     t.jsonb "equipment", default: []
     t.jsonb "traits", default: []
-    t.string "portrait"
     t.jsonb "attacks", default: []
     t.index ["user_id"], name: "index_characters_on_user_id"
   end
@@ -111,7 +111,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_125145) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "message_type"
+    t.bigint "session_id"
     t.index ["campaign_id"], name: "index_messages_on_campaign_id"
+    t.index ["session_id"], name: "index_messages_on_session_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -136,12 +139,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_125145) do
   end
 
   create_table "sessions", force: :cascade do |t|
-    t.boolean "approved", default: false
     t.string "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "campaign_id", null: false
     t.jsonb "player_availability"
+    t.string "status", default: "pending", null: false
+    t.integer "relay_count", default: 3
     t.index ["campaign_id"], name: "index_sessions_on_campaign_id"
   end
 
@@ -178,6 +182,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_04_125145) do
   add_foreign_key "character_sessions", "sessions"
   add_foreign_key "characters", "users"
   add_foreign_key "messages", "campaigns"
+  add_foreign_key "messages", "sessions"
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "sessions", "campaigns"

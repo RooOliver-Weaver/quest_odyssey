@@ -1,5 +1,7 @@
 class Session < ApplicationRecord
- belongs_to :campaign
- has_many :characters, through: :campaign
- validates :approved, inclusion: { in: [true, false] }, allow_nil: true
+  attribute :status, :string
+  belongs_to :campaign
+  has_many :characters, through: :campaign
+  has_many :character_sessions, dependent: :destroy
+  enum :status, { confirmed: 'confirmed', cancelled: 'cancelled', pending: 'pending' }
 end

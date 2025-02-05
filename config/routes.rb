@@ -11,9 +11,17 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
   resources :campaigns do
-    resources :campaign_characters, only: [:create]
+    resources :campaign_characters, only: [:create] do
+      member do
+        patch :append_personal_note
+      end
+    end
     resources :sessions
     resources :messages, only: [:create]
+    member do
+      patch :append_note
+      patch :append_dm_note
+    end
   end
 
   resources :notifications, only: [:index] do
@@ -22,6 +30,7 @@ Rails.application.routes.draw do
       delete :delete_read
     end
   end
+
 
 
   get '/calendars', to: 'calendars#index'

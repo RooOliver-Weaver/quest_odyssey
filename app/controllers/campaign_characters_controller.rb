@@ -26,10 +26,35 @@ class CampaignCharactersController < ApplicationController
     redirect_to root_path, notice: "Invite declined"
   end
 
+  def append_personal_note
+    @campaign_character = CampaignCharacter.find(params[:id])
+
+    if params[:campaign_character][:personal_notes].present?
+      new_note = "(#{Time.current.strftime('%d/%m')}): #{params[:campaign_character][:personal_notes]}"
+      updated_notes = [@campaign_character.personal_notes.to_s, new_note].reject(&:blank?).join("\n")
+
+      if @campaign_character.update(personal_notes: updated_notes)
+        respond_to do |format|
+          format.turbo_stream { render partial: "campaign_characters/append_personal_note", locals: { campaign_character: @campaign_character } }
+          format.html { redirect_to campaign_path(@campaign), notice: "Personal note added!" }
+        end
+      else
+        respond_to do |format|
+          format.html { redirect_to campaign_path(@campaign), alert: "Error adding personal note." }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to campaign_path(@campaign_character.campaign), alert: 'Failed to add personal note.' }
+      end
+    end
+  end
+
+
   private
 
   def campaign_character_params
-    params.require(:campaign_character).permit(:user_id, :campaign_id)
+    params.require(:campaign_character).permit(:user_id, :campaign_id, :personal_notes)
 
   end
 end

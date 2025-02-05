@@ -4,13 +4,11 @@ import "controllers"
 import "@popperjs/core"
 import "bootstrap"
 
-document.addEventListener("DOMContentLoaded", function () {
-
+document.addEventListener("turbo:load", function () {
   document.querySelectorAll(".day-header").forEach((header) => {
     header.addEventListener("click", function () {
-      let day = this.getAttribute("data-day"); 
+      let day = this.getAttribute("data-day");
       let checkboxes = document.querySelectorAll(`.day-slot[data-day="${day}"]`);
-
 
       let shouldCheck = !checkboxes[0].checked;
 

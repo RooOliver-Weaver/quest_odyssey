@@ -3,6 +3,9 @@
   <div class="campaigns-container">
     <div class="title">
         <h2>My Quests</h2>
+        <%= link_to new_campaign_path do %>
+          <i class="fa-solid fa-plus" id="new-campaign-plus-2"></i>
+        <% end %>
     </div>
 
     <div class="campaigns-list">
@@ -31,6 +34,9 @@
   <div class="characters-container">
     <div class="title">
         <h2>My Characters</h2>
+      <%= link_to new_character_path do %>
+          <i class="fa-solid fa-plus" id="new-character-plus"></i>
+        <% end %>
     </div>
 
     <div class="characters-list">

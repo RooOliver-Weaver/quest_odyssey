@@ -12,7 +12,7 @@
           <%= link_to campaign_path(campaign) do %>
             <div class="campaign-card">
               <div class="campaign-card-image">
-                <%= image_tag 'dnd_camp.png', class: "thumbnail" %>
+                <%= image_tag campaign.image, class: "thumbnail" %>
               </div>
               <div class="campaign-card-content">
                 <h5 class="campaign-card-title"><%= campaign.name %></h5>

@@ -17,13 +17,14 @@
       <div class="availability-slot">
         <% ["Morning", "Midday", "Evening"].each do |time| %>
 
-            <% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |day| %>
-              <div class="slot apple" data-day="<%= day.downcase %>">
-                <% time_slot = " #{time}" %>
-                <%= check_box_tag "user[availability][]", time_slot, (@user.availability || []).include?(time_slot), class: "day-slot", data: { day: day.downcase } %>
-                <%= label_tag "user[availability][]", time_slot %>
-              </div>
-            <% end %>
+          <% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |day| %>
+            <div class="slot day-block" data-day="<%= day.downcase %>">
+              <% time_slot = "#{day} #{time}" %>
+              <% checkbox_id = "availability_#{day.downcase}_#{time.downcase}" %>
+              <%= check_box_tag "user[availability][]", time_slot,(@user.availability || []).include?(time_slot), id: checkbox_id, class: "day-slot tag-selector", data: { day: day.downcase } %>
+              <%= label_tag checkbox_id, time %>
+            </div>
+          <% end %>
 
         <% end %>
       </div>

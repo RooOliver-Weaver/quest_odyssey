@@ -51,10 +51,3 @@ class SessionAvailabilityService
     availability_block
   end
 end
-
-
-
-
-
-
-end

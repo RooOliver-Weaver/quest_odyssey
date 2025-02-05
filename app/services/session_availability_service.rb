@@ -43,7 +43,7 @@ class SessionAvailabilityService
   end
 
   def get_dm_availability
-    dm_availability = @campaign.dm.availability
+    dm_availability = @campaign.user.availability
     return { dm_missing: "Woe to the DM who tries to rally others before they have themselves in order. Please update your availability." } if dm_availability.empty?
 
     availability_block = Hash.new(0)

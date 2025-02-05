@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+
+
   authenticated :user do
     root to: "pages#dashboard", as: :authenticated_root
   end

@@ -25,19 +25,19 @@ class PagesController < ApplicationController
 
       if character_sessions.any? && character_sessions.all? { |cs| cs.status == "confirmed" }
         message = "All players have accepted for the session on #{session.date}. Venture forth?"
-        @dm_session_full_attendance << [session, message]
+        @dm_sessions_all_accepted << [session, message]
       end
     end
 
 
-    @dm_session_cancellations = []
+    @dm_sessions_cancellations = []
     @dm_sessions.each do |session|
       canceled_characters = session.character_sessions.where(status: "cancelled").map do |character_session|
       character_session.campaign_character.user.nickname
       end
       if canceled_characters.any?
         message = "#{canceled_characters.to_sentence} cannot make the next session. Venture forth anyway?"
-        @dm_session_cancellations << [session, message]
+        @dm_sessions_cancellations << [session, message]
       end
     end
 

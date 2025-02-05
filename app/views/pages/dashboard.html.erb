@@ -86,37 +86,39 @@
 <% end %>
 
 <h2>DM Approvals</h2>
+<%if @dm_sessions_cancellations.any?%>
+  <% @dm_sessions_cancellation.each do |session, message| %>
+    <p><%= message %></p>
 
-<% @dm_session_cancellation.each do |session| %>
-  <p><%= session[1] %></p>
-
-  <%= form_with url: session_approval_path(session[0]), method: :patch, local: true do |form| %>
+    <%= form_with url: session_approval_path(session), method: :patch, local: true do |form| %>
     <%= form.hidden_field :status, value: "confirmed" %>
     <%= form.submit "Approve" %>
+    <% end %>
+
+    <%= button_to "Decline",
+          session_approval_path(session),
+          method: :patch,
+          params: { status: "cancelled" },
+          data: { confirm: "Are you sure you want to cancel this session?" } %>
   <% end %>
+<%end%>
 
-  <%= button_to "Decline",
-                session_approval_path(session),
-                method: :patch,
-                params: { status: "cancelled" },
-                data: { confirm: "Are you sure you want to cancel this session?" } %>
-<% end %>
+<%if @dm_sessions_all_accepted.any?%>
+  <% @dm_sessions_all_accepted.each do |session, message | %>
+    <p><%= message %></p>
 
-
-<% @dm_sessions_all_accepted.each do |session| %>
-  <p><%= session[1] %></p>
-
-  <%= form_with url: session_approval_path(session[0]), method: :patch, local: true do |form| %>
+    <%= form_with url: session_approval_path(session), method: :patch, local: true do |form| %>
     <%= form.hidden_field :status, value: "confirmed" %>
     <%= form.submit "Approve" %>
-  <% end %>
+    <% end %>
 
-  <%= button_to "Decline",
-                session_approval_path(session[0]),
-                method: :patch,
-                params: { status: "cancelled" },
-                data: { confirm: "Are you sure you want to cancel this session?" } %>
-<% end %>
+    <%= button_to "Decline",
+          session_approval_path(session),
+          method: :patch,
+          params: { status: "cancelled" },
+          data: { confirm: "Are you sure you want to cancel this session?" } %>
+    <% end %>
+<%end%>
 
 
 <h2>Joined Campaigns</h2>

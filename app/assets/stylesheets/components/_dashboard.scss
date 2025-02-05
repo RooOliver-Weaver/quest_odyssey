@@ -1,0 +1,16 @@
+.invites {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.pending-invites, .dm-aprovals, .joined-campaigns {
+  border: 1px solid white;
+  width: 200px;
+  height: 200px;
+  overflow: auto;
+  text-align: center;
+  padding: 10px;
+  font-size: 1.6rem;
+}

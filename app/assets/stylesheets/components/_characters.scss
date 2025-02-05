@@ -5,7 +5,7 @@
 }
 
 .characters-list {
-  display: grid;
+  display: flex;
   flex-direction: row;
   // justify-content: space-evenly;
   align-items: center;
@@ -67,4 +67,11 @@
   padding-top: 10px;
   white-space: normal;
   line-height: 0.3;
+}
+
+@media (max-width: 768px) {
+  .characters-list {
+    display: flex;
+    flex-direction: column;
+  }
 }

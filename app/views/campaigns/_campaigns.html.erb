@@ -21,12 +21,12 @@
             <% if cc.character.portrait.attached? %>
                 <%= link_to character_path(cc.character) do %>
                 <div class="avatar-campaign">
-                  <%= cl_image_tag cc.character.portrait.key, alt: "Character Portrait"%>
+                  <%= cl_image_tag cc.character.portrait.key, alt: "Character Portrait" %>
                 </div>
                 <% end %>
               <% else %>
                 <%= link_to character_path(cc.character) do %>
-                <div class="avatar-campaign">
+                <div class="avatar-campaigns">
                   <%= image_tag 'default_character.jpeg', alt: "Default Character" %>
                 </div>
                 <% end %>

@@ -74,7 +74,7 @@
                       method: :patch,
                       data: { turbo: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |form| %>
           <%= form.text_area :notes, value: "" %>
-          <%= form.submit "Save Party Note" %>
+          <%= form.submit "Save Party Note", class: "new-btn" %>
         <% end %>
       </div>
 
@@ -87,7 +87,7 @@
                       method: :patch,
                       data: { turbo: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |form| %>
           <%= form.text_area :dm_notes, value: "" %>
-          <%= form.submit "Save DM Note" %>
+          <%= form.submit "Save DM Note", class: "new-btn" %>
         <% end %>
       </div>
 
@@ -104,7 +104,7 @@
                         method: :patch,
                         data: { turbo: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |form| %>
             <%= form.text_area :personal_notes, value: "" %>
-            <%= form.submit "Add Personal Note" %>
+            <%= form.submit "Add Personal Note", class: "new-btn" %>
           <% end %>
         </div>
       <% end %>

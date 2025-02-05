@@ -128,7 +128,7 @@
 <div class="invite-card ms-5">
   <% if policy(@campaign).invite? %>
     <%= form_with model: [@campaign, @campaign_character], local: true do |form| %>
-      <h3>Invite Users to this Campaign</h3>
+      <h2>Invite Users to this Quest</h2>
       <div class="d-flex col-md-3 row g-4">
         <%= form.label :user_id, 'Select a player to invite:' %>
         <%= form.collection_select :user_id,
@@ -142,6 +142,10 @@
   <% end %>
 </div>
 
+<% if current_user == @campaign.user %>
+  <% disable_button = @campaign.sessions.exists?(status: 'pending') %>
+  <%= button_to "Create Next Session", campaign_sessions_path(@campaign), class: "btn btn-secondary mx-2", disabled: disable_button %>
+<% end %>
 
 <% if current_user == @campaign.user || @campaign.campaign_characters.any? { |cc| current_user == cc.user } %>
   <div data-controller="chatbox" class="chat-container">

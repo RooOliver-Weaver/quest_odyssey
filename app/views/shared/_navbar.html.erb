@@ -22,7 +22,7 @@
       <div class="navbar-item">
       <a href="<%= campaigns_path %>" data-action="click->navbar#setActive" data-target="navbar.campaigns" class="campaigns navbttn on-hov">
         <i class="fa-solid fa-dice"></i>
-        <p class="hidden-text">Campaigns</p>
+        <p class="hidden-text">Quests</p>
         <div class="navbar-submenu">
             <a href="<%= campaigns_path %>" class="on-hov">All</a>
             <a href="<%= new_campaign_path %>" class="on-hov">New</a>
@@ -35,7 +35,7 @@
             <p class="hidden-text">Calendar</p>
             <div class="navbar-submenu">
                 <a href="<%= edit_user_registration_path %>" class="on-hov">Availability</a>
-                <a href="#" class="on-hov">New</a>
+                <%# <a href="#" class="on-hov">New</a> %>
             </div>
           </a>
     </div>

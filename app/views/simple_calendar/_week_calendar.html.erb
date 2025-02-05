@@ -2,7 +2,7 @@
   <div class="calendar-heading">
     <span class="calendar-title">
       <%= t('simple_calendar.week', default: 'Week') %>
-      <%= calendar.week_number %>
+      <%= calendar.start_date.strftime('%B %Y') %>
       <% if calendar.number_of_weeks > 1 %>
         - <%= calendar.end_week %>
       <% end %>
@@ -23,7 +23,7 @@
     <thead>
       <tr>
         <% date_range.slice(0, 7).each do |day| %>
-          <th><%= t('date.abbr_day_names')[day.wday] %></th>
+          <th><%= day.strftime('%d') %></th>
         <% end %>
       </tr>
     </thead>
@@ -41,4 +41,3 @@
     </tbody>
   </table>
 </div>
-

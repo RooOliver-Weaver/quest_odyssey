@@ -1,6 +1,6 @@
 <div class="camp-container">
   <div class="camp-show-links">
-    <a class="back-btn-show" href="<%= (request.referer.present? && !request.referer.include?("/campaigns/new") ? request.referer : campaigns_path) %>"><i class="fa-regular fa-hand-point-left"></i></a>
+    <a class="back-btn-show" href="javascript:history.back()"><i class="fa-regular fa-hand-point-left"></i></a>
 
    <% if current_user == @campaign.user %>
       <% disable_button = @campaign.sessions.exists?(status: 'pending') %>
@@ -124,21 +124,6 @@
   </div>
 </div>
 
-<%# <div data-controller="popup">
-
-+ <button data-action="click->popup#openPopup">Invite Users</button>
-- <div class="my-popup">
-+ <div data-popup-target="rootPopup" class="my-popup">
-    <div class="my-popup-background"></div>
-    <div class="my-popup-content">
-      <div class="my-popup-close-btn-wrapper">
--       <button class="my-popup-close-btn">✕</button>
-+       <button data-action="click->popup#closePopup" class="my-popup-close-btn">✕</button>
-      </div>
-      <h1>Dead simple popup!!!</h1>
-    </div>
-  </div>
-</div> %>
 
 
 <% if current_user == @campaign.user || @campaign.campaign_characters.any? { |cc| current_user == cc.user } %>

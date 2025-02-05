@@ -1,3 +1,5 @@
+
+<h1 class="username">Welcome <%= @user.nickname %></h1>
 <div class="campaigns-container">
   <div class="title">
       <h1>My Campaigns</h1>
@@ -10,7 +12,7 @@
           <%= link_to campaign_path(campaign) do %>
             <div class="campaign-card">
               <div class="campaign-card-image">
-                <%= image_tag 'dnd_camp.png', class: "thumbnail" %>
+                <%= image_tag campaign.image, class: "thumbnail" %>
               </div>
               <div class="campaign-card-content">
                 <h5 class="campaign-card-title"><%= campaign.name %></h5>

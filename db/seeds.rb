@@ -1,5 +1,6 @@
 require 'json'
 
+Session.delete_all
 Notification.delete_all
 Message.delete_all
 CampaignCharacter.delete_all
@@ -70,7 +71,7 @@ file = File.read(Rails.root.join('db/campaigns.json'))
 campaign_data = JSON.parse(file, symbolize_names: true)
 
 campaigns = campaign_data.map do |camp|
-  Campaign.create!(
+  campaign = Campaign.create!(
     name: camp[:name],
     setting: camp[:setting],
     description: camp[:description],
@@ -81,6 +82,29 @@ campaigns = campaign_data.map do |camp|
     active: [true, false].sample,
     public: [true, false].sample,
   )
+
+  if camp[:image].present?
+    image_path = Rails.root.join("public/campaigns/#{camp[:image]}")
+      if File.exist?(image_path)
+        puts "Attaching image for #{camp[:name]}: #{image_path}"
+        begin
+          campaign.image.attach(
+            io: File.open(image_path),
+            filename: File.basename(image_path),
+            content_type: "image/jpeg"
+          )
+          puts "✅ Attached image for #{camp[:name]}"
+        rescue => e
+          puts "❌ Failed to attach pimage for #{camp[:name]}: #{e.message}"
+        end
+      else
+        puts "❌ File not found: #{image_path} for #{camp[:name]}"
+      end
+   else
+    puts "⚠️ No image provided for #{camp[:name]}"
+   end
+
+   campaign
 end
 
 puts "Created #{campaigns.count} campaigns."

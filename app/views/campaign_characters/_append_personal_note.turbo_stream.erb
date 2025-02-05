@@ -1,0 +1,5 @@
+<turbo-stream action="update" target="personal_notes_list">
+  <template>
+    <%= simple_format(campaign_character.personal_notes.presence || "No personal notes yet.") %>
+  </template>
+</turbo-stream>

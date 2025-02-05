@@ -10,11 +10,19 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :campaigns do
-    resources :campaign_characters, only: [:create]
+    resources :campaign_characters, only: [:create] do
+      member do
+        patch :append_personal_note
+      end
+    end
     resources :sessions do
       resources :character_sessions, only: [:create, :update, :destroy]
     end
     resources :messages, only: [:create]
+    member do
+      patch :append_note
+      patch :append_dm_note
+    end
   end
 
   patch "/sessions/:id/approve", to: "sessions#approve", as: "session_approval"
@@ -26,6 +34,7 @@ Rails.application.routes.draw do
       delete :delete_read
     end
   end
+
 
 
   get '/calendars', to: 'calendars#index'

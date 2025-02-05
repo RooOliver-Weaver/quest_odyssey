@@ -43,13 +43,13 @@
           <% if current_user %>
             <%= turbo_stream_from "notifications_#{current_user.id}" %>
             <div data-controller="notifications" class="d-flex align-items-center justify-content-center">
-              <div class="notification-container">
+              <div class="dropdown">
                 <button class="notification-button" type="button" data-action="click->notifications#toggle" data-notifications-target="bell">
                   <i class="fas fa-bell"></i>
                   <div id="notifications_badge">
                     <% unread_notifications_count = @notifications.where(read: false).count %>
                     <% if unread_notifications_count > 0 %>
-                      <span class="badge" data-notifications-target="badge" style="position: absolute; top: -5px; right: -5px; font-size: 0.7em;">
+                      <span class="badge bg-danger" data-notifications-target="badge" style="position: absolute; top: -5px; right: -5px; font-size: 0.7em;">
                         <%= unread_notifications_count %>
                       </span>
                     <% end %>

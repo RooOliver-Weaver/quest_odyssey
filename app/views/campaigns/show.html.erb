@@ -49,7 +49,7 @@
 
             <% if cc.character %>
               <li class="d-flex">
-                  <div class="avatar-campaign">
+                <div class="avatar-campaign">
                   <% if cc.character.portrait.attached? %>
                     <%= cl_image_tag cc.character.portrait.key, alt: "Character Portrait" %>
                   <% else %>

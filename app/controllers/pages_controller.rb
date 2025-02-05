@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
-  # skip_before_action :authenticate_user!, only: [ :home ]
+  skip_before_action :authenticate_user!, only: [ :home ]
 
   def home
+    @public_campaigns = Campaign.where(public: true).limit(2)
   end
 
   def dashboard

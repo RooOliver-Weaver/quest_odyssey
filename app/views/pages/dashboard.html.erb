@@ -114,7 +114,7 @@
     </div>
     <div class="joined-campaigns">
 
-        <h3>Joined Campaigns</h3>
+        <h3>Active Quests</h3>
 
         <% @joined_campaigns.each do |campaign| %>
           <p>You are a member of <%= link_to campaign.campaign.name, campaign_path(campaign.campaign) %></p>

@@ -41,36 +41,69 @@
   justify-content: center;
 }
 
-
-// .delete-camp {
-//   position: absolute;
-//   z-index: 10;
-//   left: 10px;
-//   font-size: 25px;
-//   border: none;
-//   color:var(--rust);
-//   cursor: pointer;
-//   transition: all .2s ease-in-out;
-// &:hover  {
-//   background-size: 150% 150%;
-//   color: rgb(255, 0, 0)
-// }
-// }
-.edit-camp{
-  font-size: 25px;
+.char-btn{
+  width: auto;
+  margin-left: 30%;
+}
+//campaign show/index btns
+.back-btn-show{
+  font-size: 3rem;
+  color:var(--yellow);
+  text-shadow: 0 0 5px rgb(112, 107, 107), 0 0 10px rgb(94, 91, 91), 0 0 15px var(--yellow), 0 0 20px var(--yellow), 0 0 25px var(--yellow);
+  &:hover  {
+    color: var(--white);
+  }
+}
+.edit-camp-btn {
+  font-size: 1em;
+  border-radius: .3em;
+  width: 5em;
+  height: 2em;
+  background-color: var(--yellow);
+  color:var(--burgundy);
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  text-align: center;
+  display: inline-table;
+  margin-right: 10px;
+  padding-top: 3px;
+&:hover {
+  color: white;
+}
+}
+.delete-camp-btn {
+  font-size: 1em;
+  border-radius: .3em;
+  width: 5em;
+  height: 2em;
+  background-color: var(--gray);
+  color:var(--yellow);
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  text-align: center;
+  display: inline-table;
+  padding-top: 3px;
+&:hover {
+  color: white;
+}
+}
+.next-sess{
   position: absolute;
   z-index: 10;
   right: 10px;
   border: none;
+  font-size: 3rem;
   color:var(--yellow);
   cursor: pointer;
   transition: all .2s ease-in-out;
+  text-shadow: 0 0 5px rgb(112, 107, 107), 0 0 10px rgb(94, 91, 91), 0 0 15px var(--yellow), 0 0 20px var(--yellow), 0 0 25px var(--yellow);
 &:hover  {
   background-size: 150% 150%;
   color: var(--white);
 }
 }
-.char-btn{
-  width: auto;
-  margin-left: 30%;
+.invite-toggle-btn{
+  margin: auto;
+  margin-top: 1.5rem;
+  position: relative;
 }

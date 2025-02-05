@@ -1,18 +1,24 @@
+.camp-page-container {
+  display: flex;
+  justify-content: center;  // Centers horizontally
+  align-items: center;      // Centers vertically
+  min-height: 100vh;        // Ensures full height of viewport
+  padding: 20px;           // Adds some padding for smaller screens
+}
 .camp-container{
-  height: 54rem;
+  position: relative;
+  height: 60rem;
   width: 75rem;
   background-image: url('/assets/char-sheet-background.jpeg');
   margin: 2rem;
-  padding: 5rem;
+  padding: 3rem 5rem 5rem 5rem;
   background-size: contain;
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
-
 .camp-card{
   width: 55rem;
   padding: 0em 2rem;
@@ -30,19 +36,15 @@
 .camp-show-links{
   width: 60rem;
   height: 3rem;
-  position: absolute;
-  top: 7rem;
+  position: relative;
+
 }
-.back-btn-show,.next-sess{
-  font-size: 3rem;
-  color:var(--yellow);
+.name-link{
+  font-size: 1rem;
+  color:var(--rust);
   &:hover  {
     color: var(--white);
   }
-}
-
-.name_link{
-  font-size: 1rem;
 }
 
 .camp-tab-content{
@@ -55,65 +57,33 @@
 #campaignTab {
   padding: 0rem 2rem;
 }
-.show-avatars{
-  display: flex;
-}
-
-.edit-camp-btn {
-  font-size: 1em;
-  border-radius: .3em;
-  width: 5em;
-  height: 2em;
-  background-color: var(--yellow);
-  color:var(--burgundy);
-  cursor: pointer;
-  transition: all .2s ease-in-out;
-  text-align: center;
-  display: inline-table;
-  margin-right: 10px;
-  padding-top: 3px;
-&:hover {
-  color: white;
-}
-}
-.delete-camp-btn {
-  font-size: 1em;
-  border-radius: .3em;
-  width: 5em;
-  height: 2em;
-  background-color: var(--gray);
-  color:var(--yellow);
-  cursor: pointer;
-  transition: all .2s ease-in-out;
-  text-align: center;
-  display: inline-table;
-  padding-top: 3px;
-&:hover {
-  color: white;
-}
-}
 .camp-show-btns{
   z-index: 10;
   display: flex;
   justify-content: center;
   width: 100%;
   margin-top:1em;
+  position: relative;
 }
 
 .show-avatars{
   display: flex;
 }
-
 .tab-content::-webkit-scrollbar {
   width: 8px;
 }
-
 .tab-content::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
 }
-
-
 .tab-content::-webkit-scrollbar-track {
   background: transparent;
+}
+.notes-box{
+  background-color: rgba(0, 0, 0, 0.101);
+}
+.notes-box:focus {
+  outline: none; /* Removes default focus outline */
+  border-color: var(--green); /* Change border color */
+  box-shadow: 0 0 8px rgba(var(--green), 0.5); /* Soft green glow */
 }

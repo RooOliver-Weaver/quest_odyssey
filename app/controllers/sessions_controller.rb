@@ -20,6 +20,6 @@ class SessionsController < ApplicationController
     redirect_to campaign_path(@session.campaign), notice: notice_message.join(" & ")
   end
 
-
+  
 
 end

@@ -2,6 +2,9 @@
 <div class= "container">
 <div class="border-container">
     <div class="image-container-character">
+      <%= link_to characters_path, class: "back-btn-char-show" do  %>
+        <i class="fa-regular fa-hand-point-left"></i>
+      <% end %>
       <div class="character-image">
         <% if @character.portrait.attached? %>
           <%= cl_image_tag @character.portrait.key, class: "char-image" %>
@@ -10,6 +13,12 @@
         <% end %>
       </div>
       <div class="basic-character-info">
+         <% if current_user == @character.user %>
+          <div class="camp-btns">
+            <a class="delete-camp-char-show" href="<%= character_path(@character) %>" data-turbo-method="delete" data-turbo-confirm="Are you sure?"><i class="fa-solid fa-bomb"></i></a>
+            <a class="edit-camp-char-show" href="<%= edit_character_path(@character) %>"><i class="fa-solid fa-wand-sparkles"></i></a>
+          </div>
+         <% end %>
         <h3>Name: <%= @character.name %></h3>
         <h3> Class: <%= @character.speciality %> <%= @character.level %></h3>
         <ul >
@@ -94,34 +103,40 @@
             <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Attacks</button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Traits</button>
+            <button class="nav-link" id="traits-tab" data-bs-toggle="tab" data-bs-target="#traits" type="button" role="tab" aria-controls="traits" aria-selected="false">Traits</button>
           </li>
         </ul>
         <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="Bio-tab" tabindex="0">A nimble-fingered rogue with a sharp tongue and a sharper dagger, Lila thrives on mischief and the thrill of the unknown. Born to a nomadic halfling clan, she learned early that life is a game best played with a wink and a well-timed escape. Whether relieving a pompous noble of his purse or spinning elaborate cons in roadside taverns, Lila dances on the fine edge between fortune and folly.</div>
+          <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="Bio-tab" tabindex="0">
+            <%= @character.biography %>
+          </div>
           <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="Equipment-tab" tabindex="0">
-          <ul>Weapons:
-            <li></li>
-            <li>Rapier - A finely balanced blade, perfect for quick strikes and flourishes.</li>
-            <li>Dagger - Small, sharp, and easily concealed. Great for close combat or throwing.</li>
-          </ul>
+            <% @character.equipment.each do |item|  %>
+              <ul><%= item['type'] %>:
+                <li> <%= item['name'] %></li>
+              </ul>
+            <% end %>
           </div>
           <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="Attacks-tab" tabindex="0">
             <ul>Attacks:</ul>
               <% @character.attacks.each do |attack| %>
-              <li><%= attack['name'] %></li>
-              <li><%= attack['damage'] %></li>
+                <ul>
+                  <li><%= attack['name'] %></li>
+                  <li><%= attack['damage'] %></li>
+                </ul>
               <% end %>
             </ul>
-          <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="Traits-tab" tabindex="0">
-
+          </div>
+          <div class="tab-pane fade" id="traits" role="tabpanel" aria-labelledby="traits">
+            <ul>Traits:</ul>
+              <% @character.traits.each do |trait| %>
+              <li><%= trait['type'] %></li>
+              <li><%= trait['trait'] %></li>
+              <% end %>
+            </ul>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-<%= link_to "Back to Characters", characters_path %>

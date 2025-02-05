@@ -8,7 +8,6 @@ ul {
   width: 60%;
   margin-top: 2rem;
   display: flex;
-  justify-content: left;
 
   ul {
     padding: 15px;
@@ -68,6 +67,20 @@ ul {
   margin-left: 2rem;
 }
 
+.image-container-character {
+  position: relative;
+}
+.back-btn-char-show {
+  left: 10px;
+  position: absolute;
+  z-index: 10;
+  font-size: 35px;
+  color: white;
+  &:hover  {
+    color: var(--gray-dark);
+  }
+}
+
 .char-image {
   border-radius: 5px;
   margin-top: 45px;
@@ -85,16 +98,49 @@ ul {
   width: 22rem;
   margin-left: 4rem;
   background-color: rgba(0,0,0,0.5);
-
+  position: relative;
+  border-radius: 10px;
 
   li {
     font-size: 18px;
   };
 
   label {
-    opacity: 0.7;
+    opacity: 1;
     color: var(--yellow);
     font-size: 17px;
+  }
+}
+
+.edit-camp-char-show {
+  font-size: 32px;
+  position: absolute;
+  z-index: 10;
+  top: 95px;
+  right: 30px;
+  border: none;
+  color:var(--yellow);
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  &:hover  {
+    background-size: 150% 150%;
+    color: var(--white);
+  }
+}
+
+.delete-camp-char-show {
+  position: absolute;
+  z-index: 10;
+  right: 28px;
+  top: 137px;
+  font-size: 38px;
+  border: none;
+  color:var(--rust);
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  &:hover  {
+    background-size: 150% 150%;
+    color: rgb(255, 0, 0)
   }
 }
 
@@ -190,20 +236,35 @@ ul {
 }
 
 .nav-tabs {
-  --bs-nav-tabs-link-active-color: var(--gray-dark);
-  --bs-nav-tabs-link-active-border-color: var(--gray-dark) var(--gray-dark);
+  --bs-nav-tabs-link-active-color: var(--yellow);
+  --bs-nav-tabs-link-active-border-color: var(--yellow) var(--yellow);
+  --bs-nav-tabs-link-active-border-radius: 5px;
+  --bs-nav-tabs-border-color: transparent;
+  --bs-nav-tabs-link-active-bg: var(--burgundy);
+
+ }
+
+ .nav-tabs .nav-link {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
  }
 
  .nav-link {
   color: #ffffff;
+  // border-top-left-radius: 10px;
+  // border-top-right-radius: 10px;
+
  }
 
 .nav {
   --bs-nav-link-color: var(--yellow);
-  --bs-nav-link-hover-color: white;
+  --bs-nav-link-hover-color: var(--gray-dark);
  }
 
 .tab-content {
   background-image: url('../../images/attribute_icons/vintage-grungy-textured-paper-background.jpg');
   color: var(--gray-dark);
+  max-height: 9rem;
+  overflow-y: scroll;
+
 }

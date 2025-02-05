@@ -1,6 +1,6 @@
 <div class="camp-container">
   <div class="camp-show-links">
-    <a class="back-btn-show" href="<%= (request.referer.present? && !request.referer.include?("/campaigns/new") ? request.referer : campaigns_path) %>"><i class="fa-regular fa-hand-point-left"></i></a>
+    <a class="back-btn-show" href="javascript:history.back()"><i class="fa-regular fa-hand-point-left"></i></a>
 
    <% if current_user == @campaign.user %>
       <% disable_button = @campaign.sessions.exists?(status: 'pending') %>
@@ -127,11 +127,13 @@
 
 <div class="invite-card ms-5">
   <% if policy(@campaign).invite? %>
-    <%= form_with model: [@campaign, @campaign_character], local: true do |form| %>
-      <h2>Invite Users to this Quest</h2>
+    <%= form_with url: campaign_campaign_characters_path(@campaign), method: :post,
+                  data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" },
+                  id: "invite" do |form| %>
+      <h2>Invite Adventurers to this Quest</h2>
       <div class="d-flex col-md-3 row g-4">
         <%= form.label :user_id, 'Select a player to invite:' %>
-        <%= form.collection_select :user_id,
+        <%= form.collection_select 'campaign_character[user_id]',
           User.where.not(id: @campaign.campaign_characters.pluck(:user_id) + [@campaign.user.id]),
           :id, :nickname,
           { prompt: "Select a player" },
@@ -141,6 +143,10 @@
     <% end %>
   <% end %>
 </div>
+
+<%# <div id="flash"> %>
+  <%# <%= render "shared/flashes", notice: flash[:notice], alert: flash[:alert] %>
+<%# </div> %>
 
 <% if current_user == @campaign.user || @campaign.campaign_characters.any? { |cc| current_user == cc.user } %>
   <div data-controller="chatbox" class="chat-container">

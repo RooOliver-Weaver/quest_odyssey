@@ -1,5 +1,7 @@
 require 'json'
 
+Session.delete_all
+Notification.delete_all
 Message.delete_all
 CampaignCharacter.delete_all
 CharacterSession.delete_all

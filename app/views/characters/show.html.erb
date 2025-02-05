@@ -93,6 +93,9 @@
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Attacks</button>
           </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Traits</button>
+          </li>
         </ul>
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="Bio-tab" tabindex="0">A nimble-fingered rogue with a sharp tongue and a sharper dagger, Lila thrives on mischief and the thrill of the unknown. Born to a nomadic halfling clan, she learned early that life is a game best played with a wink and a well-timed escape. Whether relieving a pompous noble of his purse or spinning elaborate cons in roadside taverns, Lila dances on the fine edge between fortune and folly.</div>
@@ -104,16 +107,14 @@
           </ul>
           </div>
           <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="Attacks-tab" tabindex="0">
-            <ul>Melee Attacks:</ul>
-              <li>🔹 Rapier (Finesse, 1d8 Piercing, Single Target)
-                <li>Attack Bonus: +5</li>
-                <li>Damage: 1d8 + 3 piercing</li>
-              </li>
-              <li>Dagger (Finesse, Light, Thrown 20/60, 1d4 Piercing)
-                <li>Attack Bonus: +5</li>
-                <li>Damage: 1d4 + 3 piercing</li>
-              </li>
+            <ul>Attacks:</ul>
+              <% @character.attacks.each do |attack| %>
+              <li><%= attack['name'] %></li>
+              <li><%= attack['damage'] %></li>
+              <% end %>
             </ul>
+          <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="Traits-tab" tabindex="0">
+
           </div>
         </div>
       </div>

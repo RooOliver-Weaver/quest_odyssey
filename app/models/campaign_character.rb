@@ -3,6 +3,7 @@ class CampaignCharacter < ApplicationRecord
   belongs_to :user
   belongs_to :character, optional: true
   has_many :messages
+  has_many :character_sessions
   validates :user_id, presence: true
 
   after_create_commit :broadcast_message

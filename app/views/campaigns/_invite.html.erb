@@ -1,10 +1,9 @@
 
-  <div class="invite-card ">
+  <div >
     <% if policy(@campaign).invite? %>
       <%= form_with model: [@campaign, @campaign_character], local: true do |form| %>
-        <h3>Invite Users to this Campaign</h3>
-        <div class="d-flex col-md-3 row g-4">
-          <%= form.label :user_id, 'Select a player to invite:' %>
+        <div class="invite-card">
+          <%= form.label :user_id, 'Select a player to invite:' , class: "m-3"%>
           <%= form.collection_select :user_id,
             User.where.not(id: @campaign.campaign_characters.pluck(:user_id) + [@campaign.user.id]),
             :id, :nickname,

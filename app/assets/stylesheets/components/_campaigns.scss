@@ -37,10 +37,11 @@
   .campaign-card {
     background-color: var(--green);
     // padding: 20px;
-    margin: 20px;
+    margin: 10px;
     height: 150px;
     display: flex;
     align-items: center;
+    border: 1px solid white;
   }
 
   .campaign-card-image {
@@ -50,6 +51,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    width: 200px;
     // right: 0;
     // top: 0;
     overflow: hidden;
@@ -66,11 +68,11 @@
 
   .campaign-card-content {
     flex: 1;
-    // padding: 10px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: stretch;
+    align-items: center;
     text-align: center;
   }
 }

@@ -70,15 +70,15 @@
   <% end %>
 <div class="invites">
     <div class="pending-invites">
-      <h3>Pending Invites</h3>
+      <h4 class="title">Pending Invites</h4>
 
     <div class="invite-content">
       <% @pending_invites.each do |invite| %>
         <p><%= invite.campaign.user.nickname %> invited you to join <%= link_to invite.campaign.name, campaign_path(invite.campaign) %></p>
 
         <%= form_with url: campaign_character_path(invite), method: :patch, local: true do |form| %>
-          <h3>Select a Character to Join the Campaign</h3>
-          <%= form.collection_select :character_id, current_user.characters, :id, :name, prompt: "Choose a character" %>
+          <p>Select a Character to Join the Campaign</p>
+          <%= form.collection_select :character_id, current_user.characters, :id, :name, prompt: "Choose a character", class: "colour-dropdown" %>
           <%= form.hidden_field :invite, value: true %>
           <%= form.submit "Accept" %>
         <% end %>
@@ -90,7 +90,7 @@
         <p><%= invite.session.campaign.user.nickname %> has called you to adventure on <%= link_to invite.session.date, campaign_sessions_path(invite.session)%>!</p>
 
         <%= form_with url: campaign_session_character_session_path(invite.session.campaign.id, invite.session.id, invite.id), method: :patch, local: true do |form| %>
-          <h3>Return to the adventure? </h3>
+          <p>Return to the adventure? </p>
           <%= form.hidden_field :status, value: "confirmed" %>
           <%= form.submit "Accept" %>
         <% end %>
@@ -98,19 +98,19 @@
                     campaign_session_character_session_path(invite.session.campaign.id, invite.session.id, invite.id),
                     method: :patch,
                     params: { status: "cancelled" },
-                    data: { confirm: "Are you sure you want to decline this invite?" } %>
+                    data: { confirm: "Are you sure you want to decline this invite?" }, class: "form-button" %>
       <% end %>
     </div>
   </div>
-  <div class="dm-aprovals">
-    <h3>DM Approvals</h3>
+  <div class="dm-approvals">
+    <h4 class="title">DM Approvals</h4>
     <div class="invite-content">
         <% @dm_messages.each do |message| %>
           <p><%= message.content %></p>
 
           <%= form_with url: session_approval_path(message.session), method: :patch, local: true do |form| %>
             <%= form.hidden_field :status, value: "confirmed" %>
-            <%= form.submit "Approve" %>
+            <%= form.submit "Approve", class: "cta-btn" %>
           <% end %>
 
           <%= button_to "Decline",
@@ -123,14 +123,14 @@
     </div>
     <div class="joined-campaigns">
 
-        <h3>Active Quests</h3>
+        <h4 class="title">Active Quests</h4>
         <div class="invite-content">
           <% @joined_campaigns.each do |campaign| %>
             <p>You are a member of <%= link_to campaign.campaign.name, campaign_path(campaign.campaign) %></p>
           <% end %>
 
 
-          <div class="calendar-container">
+          <div class="week-calendar-container">
             <%= week_calendar(number_of_weeks: 1) do |date| %>
               <%= date %>
             <% end %>

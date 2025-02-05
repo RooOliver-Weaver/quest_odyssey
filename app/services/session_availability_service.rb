@@ -1,6 +1,7 @@
 class SessionAvailabilityService
   def initialize(campaign)
     @campaign = campaign
+    @dm = @campaign.user
   end
 
   def fetch_player_availability
@@ -35,7 +36,7 @@ class SessionAvailabilityService
     if no_availability.any? && no_availability.length < @campaign.users.length
       { atleast_one_missing: "#{no_availability.join(", ")} has failed to provide their availability. Chastise them by messaging them." }
     elsif no_availability.length == @campaign.users.length
-      { all_missing: "None of your players have provided any availability. Try messaging them." }
+      { all_missing: "What a laggardly group of adventurers you have chosen. None have provided their availability. Chastise them messaging them." }
     else
       player_availability
     end

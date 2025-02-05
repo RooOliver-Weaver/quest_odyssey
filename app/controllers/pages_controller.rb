@@ -27,6 +27,7 @@ class PagesController < ApplicationController
         message = "All players have accepted for the session on #{session.date}. Venture forth?"
         @dm_session_full_attendance << [session, message]
       end
+    end
 
 
     @dm_session_cancellations = []

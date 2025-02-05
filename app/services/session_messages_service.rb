@@ -14,20 +14,26 @@ class SessionMessagesService
 
   def player_unavailable(unavailable_character)
     message_players = "#{unavailable_character.campaign_character.user.nickname} can not make #{@session.date} for #{@session.campaign}"
-    @players.each {|player| Notification.create!(user: player, message: message_players}
+    @players.each {|player| Notification.create!(user: player, message: message_players)
     Notification.create!(user: @dm, message: message_players)
     #message_dm = "#{unavailable_character.campaign_character.user.nickname} cannot make the next session. Venture forth anyway?"
     #Message.create!(user: @dm, session: @session, campaign: @session.campaign, content: message_dm, message_type: "dm_approval")
   end
 
-  def get_dm_approval
-    message = "All players have confirmed #{@session.date}. Do you approve this session?"
-    Message.create!(user: @dm, session: @session, campaign: @session.campaign, content: message, message_type: "dm_approval")
+  def all_confirmed
+    message = "All players have confirmed #{@session.date} for #{@session.campaign}. Rally yourselves."
+    @players.each {|player| Notification.create!(user: player, message: message) }
+    message_dm = "All players have confirmed #{@session.date} for #{@session.campaign}. Check your Dashboard to confirm this date."
+    Notification.create!(user: @dm, message: message, message_type: "dm_approval")
   end
 
   def session_confirm_or_reject(status)
     message = status == "confirmed" ? "Session Date - #{@session.date} approved by DM!" : "Session - #{@session.date} rejected by DM."
     @players.each {|player| Notification.create!(user: player, message: message) }
+    if status == "confirmed"
+      message_dm = "Session made for #{@session.date}"
+      Notification.create!(user: @dm, message: message_dm)
+    end
   end
 
   def no_date_found

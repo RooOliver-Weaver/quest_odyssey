@@ -33,5 +33,9 @@ class PagesController < ApplicationController
 
     @joined_campaigns = current_user.campaign_characters.where(invite: true)
     @characters = Character.where(user: current_user)
+
+    start_date = params.fetch(:start_date, Date.today).to_date
+    @sessions = Session.where(date: start_date.beginning_of_month..start_date.end_of_month)
+    @sessions = Session.where(campaign_id: @campaigns.select { |campaign| campaign.user == current_user })
   end
 end

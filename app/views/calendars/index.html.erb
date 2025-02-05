@@ -70,7 +70,7 @@
   </main>
 </div> %>
 
-<%= month_calendar(events: @sessions, attribute: :date) do |date, sessions| %>
+<%= month_calendar(events: @sessions.where("date <= ?", Date.today), attribute: :date) do |date, sessions| %>
   <%= date %>
   <% sessions.each do |session| %>
     <div class="session">

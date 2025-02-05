@@ -1,6 +1,7 @@
 class SessionAvailabilityService
   def initialize(campaign)
     @campaign = campaign
+    @dm = @campaign.user
   end
 
   def fetch_player_availability
@@ -42,18 +43,13 @@ class SessionAvailabilityService
   end
 
   def get_dm_availability
-    dm_availability = @campaign.dm.availability
+    dm_availability = @dm.availability
     return { dm_missing: "Woe to the DM who tries to rally others before they have themselves in order. Please update your availability." } if dm_availability.empty?
 
     availability_block = Hash.new(0)
     dm_availability.each { |time_slot| availability_block[time_slot] = 0 }
     availability_block
   end
-end
-
-
-
-
 
 
 end

@@ -36,4 +36,10 @@ class Campaign < ApplicationRecord
   rescue => e
     Rails.logger.error "Cloudinary deletion failed for campaign #{id}: #{e.message}"
   end
+
+  def self.purge_all_images
+    all.each do |campaign|
+      campaign.image.purge if campaign.image.attached?
+    end
+  end
 end

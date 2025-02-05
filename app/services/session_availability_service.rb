@@ -34,7 +34,9 @@ class SessionAvailabilityService
 
   def generate_availability_response(player_availability, no_availability)
     if no_availability.any? && no_availability.length < @campaign.users.length
-      { atleast_one_missing: "#{no_availability.join(", ")} has failed to provide their availability. Chastise them by messaging them." }
+      { atleast_one_missing: "# The dolts #{no_availability.join(", ")} have failed to provide their availability. Chastise them by messaging them." }
+    elsif no_availability.any? && no_availability.length == 1
+      { atleast_one_missing: " The dolt #{no_availability[0]} has failed to provide their availability. Chastise them by messaging them." }
     elsif no_availability.length == @campaign.users.length
       { all_missing: "What a laggardly group of adventurers you have chosen. None have provided their availability. Chastise them messaging them." }
     else

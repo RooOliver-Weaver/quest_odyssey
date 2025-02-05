@@ -4,4 +4,8 @@ class Session < ApplicationRecord
   has_many :characters, through: :campaign
   has_many :character_sessions, dependent: :destroy
   enum :status, { confirmed: 'confirmed', cancelled: 'cancelled', pending: 'pending' }
+
+  def start_time
+    date.to_date
+  end
 end

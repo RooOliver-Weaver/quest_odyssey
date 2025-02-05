@@ -29,7 +29,7 @@ class SessionSchedulerService
       @session.destroy!
       SessionMessagesService.new(@session).no_date_found
     else
-      deleted_date = @session.player_availability.sort.first[0]
+      deleted_date = @session.player_availability.sort_by { |key, value| -value }.first[0]
       response = @session.player_availability.delete(:deleted_date)
       save_session_availability_and_date(response)
     end
@@ -39,7 +39,7 @@ class SessionSchedulerService
 
     def save_session_availability_and_date(response)
       @session.player_availability = response
-      suggestion = response.sort.first[0]
+      suggestion = response.sort_by { |key, value| -value }.first[0]
       @session.date = suggestion
       if @session.save
         SessionMessagesService.new(@session).generate_invites

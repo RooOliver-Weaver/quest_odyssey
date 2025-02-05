@@ -1,6 +1,5 @@
 <div class="camp-container">
   <a class="back-btn-show" href="<%= (request.referer.present? && !request.referer.include?("/campaigns/new") ? request.referer : campaigns_path) %>"><i class="fa-regular fa-hand-point-left"></i></a>
-
     <% if current_user == @campaign.user %>
       <a class="edit-camp next-sess"href="<%= campaign_sessions_path(@campaign)%>"data-turbo-method="post"><i class="fa-regular fa-calendar-plus"></i></a>
     <% end %>
@@ -89,7 +88,7 @@
     <% end %>
   <% end %>
 </div>
-  
+
 <% if current_user == @campaign.user %>
   <%= button_to "Create Next Session", campaign_sessions_path(@campaign), class: "btn btn-secondary mx-2" %>
 <% end %>

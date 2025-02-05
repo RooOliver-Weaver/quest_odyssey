@@ -1,2 +1,81 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="home-page">
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1 class="site-title">Quest Odyssey</h1>
+    <h1>Your Quest Starts Here</h1>
+    <p>No more stress over scheduling—find the perfect time to game with your friends.</p>
+    <%= link_to 'Start Your Adventure', new_user_session_path, class: 'cta-btn' %>
+  </div>
+
+  <!-- How It Works Section -->
+  <div class="how-it-works">
+    <h2>Embark on Your Quest</h2>
+    <div class="how-it-works-content">
+      <div class="step">
+        <i class="fas fa-calendar-alt"></i>
+        <h3>Scan Availability</h3>
+        <p>Discover the perfect time for your next adventure with your friends.</p>
+      </div>
+      <div class="step">
+        <i class="fas fa-book"></i>
+        <h3>Create & Book</h3>
+        <p>Set up your game and book the session once you’ve found your time.</p>
+      </div>
+      <div class="step">
+        <i class="fas fa-users"></i>
+        <h3>Gather Your Party</h3>
+        <p>Start your quest by inviting friends and diving into the fun.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- For New Questies Section -->
+  <div class="new-questies">
+    <h2>Welcome, New Questie!</h2>
+    <p>Ready to start your quest? We're here to help you and your friends seamlessly plan, play, and chat your way through epic campaigns!</p>
+    <%= link_to 'Create Your Character', new_character_path, class: 'cta-btn' %>
+  </div>
+
+  <!-- Public Campaigns Section -->
+<div class="public-campaigns">
+  <h2>Gather Your Party!</h2>
+  <p>Check out some public campaigns for inspiration and get ready to create your own!</p>
+  <div class="public-campaigns-list">
+    <% @public_campaigns.each do |campaign| %>
+      <div class="public-campaign">
+        <div class="public-campaign-image">
+          <%= image_tag 'campaign-56.jpeg', class: "campaign-home-image" %>
+        </div>
+        <%# <div class="public-campaign-content"> %>
+          <h3><%= campaign.name %></h3>
+          <p class="campaign-home-description"><%= campaign.description %></p>
+        <%# </div> %>
+        <%= link_to 'Read More', campaign_path(campaign), class: 'cta-btn' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+  <!-- Benefits Section -->
+  <div class="benefits">
+    <h2>Why Quest Odyssey?</h2>
+    <ul>
+      <li>
+        <i class="fas fa-clock"></i> <strong>Save Time:</strong> Never stress about scheduling again.
+      </li>
+      <li>
+        <i class="fas fa-comments"></i> <strong>Easy Communication:</strong> Chat with your party without leaving the site.
+      </li>
+      <li>
+        <i class="fas fa-check-circle"></i> <strong>Quick Setup:</strong> Creating characters and campaigns has never been easier!
+      </li>
+    </ul>
+  </div>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <h3>Ready to Begin?</h3>
+    <%= link_to 'Join the Adventure!', new_user_registration_path, class: 'cta-btn' %>
+  </footer>
+</div>

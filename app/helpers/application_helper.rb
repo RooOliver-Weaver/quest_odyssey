@@ -25,4 +25,11 @@ module ApplicationHelper
       "wizard.jpg",
     ]
   end
+
+  def campaign_images
+    images = Dir.glob(Rails.root.join("public/campaigns/*")).map do |image|
+      File.basename(image)
+    end
+    images.map { |img| "/campaigns/#{img}" }
+  end
 end

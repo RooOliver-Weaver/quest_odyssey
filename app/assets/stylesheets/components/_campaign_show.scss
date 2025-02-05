@@ -8,8 +8,8 @@
 .camp-container{
   position: relative;
   height: 60rem;
-  padding: 3rem 5rem 5rem 5rem;
-  max-width: 75rem;
+  padding: 5rem;
+  width: 75rem;
   background-image: url('/assets/char-sheet-background.jpeg');
   margin: 2rem;
   background-size: 100% 100%;
@@ -20,7 +20,7 @@
   align-items: center;
 }
 .camp-card{
-  max-width: 55rem;
+  width: 55rem;
   padding: 0em 2rem;
   background-image: url('/assets/scroll-background.jpeg');
   background-size: contain;
@@ -35,6 +35,7 @@
 }
 .camp-show-links{
   position: relative;
+  margin: 2rem;
   width: 100%;
   height: 3rem;
   top: auto;

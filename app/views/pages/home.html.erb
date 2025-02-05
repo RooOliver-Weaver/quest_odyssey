@@ -44,7 +44,7 @@
     <% @public_campaigns.each do |campaign| %>
       <div class="public-campaign">
         <div class="public-campaign-image">
-          <%= image_tag 'campaign-56.jpeg', class: "campaign-home-image" %>
+          <%= image_tag campaign.image, class: "#{campaign.name}-image" %>
         </div>
         <%# <div class="public-campaign-content"> %>
           <h3><%= campaign.name %></h3>

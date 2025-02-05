@@ -1,9 +1,9 @@
 .camp-container{
-  height: 50em;
-  width: 75em;
+  height: 50rem;
+  width: 75rem;
   background-image: url('/assets/char-sheet-background.jpeg');
-  margin: 2em;
-  padding: 5em;
+  margin: 2rem;
+  padding: 5rem;
   background-size: contain;
   background-repeat: no-repeat;
   display: flex;
@@ -13,26 +13,26 @@
 
 }
 .camp-card{
-  width: 55em;
-  padding: 0em 2em;
+  width: 55rem;
+  padding: 0em 2rem;
   background-image: url('/assets/scroll-background.jpeg');
   background-size: contain;
-  height: 27em;
-  border-radius: 0.5em;
+  height: 27rem;
+  border-radius: 0.5rem;
   h3{
     text-align: center;
     color: black;
-    padding: 1em;
+    padding: 1rem;
   }
 }
 .camp-show-links{
-  width: 60em;
-  height: 3em;
+  width: 60rem;
+  height: 3rem;
   position: absolute;
-  top: 7em;
+  top: 7rem;
 }
 .back-btn-show,.next-sess{
-  font-size: 3em;
+  font-size: 3rem;
   color:var(--yellow);
   &:hover  {
     color: var(--white);
@@ -40,20 +40,18 @@
 }
 
 .camp-tab-content{
-  height: 22em;
-  max-height: 15em;
+  height: 22rem;
+  max-height: 15rem;
   overflow-y:scroll;
   color: black;
-  padding: 0em 2em;
+  padding: 1rem 2rem;
 }
 #campaignTab {
-  padding: 0em 2em;
+  padding: 0rem 2rem;
 }
 .show-avatars{
   display: flex;
 }
-
-
 
 .edit-camp-btn {
   font-size: 1em;
@@ -98,4 +96,18 @@
 
 .show-avatars{
   display: flex;
+}
+
+.tab-content::-webkit-scrollbar {
+  width: 8px; 
+}
+
+.tab-content::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+
+.tab-content::-webkit-scrollbar-track {
+  background: transparent;
 }

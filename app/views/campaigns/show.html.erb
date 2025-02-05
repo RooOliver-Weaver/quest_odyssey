@@ -41,8 +41,15 @@
 
             <% if cc.character %>
               <li class="d-flex">
-                <%= link_to cc.character.user.nickname, character_path(cc.character), class:"avatar-campaign" %>
+                  <div class="avatar-campaign">
+                  <% if cc.character.portrait.attached? %>
+                    <%= cl_image_tag cc.character.portrait.key, alt: "Character Portrait" %>
+                  <% else %>
+                    <%= image_tag 'default_character.jpeg', alt: "Default Character" %>
+                  <% end  %>
+                </div>
                 <%= link_to cc.character.name, character_path(cc.character) %>
+                <%= link_to cc.character.user.nickname, character_path(cc.character) %>
               </li>
             <% end %>
 
@@ -75,6 +82,22 @@
 </div>
 
 
+<div class="invite-card ms-5">
+  <% if policy(@campaign).invite? %>
+    <%= form_with model: [@campaign, @campaign_character], local: true do |form| %>
+      <h3>Invite Users to this Campaign</h3>
+      <div class="d-flex col-md-3 row g-4">
+        <%= form.label :user_id, 'Select a player to invite:' %>
+        <%= form.collection_select :user_id,
+          User.where.not(id: @campaign.campaign_characters.pluck(:user_id) + [@campaign.user.id]),
+          :id, :nickname,
+          { prompt: "Select a player" },
+          { required: true } %>
+        <%= form.submit "Send Invite", class:"new-btn invite-btn" %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
 
 
 <% if current_user == @campaign.user || @campaign.campaign_characters.any? { |cc| current_user == cc.user } %>

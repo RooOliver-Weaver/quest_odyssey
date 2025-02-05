@@ -61,3 +61,8 @@ a {
   width: calc(100% - 6.25rem);
   transition: width var(--speed);
 }
+
+.dashboard-container {
+  padding-left: 20px;
+  padding-bottom: 20px
+}

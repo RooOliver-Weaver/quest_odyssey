@@ -11,7 +11,7 @@
 }
 
 .day-header{
-  padding: 10px;
+  padding: 0.5em;
   background-color: var(--green);
   border-bottom: 2px solid #cccccc3e;
   border-radius: 0.3em;
@@ -20,24 +20,51 @@
     background-color: var(--rust);
   }
 }
+.availability-container{
+  width: 50rem;
+  margin: auto;
+}
 .availability-header{
   display: grid;
-  grid-template-columns: repeat(7, minmax(100px, 1fr));
-  grid-gap:0.5em;
+  grid-template-columns: repeat(7, minmax(6rem, 1fr));
+  grid-gap:1em;
   text-align: center;
+  margin-bottom: 1em;
 
 }
 .availability-slot {
   margin-top: 0.4em;
   display: grid;
-  grid-template-columns: repeat(7, 1fr); /* 7 columns for each weekday */
-  grid-template-rows: repeat(3, 1fr); /* 3 rows for morning, midday, evening */
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   gap: 1rem;
   text-align: center;
-  padding: 10px;
-  background-color: var(--green);
-  border-radius: 0.3em;
+  background-color: transparent;
+
 }
-.apple{
-  border-bottom: 2px solid #cccccc3e;
+
+.tag-selector {
+  position: absolute;
+  transform: scale(0);
+}
+
+.tag-selector + label {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  border-radius: 5rem;
+  padding: 0.7rem;
+  background-color: var(--yellow);
+  color: var(--rust);
+  border: 1px solid var(--rust);
+
+  &:hover{
+    background-color: var(--rust);
+    color: var(--yellow);
+  }
+}
+
+.tag-selector:checked + label {
+  background-color: var(--rust);
+  color: var(--yellow);
 }

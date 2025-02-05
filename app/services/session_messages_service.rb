@@ -15,7 +15,7 @@ class SessionMessagesService
   def player_unavailable(unavailable_character)
     message_dm = "#{unavailable_character.campaign_character.user.nickname} cannot make the next session. Venture forth anyway?"
     Message.create!(user: @dm, session: @session, campaign: @session.campaign, content: message_dm, message_type: "dm_approval")
-    message_players = "#{unavailable_character.campaign_character.user.nickname} can not make #{@session.date}"
+    message_players = "#{unavailable_character.campaign_character.user.nickname} can not make #{@session.date} for #{@session.campaign}"
     @players.each {|player| Message.create!(user: player, session: @session, campaign: @session.campaign, content: message_players, message_type: "player_notifcation")}
   end
 

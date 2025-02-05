@@ -1,6 +1,6 @@
 class CampaignsController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_campaign, only: %i[show edit update destroy]
+  before_action :set_campaign, only: %i[show edit update destroy append_note append_dm_note]
   before_action :authorize_user, only: %i[edit update destroy]
 
   def index
@@ -15,6 +15,7 @@ class CampaignsController < ApplicationController
   def show
     @campaign_character = CampaignCharacter.new
     @message = Message.new
+    @personal_notes_character = current_user.campaign_characters.find_by(campaign: @campaign)
   end
 
   def new
@@ -51,6 +52,52 @@ class CampaignsController < ApplicationController
   def destroy
     @campaign.destroy!
     redirect_to campaigns_path
+  end
+
+  def append_note
+    if params[:campaign][:notes].present?
+
+      new_note = "#{current_user.nickname} (#{Time.current.strftime('%d/%m')}): #{params[:campaign][:notes]}"
+      updated_notes = [@campaign.notes.to_s, new_note].reject(&:blank?).join("\n")
+
+      if @campaign.update(notes: updated_notes)
+        respond_to do |format|
+          format.turbo_stream { render partial: "campaigns/append_note", locals: { campaign: @campaign } }
+          format.html { redirect_to campaign_path(@campaign), notice: "Note added!" }
+        end
+      else
+        respond_to do |format|
+          format.html { redirect_to campaign_path(@campaign), alert: "Failed to add note." }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to campaign_path(@campaign), alert: "Failed to add note." }
+      end
+    end
+  end
+
+  def append_dm_note
+    if params[:campaign][:dm_notes].present?
+
+      new_note = "(#{Time.current.strftime('%d/%m')}): #{params[:campaign][:dm_notes]}"
+      updated_notes = [@campaign.dm_notes.to_s, new_note].reject(&:blank?).join("\n")
+
+      if @campaign.update(dm_notes: updated_notes)
+        respond_to do |format|
+          format.turbo_stream { render partial: "campaigns/append_dm_note", locals: { campaign: @campaign } }
+          format.html { redirect_to campaign_path(@campaign), notice: "DM Note added!" }
+        end
+      else
+        respond_to do |format|
+          format.html { redirect_to campaign_path(@campaign), alert: "Failed to add DM note." }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to campaign_path(@campaign), alert: 'Failed to add DM note.' }
+      end
+    end
   end
 
   private

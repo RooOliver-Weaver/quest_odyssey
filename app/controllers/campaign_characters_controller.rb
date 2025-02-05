@@ -6,12 +6,30 @@ class CampaignCharactersController < ApplicationController
     @campaign_character = @campaign.campaign_characters.new(campaign_character_params)
 
     if @campaign_character.save
-      # After saving the new campaign character, you may want to send the invite or take other actions
-      redirect_to campaign_path(@campaign), notice: 'Invite sent successfully.'
+      flash.now[:notice] = "Invitation sent!"
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace("invite", partial: "campaigns/invite", locals: { campaign: @campaign, campaign_character: CampaignCharacter.new }),
+            turbo_stream.update("flash", partial: "shared/flashes", locals: { notice: flash[:notice], alert: flash[:alert] })
+          ]
+        end
+        format.html { redirect_to campaign_path(@campaign), notice: "Invitation sent!" }
+      end
     else
-      render 'campaigns/show', alert: 'Failed to send invite.'
+      flash.now[:alert] = "Failed to send invite."
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace("invite", partial: "campaigns/invite", locals: { campaign: @campaign, campaign_character: CampaignCharacter.new }),
+            turbo_stream.update("flash", partial: "shared/flashes", locals: { notice: flash[:notice], alert: flash[:alert] })
+          ]
+        end
+        format.html { redirect_to campaign_path(@campaign), alert: "Failed to send invite." }
+      end
     end
   end
+
 
   def update
     invite = current_user.campaign_characters.find(params[:id])

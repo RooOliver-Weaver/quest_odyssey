@@ -1,6 +1,6 @@
 <div class="camp-container">
   <div class="camp-show-links">
-    <a class="back-btn-show" href="<%= (request.referer.present? && !request.referer.include?("/campaigns/new") ? request.referer : campaigns_path) %>"><i class="fa-regular fa-hand-point-left"></i></a>
+    <a class="back-btn-show" href="javascript:history.back()"><i class="fa-regular fa-hand-point-left"></i></a>
 
    <% if current_user == @campaign.user %>
       <% disable_button = @campaign.sessions.exists?(status: 'pending') %>
@@ -73,7 +73,7 @@
         <%= form_with model: @campaign, url: append_note_campaign_path(@campaign),
                       method: :patch,
                       data: { turbo: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |form| %>
-          <%= form.text_area :notes, value: "" %>
+          <%= form.text_area :notes, value: "", style: "width: 100%; height: 5%;" %>
           <%= form.submit "Save Party Note", class: "new-btn" %>
         <% end %>
       </div>
@@ -86,7 +86,7 @@
         <%= form_with model: @campaign, url: append_dm_note_campaign_path(@campaign),
                       method: :patch,
                       data: { turbo: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |form| %>
-          <%= form.text_area :dm_notes, value: "" %>
+          <%= form.text_area :dm_notes, value: "", style: "width: 100%; height: 5%;" %>
           <%= form.submit "Save DM Note", class: "new-btn" %>
         <% end %>
       </div>
@@ -103,7 +103,7 @@
                         url: append_personal_note_campaign_campaign_character_path(@campaign, @personal_notes_character),
                         method: :patch,
                         data: { turbo: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |form| %>
-            <%= form.text_area :personal_notes, value: "" %>
+            <%= form.text_area :personal_notes, value: "", style: "width: 100%; height: 5%;" %>
             <%= form.submit "Add Personal Note", class: "new-btn" %>
           <% end %>
         </div>
@@ -135,6 +135,7 @@
       </div>
     </div>
 </div>
+
 
 <% if current_user == @campaign.user || @campaign.campaign_characters.any? { |cc| current_user == cc.user } %>
   <div data-controller="chatbox" class="chat-container">

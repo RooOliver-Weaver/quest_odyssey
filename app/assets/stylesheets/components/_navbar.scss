@@ -7,7 +7,7 @@
   width: 6.25rem;
   background-color: var(--green);
   float: left;
-  overflow-x: hidden;
+  // overflow-x: hidden;
   transition: width var(--speed);
   z-index: 1000;
   font-family: "Grenze Gotisch";
@@ -244,14 +244,15 @@
 .notification-menu {
   display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
+  bottom: 100%;
+  left: -80%;
   background-color: white;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   border: 1px solid var(--dark-green);
   width: auto;
   z-index: 1050;
+  color: var(--burgundy);
 }
 
 .notification-menu.show {
@@ -281,9 +282,9 @@
   position: relative;
 }
 
-.notification-button .badge {
-  display: none; /* Hide by default */
-}
+// .notification-button .badge {
+//   display: none; /* Hide by default */
+// }
 
 .notification-button .badge.show {
   display: inline-block; /* Show the badge when there are unread notifications */

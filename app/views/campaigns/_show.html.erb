@@ -1,12 +1,14 @@
 <div class="camp-container">
+<<<<<<< HEAD
   <div class="camp-show-links">
     <a class="back-btn-show" href="<%= (request.referer.present? && !request.referer.include?("/campaigns/new") ? request.referer : campaigns_path) %>"><i class="fa-regular fa-hand-point-left"></i></a>
 
-   <% if current_user == @campaign.user %>
-      <% disable_button = @campaign.sessions.exists?(status: 'pending') %>
+=======
+  <a class="back-btn-show" href="<%= (request.referer.present? && !request.referer.include?("/campaigns/new") ? request.referer : campaigns_path) %>"><i class="fa-regular fa-hand-point-left"></i></a>
+>>>>>>> 8b501f6c56eac72f6b82ea66d8cad47e1d543430
+    <% if current_user == @campaign.user %>
       <a class="edit-camp next-sess"href="<%= campaign_sessions_path(@campaign)%>"data-turbo-method="post"><i class="fa-regular fa-calendar-plus"></i></a>
     <% end %>
-
   </div>
 
   <h1><%= @campaign.name.capitalize %></h1>
@@ -65,6 +67,11 @@
         <% end %>
       </div>
 
+<<<<<<< HEAD
+      <div class="tab-pane fade " id="notes" role="tabpanel" aria-labelledby="notes" >
+        <p ><strong>Notes:</strong></p>
+        <p><%= @campaign.notes %></p>
+=======
       <div class="tab-pane fade " id="notes" role="tabpanel" aria-labelledby="notes">
         <p ><strong>Party Notes:</strong></p>
         <div id="notes_list">
@@ -74,8 +81,9 @@
                       method: :patch,
                       data: { turbo: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |form| %>
           <%= form.text_area :notes, value: "" %>
-          <%= form.submit "Save Party Note", class: "new-btn" %>
+          <%= form.submit "Save Party Note" %>
         <% end %>
+>>>>>>> 8b501f6c56eac72f6b82ea66d8cad47e1d543430
       </div>
 
       <div class="tab-pane fade" id="dm-notes" role="tabpanel" aria-labelledby="dm-notes">
@@ -87,10 +95,12 @@
                       method: :patch,
                       data: { turbo: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |form| %>
           <%= form.text_area :dm_notes, value: "" %>
-          <%= form.submit "Save DM Note", class: "new-btn" %>
+          <%= form.submit "Save DM Note" %>
         <% end %>
       </div>
 
+<<<<<<< HEAD
+=======
       <% if @personal_notes_character %>
         <div class="tab-pane fade" id="personal-notes" role="tabpanel" aria-labelledby="personal-notes">
           <p><strong>Personal Notes:</strong></p>
@@ -104,12 +114,13 @@
                         method: :patch,
                         data: { turbo: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |form| %>
             <%= form.text_area :personal_notes, value: "" %>
-            <%= form.submit "Add Personal Note", class: "new-btn" %>
+            <%= form.submit "Add Personal Note" %>
           <% end %>
         </div>
       <% end %>
 
 
+>>>>>>> 8b501f6c56eac72f6b82ea66d8cad47e1d543430
     </div>
 
   </div>
@@ -128,7 +139,7 @@
 <div class="invite-card ms-5">
   <% if policy(@campaign).invite? %>
     <%= form_with model: [@campaign, @campaign_character], local: true do |form| %>
-      <h2>Invite Users to this Quest</h2>
+      <h3>Invite Users to this Campaign</h3>
       <div class="d-flex col-md-3 row g-4">
         <%= form.label :user_id, 'Select a player to invite:' %>
         <%= form.collection_select :user_id,
@@ -142,11 +153,13 @@
   <% end %>
 </div>
 
-
-<%# <% if current_user == @campaign.user %>
-  <%# <% disable_button = @campaign.sessions.exists?(status: 'pending') %>
-  <%# <%= button_to "Create Next Session", campaign_sessions_path(@campaign), class: "btn btn-secondary mx-2", disabled: disable_button %>
-<%# <% end %>
+<<<<<<< HEAD
+=======
+<% if current_user == @campaign.user %>
+  <% disable_button = @campaign.sessions.exists?(status: 'pending') %>
+  <%= button_to "Create Next Session", campaign_sessions_path(@campaign), class: "btn btn-secondary mx-2", disabled: disable_button %>
+<% end %>
+>>>>>>> 8b501f6c56eac72f6b82ea66d8cad47e1d543430
 
 <% if current_user == @campaign.user || @campaign.campaign_characters.any? { |cc| current_user == cc.user } %>
   <div data-controller="chatbox" class="chat-container">

@@ -15,7 +15,7 @@
   --pink: hotpink;
   --gray-dark: #222;
   --gray: #343434;
-  --burgundy: #38090e;
+  --burgundy: #26120b;
   --teal: #101618;
   --green: #323e36;
   --rust: #b24b34;
@@ -60,4 +60,9 @@ a {
   // padding-left: 0.75rem;
   width: calc(100% - 6.25rem);
   transition: width var(--speed);
+}
+
+.dashboard-container {
+  padding-left: 20px;
+  padding-bottom: 20px
 }

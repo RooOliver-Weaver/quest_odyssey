@@ -37,7 +37,7 @@
 }
 
 .camp-info{
-  height: 9em;
+  height: 7em;
   width: 100%;
 
   h4{
@@ -69,11 +69,12 @@
   align-items: center;
   flex-wrap: nowrap;
   gap: 0.5em;
+  padding-bottom: 2em;
 }
 
 .avatar-campaign {
   border-radius: 50%;
-  background-color: #ffac00;
+  // background-color: #ffac00;
   box-shadow: 0 0 10px var(--green);
   width: 3em;
   height: 3em;
@@ -83,15 +84,16 @@
   overflow: hidden;
   position: relative;
   transition: transform 0.3s ease-in-out;
-}
-
-/* Overlapping Effect */
-.campaign-avatars .avatar-campaign {
-  margin-left: -0.8em; /* Adjust for overlap */
-}
-
-/* When hovering, bring avatar forward */
-.avatar-campaign:hover {
+  &:hover{
   z-index: 10;
   transform: scale(1.5);
+  }
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    object-position: top;
+  }
 }
+

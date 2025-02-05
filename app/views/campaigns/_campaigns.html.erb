@@ -18,12 +18,20 @@
         <h4><%= campaign.name %></h4>
         <p><%= campaign.setting %></p>
       </div>
-      
-      <div class="campaign-avatars">
+
+        <div class="campaign-avatars">
         <% campaign.campaign_characters.each do |cc| %>
           <% if cc.character %>
-            <div class="avatar-campaign">
-              <%= link_to cc.character.user.nickname, character_path(cc.character) %>
+            <div class="avatar-campaign index-avatar">
+              <% if cc.character.portrait.attached? %>
+                <%= link_to character_path(cc.character) do %>
+                  <%= cl_image_tag cc.character.portrait.key, alt: "Character Portrait" %>
+                <% end %>
+                  <% else %>
+                <%= link_to character_path(cc.character) do %>
+                  <%= image_tag 'default_character.jpeg', alt: "Default Character" %>
+                <% end %>
+              <% end  %>
             </div>
           <% end %>
         <% end %>

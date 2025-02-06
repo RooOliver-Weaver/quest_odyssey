@@ -36,13 +36,10 @@ class SessionSchedulerService
     log_debug("\nResponse object while in handle_availability", response)
 
     if response.length == 1 && response[:all_missing].present?
-      Rails.logger.debug "DEBUG: All players missing availability - #{response.inspect}\n"
       return error_response(response[:all_missing])
     elsif response.length == 1 && response[:atleast_one_missing].present?
       Rails.logger.debug "DEBUG: At least one player missing availability - #{response.inspect}\n"
-      return error_response(response[:atleast_one_missing])
     elsif response.length == 1 && response[:dm_missing].present?
-      Rails.logger.debug "DEBUG: DM missing availability - #{response.inspect}\n"
       return error_response(response[:dm_missing])
     end
 

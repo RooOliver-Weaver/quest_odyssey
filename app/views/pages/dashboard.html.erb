@@ -1,5 +1,5 @@
 <div class="dashboard-container">
-  <h1 class="username">Welcome <%= @user.nickname %></h1>
+  <h1 class="username">Welcome <span class="nickname"><%= @user.nickname %>...</span></h1>
   <div class="campaigns-container">
     <div class="title">
         <h2>My Quests</h2>
@@ -147,17 +147,27 @@
         </div>
     </div>
   </div>
-    <div class="current-sessions">
-      <div class="week-calendar-container">
-        <%= week_calendar(number_of_weeks: 1) do |date| %>
-          <%= date %>
+
+  <div class="current-sessions">
+    <div class="week-calendar-container">
+      <%= week_calendar(events: @sessions, attribute: :date, number_of_weeks: 1) do |date, sessions| %>
+        <%= date %>
+        <% sessions.each do |session| %>
+          <div class="session">
+            <ul>
+              <li><i class="fa-solid fa-shield"></i></li>
+            </ul>
+          </div>
         <% end %>
-      </div>
-      <div class="sessions">
-        <p><% @sessions.each do |session| %>
-          <%= session.date.to_date %>
-        <% end %></p>
-      </div>
+      <% end %>
+    <div class="sessions">
+      <h5>Future Quests</h5>
+      <p><% @sessions.each do |session| %>
+        <ul>
+        <li><%= session.date.to_date %>: <%= session.campaign.name %></li>
+        </ul>
+      <% end %></p>
+
     </div>
   </div>
 </div>

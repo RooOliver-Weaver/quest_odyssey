@@ -23,6 +23,12 @@ class ApplicationController < ActionController::Base
     @notifications = current_user.notifications.order(created_at: :desc).limit(10)
   end
 
+  protected
+
+  def after_sign_in_path_for(resource)
+    root_path
+  end
+
   # def set_time_zone
   #   Time.zone = current_user.time_zone
   # end

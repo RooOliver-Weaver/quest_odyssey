@@ -62,6 +62,12 @@
 #campaignTab {
   padding: 0rem 1rem;
 }
+
+#dm_notes_list, #notes_list, #personal_notes_list{
+  width:42rem ;
+  padding: 1rem;
+}
+
 .camp-show-btns{
   z-index: 10;
   display: flex;
@@ -87,4 +93,3 @@
   word-spacing: 0.5rem;
   letter-spacing: 0.1rem;
 }
-

@@ -85,3 +85,16 @@
   justify-content: center;
   margin-top: 40px;
 }
+
+.available-box{
+  height: 0.3rem;
+  border-radius: 30%;
+  background: var(--rust);
+
+}
+.unavailable-box{
+  height: 0.3rem;
+  border-radius: 30%;
+  background: var(--yellow);
+
+}

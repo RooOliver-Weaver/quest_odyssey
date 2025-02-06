@@ -30,8 +30,8 @@
     </div>
 
 
-  <div class="form-new">
-    <div class="form-inputs">
+  <div class="form-new" data-controller="toggle">
+    <div class="form-inputs d-none" data-toggle-target="form">
       <%= f.input :email, required: true, autofocus: true %>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -45,12 +45,14 @@
       <%= f.input :password_confirmation,
                   required: false,
                   input_html: { autocomplete: "new-password" } %>
-    
+
     </div>
 
-    <div class="form-actions">
-      <%= f.button :submit, "Update", class:"new-btn login-btn"%>
+    <div class="form-actions" id="availability-form">
+      <%= f.button :submit, "Update Availability", class:"new-btn login-btn" , id:"availability-page-button"%>
     </div>
+    <span class="change-password" data-action="click->toggle#toggle">Change password</span>
+
   </div>
 
 

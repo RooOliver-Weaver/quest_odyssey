@@ -10,15 +10,14 @@ export default class extends Controller {
   }
 
   markAsRead() {
-    fetch("/notifications/mark_as_read", {
+    console.log("markAsRead");
+    return fetch("/notifications/mark_as_read", {
       method: "PATCH",
       headers: { "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content }
     });
-    this.deleteReadNotifications();
   }
 
   toggle() {
-    this.markAsRead();
     if (this.dropdownTarget.style.display === "none" || this.dropdownTarget.style.display === "") {
       this.dropdownTarget.style.display = "block";
       this.dropdownTarget.classList.add("show");
@@ -32,8 +31,23 @@ export default class extends Controller {
     }
   }
 
+  async markNotificationAsRead(event) {
+    event.preventDefault();
+    const targetUrl = event.currentTarget.getAttribute("href");
+
+    try {
+      await this.markAsRead();  // Wait for marking as read to complete
+      await this.deleteReadNotifications();  // Wait for deletion to complete
+    } catch (error) {
+      console.error("Failed to process notification:", error);
+    }
+
+    window.location.href = targetUrl; // Now navigate
+  }
+
+
   deleteReadNotifications() {
-    fetch("/notifications/delete_read", {
+    return fetch("/notifications/delete_read", {
       method: "DELETE",
       headers: { "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content }
     });

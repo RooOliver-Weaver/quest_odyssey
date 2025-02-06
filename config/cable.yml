@@ -7,3 +7,4 @@ test:
 
 production:
   adapter: solid_cable
+  silence_polling: true

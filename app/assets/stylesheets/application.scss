@@ -60,9 +60,12 @@ a {
   // padding-left: 0.75rem;
   width: calc(100% - 6.25rem);
   transition: width var(--speed);
+  height: 100%;
 }
 
 .dashboard-container {
   padding-left: 20px;
-  padding-bottom: 20px
+  padding-bottom: 20px;
+  height: 100%;
+  width: 100%;
 }

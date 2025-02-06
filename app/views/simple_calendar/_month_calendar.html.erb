@@ -6,7 +6,7 @@
         <%= link_to calendar.url_for_previous_view do %>
           <i class="fa-solid fa-square-caret-left"></i>
         <% end %>
-        <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view %>
+        <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view, class: "button-today" %>
         <%= link_to calendar.url_for_next_view do %>
           <i class="fa-solid fa-square-caret-right"></i>
         <% end %>

@@ -74,7 +74,9 @@
   <%= date %>
   <% sessions.each do |session| %>
     <div class="session">
-      <%= session.status %> (Relay: <%= session.relay_count %>)
+      <ul>
+        <li><%= session.campaign.name %></li>
+      </ul>
     </div>
   <% end %>
 <% end %>

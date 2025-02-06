@@ -112,7 +112,11 @@ class SessionSchedulerService
       Rails.logger.debug "DEBUG: @session object keys - #{@session.keys}" if @session.is_a?(Hash)
       Rails.logger.debug "DEBUG: @session object content - #{@session.inspect}\n\n"
       SessionMessagesService.new(@session).generate_invites
-      success_response("Session created for #{@session.date}. Invites sent.")
+      day_and_timeslot = @session.date.split
+      timeslot = day_and_timeslot.last # “morning”, “midday”, or “evening”
+      session_date = Date.parse(@session.date)
+
+      success_response("Session created for #{session_date.strftime('%A, %d %b %Y')} at #{timeslot}. Invites sent.")
     else
       error_response("Failed to create session. Unknown error (Blame the Old Gods).")
     end

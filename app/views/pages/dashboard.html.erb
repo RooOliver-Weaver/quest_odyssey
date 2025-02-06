@@ -33,10 +33,10 @@
 
   <div class="characters-container">
     <div class="title">
-        <h2>My Characters</h2>
-      <%= link_to new_character_path do %>
+        <%= link_to new_character_path do %>
           <i class="fa-solid fa-plus" id="new-character-plus"></i>
         <% end %>
+        <h2>My Characters</h2>
     </div>
 
     <div class="characters-list">
@@ -144,14 +144,19 @@
           <% @joined_campaigns.each do |campaign| %>
             <p>You are a member of <%= link_to campaign.campaign.name, campaign_path(campaign.campaign) %></p>
           <% end %>
-
-
-          <div class="week-calendar-container">
-            <%= week_calendar(number_of_weeks: 1) do |date| %>
-              <%= date %>
-            <% end %>
-          </div>
         </div>
     </div>
-</div>
+  </div>
+  <div class="current-sessions">
+    <div class="week-calendar-container">
+      <%= week_calendar(number_of_weeks: 1) do |date| %>
+        <%= date %>
+      <% end %>
+    </div>
+    <div class="sessions">
+      <p><% @sessions.each do |session| %>
+        <%= session.date.to_date %>
+      <% end %></p>
+    </div>
+  </div>
 </div>

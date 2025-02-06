@@ -4,7 +4,7 @@
 
     <%= link_to campaign_path(campaign) do %>
       <% if campaign.image.attached? %>
-        <%= cl_image_tag campaign.image.key, alt: "#{campaign.name} image" %>
+        <%= cl_image_tag campaign.image.key, alt: "#{campaign.name} image", class: "index-image" %>
       <% else %>
         <%= image_tag('dnd_camp.png', alt: 'DnD Image') %>
       <% end %>

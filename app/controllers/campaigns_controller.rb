@@ -22,7 +22,6 @@ class CampaignsController < ApplicationController
 
   def new
     @campaign = Campaign.new
-    session[:return_to] = request.referer
   end
 
   def create

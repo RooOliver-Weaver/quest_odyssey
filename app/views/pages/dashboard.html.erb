@@ -1,5 +1,5 @@
 <div class="dashboard-container">
-  <h1 class="username">Welcome <%= @user.nickname %></h1>
+  <h1 class="username">Welcome <span class="nickname"><%= @user.nickname %>...</span></h1>
   <div class="campaigns-container">
     <div class="title">
         <h2>My Quests</h2>
@@ -15,7 +15,11 @@
             <%= link_to campaign_path(campaign) do %>
               <div class="campaign-card">
                 <div class="campaign-card-image">
-                  <%= image_tag campaign.image, class: "thumbnail" %>
+                  <% if campaign.image.attached? %>
+                    <%= cl_image_tag campaign.image.key, alt: "#{campaign.name} image", class: "thumbnail" %>
+                  <% else %>
+                    <%= image_tag('dnd_camp.png', alt: 'DnD Image',class: "thumbnail") %>
+                  <% end %>
                 </div>
                 <div class="campaign-card-content">
                   <h5 class="campaign-card-title"><%= campaign.name %></h5>
@@ -34,33 +38,37 @@
   <div class="characters-container">
     <div class="title">
         <h2>My Characters</h2>
-      <%= link_to new_character_path do %>
+        <%= link_to new_character_path do %>
           <i class="fa-solid fa-plus" id="new-character-plus"></i>
         <% end %>
     </div>
 
     <div class="characters-list">
-      <div class="characters">
-          <% @characters.each do |character| %>
-            <%= link_to character_path(character) do %>
-              <div class="character-card" >
-                <div class="character-card-image">
-                  <%= image_tag character.portrait, class: "thumbnail" %>
-                </div>
-                <div class="character-card-content">
-                  <h5 class="character-card-title"><%= character.name %></h5>
-                  <p class="character-card-text"><%= character.speciality %></p>
-                  <p class="character-card-text"><%= character.race %></p>
-                  <p class="character-card-text"><%= character.level %></p>
-                  <%# <%= link_to 'View Character', character_path(character), class: 'btn btn-primary' %>
-                </div>
+      <div class="characters char-title">
+        <% @characters.each do |character| %>
+          <%= link_to character_path(character) do %>
+            <div class="character-card" >
+              <div class="character-card-image">
+                <% if character.portrait.attached? %>
+                  <%= cl_image_tag character.portrait.key, class: "thumbnail" %>
+                <% else %>
+                  <%= image_tag('default_character.jpeg', alt: 'DnD Image',class: "thumbnail") %>
+                <% end %>
               </div>
-            <% end %>
+              <div class="character-card-content">
+                <h5 class="character-card-title"><%= character.name %></h5>
+                <p class="character-card-text"><%= character.speciality %></p>
+                <p class="character-card-text"><%= character.race %></p>
+                <p class="character-card-text"><%= character.level %></p>
+                <%# <%= link_to 'View Character', character_path(character), class: 'btn btn-primary' %>
+              </div>
+            </div>
           <% end %>
-        </div>
+        <% end %>
       </div>
     </div>
-</div>
+  </div>
+
 
 <div class="invites">
     <div class="pending-invites">
@@ -101,39 +109,39 @@
     <h4 class="title">DM Approvals</h4>
     <div class="invite-content">
 
-      <%if @dm_sessions_cancellations.any?%>
-        <% @dm_sessions_cancellations.each do |session, message| %>
-          <p><%= message %></p>
+    <%if @dm_sessions_cancellations.any?%>
+      <% @dm_sessions_cancellations.each do |session, message| %>
+        <p><%= message %></p>
 
-          <%= form_with url: session_approval_path(session), method: :patch, local: true do |form| %>
-            <%= form.hidden_field :status, value: "confirmed" %>
-            <%= form.submit "Approve", class: "cta-btn" %>
-          <% end %>
-
-          <%= button_to "Decline",
-              session_approval_path(session),
-              method: :patch,
-              params: { status: "cancelled" },
-              data: { confirm: "Are you sure you want to cancel this session?" } %>
+        <%= form_with url: session_approval_path(session), method: :patch, local: true do |form| %>
+          <%= form.hidden_field :status, value: "confirmed" %>
+          <%= form.submit "Approve", class: "cta-btn" %>
         <% end %>
-      <%end%>
 
-      <%if @dm_sessions_all_accepted.any?%>
-        <% @dm_sessions_all_accepted.each do |session, message | %>
-          <p><%= message %></p>
-
-          <%= form_with url: session_approval_path(session), method: :patch, local: true do |form| %>
-            <%= form.hidden_field :status, value: "confirmed" %>
-            <%= form.submit "Approve" %>
-          <% end %>
-
-          <%= button_to "Decline",
+        <%= button_to "Decline",
             session_approval_path(session),
             method: :patch,
             params: { status: "cancelled" },
             data: { confirm: "Are you sure you want to cancel this session?" } %>
+      <% end %>
+    <%end%>
+
+    <%if @dm_sessions_all_accepted.any?%>
+      <% @dm_sessions_all_accepted.each do |session, message | %>
+        <p><%= message %></p>
+
+        <%= form_with url: session_approval_path(session), method: :patch, local: true do |form| %>
+          <%= form.hidden_field :status, value: "confirmed" %>
+          <%= form.submit "Approve" %>
         <% end %>
-      <%end%>
+
+        <%= button_to "Decline",
+          session_approval_path(session),
+          method: :patch,
+          params: { status: "cancelled" },
+          data: { confirm: "Are you sure you want to cancel this session?" } %>
+      <% end %>
+    <%end%>
 
       </div>
     </div>
@@ -144,14 +152,31 @@
           <% @joined_campaigns.each do |campaign| %>
             <p>You are a member of <%= link_to campaign.campaign.name, campaign_path(campaign.campaign) %></p>
           <% end %>
-
-
-          <div class="week-calendar-container">
-            <%= week_calendar(number_of_weeks: 1) do |date| %>
-              <%= date %>
-            <% end %>
-          </div>
         </div>
     </div>
+  </div>
+
+  <div class="current-sessions">
+    <div class="week-calendar-container">
+      <%= week_calendar(events: @sessions, attribute: :date, number_of_weeks: 1) do |date, sessions| %>
+        <%= date %>
+        <% sessions.each do |session| %>
+          <div class="session">
+            <ul>
+              <li><i class="fa-solid fa-shield"></i></li>
+            </ul>
+          </div>
+        <% end %>
+      <% end %>
+    <div class="sessions">
+      <h5>Future Quests</h5>
+      <p><% @sessions.each do |session| %>
+        <ul>
+        <li><%= session.date.to_date %>: <%= session.campaign.name %></li>
+        </ul>
+      <% end %></p>
+
+    </div>
+  </div>
 </div>
 </div>

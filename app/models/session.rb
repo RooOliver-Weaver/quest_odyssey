@@ -6,6 +6,6 @@ class Session < ApplicationRecord
   enum :status, { confirmed: 'confirmed', cancelled: 'cancelled', pending: 'pending' }
 
   def start_time
-    date.to_date
+    self.date.start
   end
 end

@@ -109,7 +109,7 @@ class CampaignsController < ApplicationController
   end
 
   def campaign_params
-    params.require(:campaign).permit(:name, :setting, :description, :next_session, :notes, :active, :dm_notes, :image)
+    params.require(:campaign).permit(:name, :setting, :description, :next_session, :notes, :active, :public, :dm_notes, :image)
   end
 
   def authorize_user

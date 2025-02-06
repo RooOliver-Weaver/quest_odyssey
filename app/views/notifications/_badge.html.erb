@@ -1,6 +1,6 @@
 <% unread_notifications_count = user.notifications.where(read: false).count %>
 <% if unread_notifications_count > 0 %>
-  <span class="badge" data-notifications-target="badge" style="position: absolute; top: -5px; right: -5px; font-size: 0.7em;">
+  <span class="badge" data-notifications-target="badge">
     <%= unread_notifications_count %>
   </span>
 <% end %>

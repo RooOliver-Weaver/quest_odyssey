@@ -1,17 +1,26 @@
-document.addEventListener("DOMContentLoaded", function() {
-  const dayButtons = document.querySelectorAll('.day-button');
+import { Controller } from '@hotwired/stimulus'
 
-  dayButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const day = this.getAttribute('data-day');
-      const slotsDiv = document.getElementById(`${day}_slots`);
+export default class extends Controller {
 
-      // Toggle the visibility of the slots
-      if (slotsDiv.style.display === 'none' || !slotsDiv.style.display) {
-        slotsDiv.style.display = 'block';
-      } else {
-        slotsDiv.style.display = 'none';
-      }
+  connect() {
+    console.log("Hello from cal_controller");
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const dayButtons = document.querySelectorAll('.day-button');
+
+      dayButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const day = this.getAttribute('data-day');
+          const slotsDiv = document.getElementById(`${day}_slots`);
+
+          // Toggle the visibility of the slots
+          if (slotsDiv.style.display === 'none' || !slotsDiv.style.display) {
+            slotsDiv.style.display = 'block';
+          } else {
+            slotsDiv.style.display = 'none';
+          }
+        });
+      });
     });
-  });
-});
+  }
+}

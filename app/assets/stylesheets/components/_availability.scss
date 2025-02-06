@@ -69,3 +69,19 @@
   background-color: var(--rust);
   color: var(--yellow);
 }
+
+#availability-form {
+  display: flex;
+  justify-content: center;
+}
+
+#availability-page-button {
+  margin: 0;
+}
+
+.change-password {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}

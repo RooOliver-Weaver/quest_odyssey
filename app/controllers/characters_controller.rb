@@ -13,6 +13,7 @@ class CharactersController < ApplicationController
   def new
     @user = current_user
     @character = Character.new(user: @user)
+    session[:return_to] = request.referer
   end
 
   def create

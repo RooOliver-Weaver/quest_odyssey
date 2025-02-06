@@ -2,13 +2,17 @@
   <div class="camp-container">
     <div class="camp-show-links">
        <a class="back-btn-show" href="javascript:history.back()"><i class="fa-regular fa-hand-point-left"></i></a>
-
-    <% if current_user == @campaign.user %>
+        <% if current_user == @campaign.user %>
         <% disable_button = @campaign.sessions.exists?(status: 'pending') %>
-        <a class="next-sess"href="<%= campaign_sessions_path(@campaign)%>"data-turbo-method="post"><i class="fa-regular fa-calendar-plus"></i></a>
-      <% end %>
+          <a class="next-sess"
+            href="<%= campaign_sessions_path(@campaign) %>"
+            data-turbo-method="post"
+           <%= 'disabled="disabled"' if disable_button %>>
+            <i class="fa-regular fa-calendar-plus"></i>
+          </a>
+        <% end %>
+      </div>
 
-    </div>
 
     <h1><%= @campaign.name.capitalize %></h1>
     <div class="camp-card">
@@ -128,7 +132,6 @@
     </div>
   </div>
 </div>
-
 
 <% if current_user == @campaign.user || @campaign.campaign_characters.any? { |cc| current_user == cc.user } %>
   <div data-controller="chatbox" class="chat-container">

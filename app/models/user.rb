@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-
+  attr_accessor :current_password
   has_many :characters
   has_many :campaigns
   has_many :campaign_characters

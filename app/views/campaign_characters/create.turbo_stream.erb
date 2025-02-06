@@ -1,0 +1,5 @@
+<turbo-stream action="replace" target="invite">
+  <template>
+    <%= render partial: "campaigns/invite", locals: { campaign: @campaign, campaign_character: CampaignCharacter.new } %>
+  </template>
+</turbo-stream>

@@ -17,25 +17,21 @@ class PagesController < ApplicationController
       end
     end
 
-    @dm_sessions = Session.joins(:campaign).where(campaigns: { user_id: @user.id })
-
     @dm_sessions_all_accepted = []
+    @dm_sessions = Session.joins(:campaign).where(campaigns: { user_id: @user.id })
     @dm_sessions.each do |session|
-      character_sessions = session.character_sessions
-
-      if character_sessions.any? && character_sessions.all? { |cs| cs.status == "confirmed" }
+      if session.status == "pending" && session.character_sessions.all? { |cs| cs.status == "confirmed" }
         message = "All players have accepted for the session on #{session.date}. Venture forth?"
         @dm_sessions_all_accepted << [session, message]
       end
     end
-
 
     @dm_sessions_cancellations = []
     @dm_sessions.each do |session|
       canceled_characters = session.character_sessions.where(status: "cancelled").map do |character_session|
       character_session.campaign_character.user.nickname
       end
-      if canceled_characters.any?
+      if canceled_characters.any? && session.status == "pending"
         message = "#{canceled_characters.to_sentence} cannot make the next session. Venture forth anyway?"
         @dm_sessions_cancellations << [session, message]
       end

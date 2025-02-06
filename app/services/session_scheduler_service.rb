@@ -27,6 +27,7 @@ class SessionSchedulerService
     if @session.relay_count.zero?
       @session.destroy!
       SessionMessagesService.new(@session).no_date_found
+      return nil
     else
       reschedule_session
     end
@@ -70,10 +71,17 @@ class SessionSchedulerService
 
   def reschedule_session
     best_date = @session.player_availability.max_by { |_date, votes| votes }&.first
-    return  error_response("No more available time slots found. Players should update availability.") unless best_date
+    Rails.logger.debug "DEBUG: Do you even exist player availability:  - #{@session.player_availability}\n\n"
 
-    @session.player_availability.delete(best_date)
-    save_session_availability_and_date(@session.player_availability)
+    return  error_response("No more available time slots found. Players should update availability.") unless best_date
+    Rails.logger.debug "DEBUG: Best Date object class - #{best_date.class}"
+    Rails.logger.debug "DEBUG: Best object keys - #{best_date.keys}" if best_date.is_a?(Hash)
+    Rails.logger.debug "DEBUG: Best object content - #{best_date.inspect}\n\n"
+    new_player_availability = @session.player_availability.tap { |h| h.delete(best_date) }
+    Rails.logger.debug "DEBUG: New Player Availability object class - #{new_player_availability.class}"
+    Rails.logger.debug "DEBUG: New Player Availability object keys - #{new_player_availability.keys}" if new_player_availability.is_a?(Hash)
+    Rails.logger.debug "DEBUG: New Player Availability - #{new_player_availability.inspect}\n"
+    save_session_availability_and_date(new_player_availability)
   end
 
   def save_session_availability_and_date(response)
@@ -93,6 +101,7 @@ class SessionSchedulerService
     end
 
     @session.date = best_date
+    @session.status = "pending"
 
     if @session.save
       Rails.logger.debug "DEBUG: @session object being saved now \n"

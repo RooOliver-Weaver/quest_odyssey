@@ -44,7 +44,7 @@
       <div class="tab-content camp-tab-content"  id="campaignTabContent">
         <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details" >
           <p><%= @campaign.description %></p>
-          <p class="name-link">DM: <%= link_to @campaign.user.nickname %></p>
+          <p class="name-link">DM: <%= @campaign.user.nickname %></p>
         </div>
 
         <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members" >
@@ -53,16 +53,18 @@
             <div class="show-avatars">
 
               <% if cc.character %>
-                <li class="d-flex">
-                  <div class="avatar-campaign">
+                <li class="d-flex g-2">
+                  <div class="avatar-campaign member-avatar">
                     <% if cc.character.portrait.attached? %>
                       <%= cl_image_tag cc.character.portrait.key, alt: "Character Portrait" %>
                     <% else %>
                       <%= image_tag 'default_character.jpeg', alt: "Default Character" %>
                     <% end  %>
                   </div>
-                  <%= link_to cc.character.name, character_path(cc.character) %>
-                  <%= link_to " (#{cc.character.user.nickname})", character_path(cc.character), class:"name-link" %>
+                  <div class="member-spacing">
+                    <%= link_to cc.character.name, character_path(cc.character) %>
+                    <%= link_to " (#{cc.character.user.nickname})", character_path(cc.character), class:"name-link" %>
+                  </div>
                 </li>
               <% end %>
 

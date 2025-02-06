@@ -1,7 +1,7 @@
 <turbo-stream action="append" target="notifications">
   <template>
     <li>
-      <a class="dropdown-item" href="<%= notification.url %>">
+      <a class="dropdown-item" href="<%= notification.url %>" data-action="click->notifications#markNotificationAsRead" data-notification-id="<%= notification.id %>">
         <%= notification.message %>
         <% if notification.occurrence_count > 1 %>
           <span class="text-muted">(x<%= notification.occurrence_count %>)</span>

@@ -45,7 +45,6 @@ class PagesController < ApplicationController
     dm_sessions = Session.where(campaign_id: @campaigns.map(&:id))
     player_sessions = Session.joins(:character_sessions)
                         .where(character_sessions: { campaign_character_id: current_user.campaign_characters.select(:id) })
-    @sessions = dm_sessions + player_sessions
-    @sessions.uniq!
+    @sessions = (dm_sessions + player_sessions).uniq { |session| [session.date, session.campaign_id] }
   end
 end

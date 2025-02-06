@@ -2,7 +2,9 @@
 <div class= "container">
 <div class="border-container">
     <div class="image-container-character">
-    <a class="back-btn-char-show" href="javascript:history.back()"><i class="fa-regular fa-hand-point-left"></i></a>
+      <a class="back-btn-char-show" href="<%= request.referer.present? && URI(request.referer).path == new_character_path ? characters_path : request.referer %>">
+        <i class="fa-regular fa-hand-point-left"></i>
+      </a>
       <div class="character-image">
         <% if @character.portrait.attached? %>
           <%= cl_image_tag @character.portrait.key, class: "char-image" %>

@@ -5,11 +5,10 @@
         <i class="fa-regular fa-hand-point-left"></i>
       </a>
         <% if current_user == @campaign.user %>
-        <% disable_button = @campaign.sessions.exists?(status: 'pending') %>
-          <a class="next-sess"
-            href="<%= campaign_sessions_path(@campaign) %>"
-            data-turbo-method="post"
-           <%= 'disabled="disabled"' if disable_button %>>
+          <% disable_button = @campaign.sessions.exists?(status: 'pending') %>
+          <a class="next-sess <%= 'disabled-link' if disable_button %>"
+            href="<%= disable_button ? '#' : campaign_sessions_path(@campaign) %>"
+            data-turbo-method="<%= disable_button ? '' : 'post' %>">
             <i class="fa-regular fa-calendar-plus"></i>
           </a>
         <% end %>

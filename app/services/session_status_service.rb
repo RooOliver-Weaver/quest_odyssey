@@ -17,7 +17,6 @@ class SessionStatusService
     if confirmed_players == @session.character_sessions.length
       SessionMessagesService.new(@session).all_confirmed
       @session.status = "confirmed"
-      @session.update!
     end
   end
 

@@ -7,7 +7,8 @@ class NotificationsController < ApplicationController
   end
 
   def mark_as_read
-    current_user.notifications.where(read: false).update_all(read: true)
+    notification = current_user.notifications.find(params[:id])
+    notification.update(read: true)
     head :ok
   end
 

@@ -41,6 +41,7 @@ class CharactersController < ApplicationController
 
   def destroy
     @character.destroy!
+    redirect_to root_path
   end
 
   private

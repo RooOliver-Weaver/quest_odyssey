@@ -1,7 +1,9 @@
 <div class="camp-page-container">
   <div class="camp-container">
     <div class="camp-show-links">
-       <a class="back-btn-show" href="javascript:history.back()"><i class="fa-regular fa-hand-point-left"></i></a>
+      <a class="back-btn-show" href="<%= request.referer.present? && URI(request.referer).path == new_campaign_path ? campaigns_path : request.referer %>">
+        <i class="fa-regular fa-hand-point-left"></i>
+      </a>
         <% if current_user == @campaign.user %>
         <% disable_button = @campaign.sessions.exists?(status: 'pending') %>
           <a class="next-sess"

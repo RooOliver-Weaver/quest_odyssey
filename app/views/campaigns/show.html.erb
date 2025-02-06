@@ -1,7 +1,14 @@
 <div class="camp-page-container">
   <div class="camp-container">
     <div class="camp-show-links">
-      <a class="back-btn-show" href="<%= request.referer.present? && URI(request.referer).path == new_campaign_path ? campaigns_path : request.referer %>">
+      <a class="back-btn-show" href="<%=
+        if request.referer.present? &&
+          (URI(request.referer).path == new_campaign_path ||
+            URI(request.referer).path == edit_campaign_path ||
+            URI(request.referer).path == campaign_path(@campaign))
+        then campaigns_path
+        else request.referer
+        end %>">
         <i class="fa-regular fa-hand-point-left"></i>
       </a>
         <% if current_user == @campaign.user %>

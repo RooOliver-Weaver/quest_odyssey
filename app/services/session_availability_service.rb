@@ -7,9 +7,9 @@ class SessionAvailabilityService
   def fetch_player_availability
     response = get_dm_availability
     Rails.logger.debug "DEBUG: Response object class - #{response.class}"
-      Rails.logger.debug "DEBUG: Response object keys - #{response.keys}" if response.is_a?(Hash)
-      Rails.logger.debug "DEBUG: Response object content - #{response.inspect}"
-    if response[:dm_missing]
+    Rails.logger.debug "DEBUG: Response object keys - #{response.keys}" if response.is_a?(Hash)
+    Rails.logger.debug "DEBUG: Response object content - #{response.inspect}"
+    if response.length == 1 && response[:dm_missing].present?
       (Rails.logger.debug "DEBUG: Is the issue here? #{response} \n\n\n")
       Rails.logger.debug "DEBUG: Response object class - #{response.class}"
       Rails.logger.debug "DEBUG: Response object keys - #{response.keys}" if response.is_a?(Hash)
@@ -67,7 +67,7 @@ class SessionAvailabilityService
       Rails.logger.debug "DEBUG: Should appear of if ALL PLAYERS have not provided their availability"
       return { all_missing: "What a laggardly group of adventurers you have chosen. None have provided their availability. Chastise them messaging them." }
     else
-      Rails.logger.debug "DEBUG: Should appear of if ALL PLAYERS HAVE PROVIDED their availability #{player_availability}"
+      Rails.logger.debug "DEBUG: Should appear if ALL PLAYERS HAVE PROVIDED their availability #{player_availability}"
       return player_availability
     end
   end
@@ -81,7 +81,7 @@ class SessionAvailabilityService
     else
       Rails.logger.debug "DEBUG: Should appear ONLY IF DM HAS provided their availability #{dm_availability}"
       Rails.logger.debug "DEBUG: Response object class - #{dm_availability.class}"
-      Rails.logger.debug "DEBUG: Response object keys - #{dm_availability.keys}" if response.is_a?(Hash)
+      Rails.logger.debug "DEBUG: Response object keys - #{dm_availability.keys}" if dm_availability.is_a?(Hash)
       Rails.logger.debug "DEBUG: Response object content - #{dm_availability.inspect}"
       dm_availability.each_with_object(Hash.new(0)) { |time_slot, hash| hash[time_slot] = 0 }
     end

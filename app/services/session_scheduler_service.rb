@@ -89,6 +89,7 @@ class SessionSchedulerService
 
     @session.date = best_date
     @session.status = "pending"
+
     if @session.save!
       log_debug("\n #{@sesion} has now been saved",@session)
       if @session.character_sessions.empty?
@@ -98,7 +99,17 @@ class SessionSchedulerService
           character_session.update!(status: "pending")  # Use update! instead of save!
         end
       end
-      return success_response("Session created for #{@session.date}. Invites sent.")
+
+      day_and_timeslot = @session.date.split
+      timeslot = day_and_timeslot.last # “morning”, “midday”, or “evening”
+      session_date = Date.parse(@session.date)
+
+      if session_date <= Date.today
+        session_date = session_date + 1.week
+      end
+
+      success_response("Session created for #{session_date.strftime('%A, %d %b %Y')} at #{timeslot}. Invites sent.")
+
     else
       return error_response("Failed to create session. Unknown error (Blame the Old Gods).")
     end

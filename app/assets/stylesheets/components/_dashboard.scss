@@ -6,7 +6,7 @@
   position: fixed;
   bottom: 4rem;
   left: 8rem;
-  width: 55%;
+  width: 50%;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -25,6 +25,8 @@
   justify-content: center;
   align-items: center;
   color: var(--orange);
+  box-shadow: 0 0 10px rgba(255, 254, 254, 0.592);
+  border-radius: 0.5rem;
 
   .invite-content {
     margin-top: 40px;
@@ -54,6 +56,12 @@
   }
 }
 
+.dash-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
 .pending-invites button,
 .pending-invites input[type="submit"] {
   box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(110,80,20,.4),
@@ -65,6 +73,7 @@ color:var(--burgundy);
 text-shadow: 0 2px 2px rgba(250, 227, 133, 1);
 cursor: pointer;
 transition: all .2s ease-in-out;
+margin: 0.3rem;
 }
 
 .pending-invites button:hover,
@@ -99,12 +108,13 @@ transition: all .2s ease-in-out;
   position: fixed;
   display: flex;
   justify-content: flex-end;
-  width: 100%;
+  width: 30rem;
   margin-top: 10px;
   // border: 1px solid #ccc;
   right: 0;
   bottom: 2.5rem;
   z-index: 100;
+  padding-right: 1.5rem;
 }
 
 // .sessions {

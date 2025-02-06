@@ -82,7 +82,7 @@
   justify-content: space-between;
   width: 400px;
   margin: 20px;
-  right: 3rem;
+  // right: ;
 
   .sessions {
     font-size: 0.75rem;
@@ -92,6 +92,7 @@
   .simple-calendar {
     background-image: url('scroll-background.jpeg');
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     position: relative;
     background-color: transparent;
@@ -102,6 +103,7 @@
     left: 0;
     font-size: 0.75rem;
     color: var(--burgundy);
+    margin: 0 auto;
 
     .calendar-navigation {
       display: flex;

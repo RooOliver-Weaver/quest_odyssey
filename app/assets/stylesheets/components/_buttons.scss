@@ -107,3 +107,24 @@
   margin-top: 1.5rem;
   position: relative;
 }
+
+
+#party-modal {
+  position: absolute;
+  height: 35px;
+  font-size: 25px;
+  right: 215px;
+  top: 400px;
+  color: var(--yellow);
+  background-color: var(--burgundy);
+  border: 1px solid;
+  padding: 5px;
+  border-radius: 10px;
+  width: 35px;
+  transition:0.5s ease;
+}
+
+#party-modal:hover {
+  color: var(--gray-dark);
+  background-color: var(--yellow);
+}

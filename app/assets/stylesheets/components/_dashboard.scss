@@ -1,4 +1,11 @@
+.nickname {
+  color: var(--orange);
+}
+
 .invites {
+  position: fixed;
+  bottom: 4rem;
+  left: 8rem;
   width: 55%;
   display: flex;
   justify-content: space-between;
@@ -89,16 +96,20 @@ transition: all .2s ease-in-out;
 }
 
 .current-sessions {
+  position: fixed;
   display: flex;
-  justify-content: space-between;
-  width: 40%;
+  justify-content: flex-end;
+  width: 100%;
   margin-top: 10px;
-  border: 1px solid #ccc;
+  // border: 1px solid #ccc;
+  right: 0;
+  bottom: 4rem;
+  z-index: 100;
 }
 
-.sessions {
-  flex: 1;
-  width: 30%;
-  left: 40%;
-  margin: 0 auto;
-}
+// .sessions {
+//   flex: 1;
+//   width: 30%;
+//   left: 40%;
+//   margin: 0 auto;
+// }

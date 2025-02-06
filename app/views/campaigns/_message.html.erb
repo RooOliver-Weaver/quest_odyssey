@@ -1,6 +1,8 @@
 <div id="message-<%= message.id %>">
   <small>
-    <strong><%= message.user.nickname %> (<%= message.user == message.campaign.user ? "DM" : link_to(message.campaign.campaign_characters.find_by(user: message.user)&.character.name, character_path(message.campaign.campaign_characters.find_by(user: message.user)&.character)).html_safe %>)</strong>
+    <%# <strong><%= message.user.nickname (<%= message.user == message.campaign.user ? "DM" : link_to(message.campaign.campaign_characters.find_by(user: message.user)&.character.name, character_path(message.campaign.campaign_characters.find_by(user: message.user)&.character)).html_safe %>
+
+    <strong><%= message.user.nickname %> (<%= message.user == message.campaign.user ? "DM" : (char = message.campaign.campaign_characters.find_by(user: message.user)&.character) ? link_to(char.name, character_path(char)) : "Unknown Player" %>)</strong>
     <i><%= message.created_at.strftime("%l:%M %p") %></i>
   </small>
   <p><%= message.content %></p>

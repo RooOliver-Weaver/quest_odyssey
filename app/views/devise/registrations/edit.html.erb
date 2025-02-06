@@ -6,8 +6,8 @@
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
 
-  <%= start_of_week = Date.today.beginning_of_week(:monday) %>
-  <%= end_of_week = start_of_week + 6.days %>
+  <% start_of_week = Date.today.beginning_of_week(:monday) %>
+  <% end_of_week = start_of_week + 6.days %>
 
   <div class="availability-container">
 

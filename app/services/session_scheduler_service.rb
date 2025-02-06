@@ -22,6 +22,7 @@ class SessionSchedulerService
   end
 
   def update_session_date
+
     @session.relay_count -= 1
 
     if @session.relay_count.zero?
@@ -70,7 +71,9 @@ class SessionSchedulerService
 
 
   def reschedule_session
+
     best_date = @session.player_availability.max_by { |_date, votes| votes }&.first
+
     Rails.logger.debug "DEBUG: Do you even exist player availability:  - #{@session.player_availability}\n\n"
     return  error_response("No more available time slots found. Players should update availability.") unless best_date
 
@@ -79,6 +82,7 @@ class SessionSchedulerService
     Rails.logger.debug "DEBUG: Best object content - #{best_date.inspect}\n\n"
 
     new_player_availability = @session.player_availability.tap { |h| h.delete(best_date) }
+
     Rails.logger.debug "DEBUG: New Player Availability object class - #{new_player_availability.class}"
     Rails.logger.debug "DEBUG: New Player Availability object keys - #{new_player_availability.keys}" if new_player_availability.is_a?(Hash)
     Rails.logger.debug "DEBUG: New Player Availability - #{new_player_availability.inspect}\n"
@@ -87,6 +91,7 @@ class SessionSchedulerService
   end
 
   def save_session_availability_and_date(response)
+
     Rails.logger.debug "\nDEBUG: Response object is now in Save Availability and Save Date (It should be as an availabilty hash)\n"
     Rails.logger.debug "DEBUG: Response object class - #{response.class}"
     Rails.logger.debug "DEBUG: Response object keys - #{response.keys}" if response.is_a?(Hash)
@@ -113,6 +118,17 @@ class SessionSchedulerService
       Rails.logger.debug "DEBUG: @session object content - #{@session.inspect}\n\n"
       SessionMessagesService.new(@session).generate_invites
       success_response("Session created for #{@session.date}. Invites sent.")
+      @session.campaign.users.each do |user|
+        existing_character_session = CharacterSession.find_by(session: @session, user: user)
+        if existing_character_session
+          existing_character_session.update!(status: "pending")
+        else
+        CharacterSession.create!(
+          session: @session,
+          user: user,
+          status: "pending"
+        )
+      end
     else
       error_response("Failed to create session. Unknown error (Blame the Old Gods).")
     end

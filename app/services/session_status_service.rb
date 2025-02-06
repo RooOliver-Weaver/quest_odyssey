@@ -44,9 +44,11 @@ class SessionStatusService
   private
 
   def update_character_sessions
-    @session.character_sessions.each do |character_session|
-      character_session.status = "pending"
-      character_session.save
+    def update_character_sessions
+      @session.character_sessions.each do |character_session|
+        character_session.update!(status: "cancelled") # Ensure status update is correct
+      end
+    end
     end
   end
 

@@ -21,9 +21,9 @@ class SessionMessagesService
   end
 
   def all_confirmed
-    message = "All players have confirmed #{@session.date} for #{@session.campaign}. Rally yourselves."
+    message = "All players have confirmed #{@session.date} for #{@session.campaign.name}. Rally yourselves."
     @players.each {|player| Notification.create!(user: player, message: message) }
-    message_dm = "All players have confirmed #{@session.date} for #{@session.campaign}. Check your Dashboard to confirm this date."
+    message_dm = "All players have confirmed #{@session.date} for #{@session.campaign.name}. Check your Dashboard to confirm this date."
     Notification.create!(user: @dm, message: message_dm)
   end
 

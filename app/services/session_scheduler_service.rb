@@ -9,21 +9,16 @@ class SessionSchedulerService
 
     @session = Session.new(campaign_id: @campaign.id)
     response = SessionAvailabilityService.new(@campaign).fetch_player_availability
-    Rails.logger.debug "DEBUG: response object has gone through fetch_player_availability and is back in SessionScedulerService \n"
-    Rails.logger.debug "DEBUG: Response object class - #{response.class}"
-    Rails.logger.debug "DEBUG: Response object keys - #{response.keys}" if response.is_a?(Hash)
-    Rails.logger.debug "DEBUG: Response object content - #{response.inspect} \n\n"
+    log_debug("\nResponse object after availability fetch", response)
 
     result = handle_availability_response(response)
-    Rails.logger.debug "DEBUG: Result object class - #{result.class}"
-    Rails.logger.debug "DEBUG: Result object keys - #{result.keys}" if result.is_a?(Hash)
-    Rails.logger.debug "DEBUG: Result object content - #{result.inspect}"
+    log_debug("\nResponse object after handle_availability", response)
+
     return result
   end
 
   def update_session_date
     @session.relay_count -= 1
-
     if @session.relay_count.zero?
       @session.destroy!
       SessionMessagesService.new(@session).no_date_found
@@ -33,15 +28,12 @@ class SessionSchedulerService
     end
   end
 
+
   private
 
   def handle_availability_response(response)
-    # Create a deep copy of the response object to avoid unintended modifications
     response = response.deep_dup
-    Rails.logger.debug "DEBUG: Response object is now in handle availability response \n - #{response}"
-    Rails.logger.debug "DEBUG: Response object class - #{response.class}"
-    Rails.logger.debug "DEBUG: Response object keys - #{response.keys}" if response.is_a?(Hash)
-    Rails.logger.debug "DEBUG: Received response content - #{response.inspect}\n\n"
+    log_debug("\nResponse object while in handle_availability", response)
 
     if response.length == 1 && response[:all_missing].present?
       Rails.logger.debug "DEBUG: All players missing availability - #{response.inspect}\n"
@@ -71,68 +63,70 @@ class SessionSchedulerService
 
   def reschedule_session
     best_date = @session.player_availability.max_by { |_date, votes| votes }&.first
-    Rails.logger.debug "DEBUG: Do you even exist player availability:  - #{@session.player_availability}\n\n"
+    log_debug("\nPlayer Availability while in reschedule_session",@session.player_availability)
+    log_debug("\n Date to be removed while in reschedule session",best_date)
     return  error_response("No more available time slots found. Players should update availability.") unless best_date
 
-    Rails.logger.debug "DEBUG: Best Date object class - #{best_date.class}"
-    Rails.logger.debug "DEBUG: Best object keys - #{best_date.keys}" if best_date.is_a?(Hash)
-    Rails.logger.debug "DEBUG: Best object content - #{best_date.inspect}\n\n"
 
     new_player_availability = @session.player_availability.tap { |h| h.delete(best_date) }
-    Rails.logger.debug "DEBUG: New Player Availability object class - #{new_player_availability.class}"
-    Rails.logger.debug "DEBUG: New Player Availability object keys - #{new_player_availability.keys}" if new_player_availability.is_a?(Hash)
-    Rails.logger.debug "DEBUG: New Player Availability - #{new_player_availability.inspect}\n"
+    log_debug("\nPlayer Availability updates",new_player_availability)
 
     save_session_availability_and_date(new_player_availability)
   end
 
   def save_session_availability_and_date(response)
-    Rails.logger.debug "\nDEBUG: Response object is now in Save Availability and Save Date (It should be as an availabilty hash)\n"
-    Rails.logger.debug "DEBUG: Response object class - #{response.class}"
-    Rails.logger.debug "DEBUG: Response object keys - #{response.keys}" if response.is_a?(Hash)
-    Rails.logger.debug "DEBUG: Response object content - #{response.inspect}\n"
-
+    log_debug("\nPlayer Availability in the save session method",response)
     @session.player_availability = response
     best_date = response.max_by { |_date, votes| votes }&.first
-    Rails.logger.debug "DEBUG: Best Date object class - #{best_date.class}"
-    Rails.logger.debug "DEBUG: Response object keys - #{best_date.keys}" if best_date.is_a?(Hash)
-    Rails.logger.debug "DEBUG: Response object content - #{best_date.inspect}\n\n"
+    log_debug("\n Best Date in save session ", best_date)
+
 
     unless best_date
-      Rails.logger.debug "DEBUG: No best date found - #{response.inspect}"
-      return error_response("No suitable date found. Please update availability.")
+      Rails.logger.debug "DEBUG: No best date found - #{best_date.inspect}"
+      @session.destroy!
+      return error_response("No suitable date found. Please tell players to update their availability.")
     end
 
     @session.date = best_date
     @session.status = "pending"
 
-    if @session.save
-      Rails.logger.debug "DEBUG: @session object being saved now \n"
-      Rails.logger.debug "DEBUG: @session object class - #{@session.class}"
-      Rails.logger.debug "DEBUG: @session object keys - #{@session.keys}" if @session.is_a?(Hash)
-      Rails.logger.debug "DEBUG: @session object content - #{@session.inspect}\n\n"
-      SessionMessagesService.new(@session).generate_invites
+    if @session.save!
+      log_debug("\n #{@sesion} has now been saved",@session)
+      if @session.character_sessions.empty?
+        SessionMessagesService.new(@session).generate_invites
+      else
+        @session.character_sessions.each do |character_session|
+          character_session.update!(status: "pending")  # Use update! instead of save!
+        end
+      end
+      
       day_and_timeslot = @session.date.split
       timeslot = day_and_timeslot.last # “morning”, “midday”, or “evening”
       session_date = Date.parse(@session.date)
 
       success_response("Session created for #{session_date.strftime('%A, %d %b %Y')} at #{timeslot}. Invites sent.")
+
     else
-      error_response("Failed to create session. Unknown error (Blame the Old Gods).")
+      return error_response("Failed to create session. Unknown error (Blame the Old Gods).")
     end
   end
 
   def error_response(message)
-    Rails.logger.debug "DEBUG: message object class - #{message.class}\n"
-    Rails.logger.debug "DEBUG: message object keys - #{message.keys}" if @session.is_a?(Hash)
-    Rails.logger.debug "DEBUG: message object content - #{message.inspect}\n\n"
+    log_debug("\n Error Message: #{message} in error response", message)
+
     { error: message }
   end
 
   def success_response(message)
-    Rails.logger.debug "DEBUG: message object class - #{message.class}\n"
-    Rails.logger.debug "DEBUG: message object keys - #{message.keys}" if @session.is_a?(Hash)
-      Rails.logger.debug "DEBUG: message object content - #{message.inspect}\n\n"
+    log_debug("\n Sucess Message: #{message} in success response", message)
     { success: message }
   end
+
+  def log_debug(message, object = nil)
+    Rails.logger.debug "DEBUG: #{message}"
+    Rails.logger.debug "DEBUG: Object class - #{object.class}" if object
+    Rails.logger.debug "DEBUG: message object keys - #{object.keys}" if object.is_a?(Hash)
+    Rails.logger.debug "DEBUG: Object content - #{object.inspect}\n\n" if object
+  end
+
 end

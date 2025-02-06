@@ -13,8 +13,9 @@ class PagesController < ApplicationController
     @pending_schedule_invites = []
     @user.campaign_characters.each do |campaign_character|
       campaign_character.character_sessions.each do |character_session|
-        @pending_schedule_invites.append(character_session) if character_session.pending?
+        @pending_schedule_invites.append(character_session) if character_session.pending? && character_session.session.pending?
       end
+    @pending_schedule_invites.uniq!
     end
 
     @dm_sessions_all_accepted = []

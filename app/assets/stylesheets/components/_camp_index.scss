@@ -1,5 +1,4 @@
 .camp-index{
-  // margin: auto;
   padding-right: 20px;
   padding-left: 25px;
   text-align: center;
@@ -29,6 +28,10 @@
   flex-direction: column;
   justify-content: space-between;
   margin: 2em;
+  &:hover {
+    transform: translateY(-10px) scale(1.03); // Moves up slightly and scales up
+    box-shadow: 0 0 20px rgba(255, 254, 254, 0.8); // Brighter glow effect
+  }
   img{
     height: 14em;
     width: 100%;
@@ -36,11 +39,9 @@
     margin-bottom: 1em;
   }
 }
-
 .camp-info{
   height: 7em;
   width: 100%;
-
   h4{
     padding-left: 10px;
     margin-bottom: 10px;
@@ -54,11 +55,6 @@
     color: white;
   }
 }
-
-.card-campaign:hover {
-  transform: scale(1.05);
-}
-
 .search-bar {
   margin: 2em;
   width: 25em;
@@ -72,7 +68,6 @@
   gap: 0.5em;
   padding-bottom: 2em;
 }
-
 .avatar-campaign {
   border-radius: 50%;
   // background-color: #ffac00;
@@ -95,5 +90,8 @@
     object-fit: cover;
     border-radius: 50%;
     object-position: top;
+  }
+  .avatar-campaign:hover & {
+    transform: translateY(20%);
   }
 }

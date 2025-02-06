@@ -1,16 +1,15 @@
 
-  <div >
-    <% if policy(@campaign).invite? %>
-      <%= form_with model: [@campaign, @campaign_character], local: true do |form| %>
-        <div class="invite-card">
-          <%= form.label :user_id, 'Select a player to invite:' , class: "m-3"%>
-          <%= form.collection_select :user_id,
-            User.where.not(id: @campaign.campaign_characters.pluck(:user_id) + [@campaign.user.id]),
-            :id, :nickname,
-            { prompt: "Select a player" },
-            { required: true } %>
-          <%= form.submit "Send Invite", class:"new-btn invite-btn" %>
-        </div>
-      <% end %>
-    <% end %>
 
+  <%= form_with url: campaign_campaign_characters_path(@campaign), method: :post,
+              data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" },
+              id: "invite" do |form| %>
+  <div class="invite-card">
+    <%= form.label :user_id, 'Select a player to invite:', class: "m-3" %>
+    <%= form.collection_select 'campaign_character[user_id]',
+      User.where.not(id: @campaign.campaign_characters.pluck(:user_id) + [@campaign.user.id]),
+      :id, :nickname,
+      { prompt: "Select a player" },
+      { required: true } %>
+    <%= form.submit "Send Invite", class:"new-btn invite-btn" %>
+  </div>
+<% end %>

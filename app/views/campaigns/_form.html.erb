@@ -3,8 +3,11 @@
     <%= f.input :name %>
     <%= f.input :setting %>
     <%= f.input :description, input_html: { class: "flexible-textarea" }  %>
-    <%= f.input :active, as: :boolean, default: false %>
-    <%= f.input :notes, input_html: { class: "flexible-textarea" }  %>
+    <div class="d-flex justify-content-between px-5">
+      <%= f.input :active, as: :boolean, default: false %>
+      <%= f.input :public, as: :boolean, default: false %>
+    </div>
+      <%= f.input :notes, input_html: { class: "flexible-textarea" }  %>
     <% if controller_name == 'campaigns' && action_name == 'new'%>
       <%= f.input :dm_notes, input_html: { class: "flexible-textarea" }  %>
     <% else %>

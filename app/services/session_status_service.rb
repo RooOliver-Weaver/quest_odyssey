@@ -28,13 +28,28 @@ class SessionStatusService
 
     if @session.cancelled?
       cancelled = { cancelled: "Session cancelled. Quest Odyssey will try and find the next best slot"}
+      update_character_sessions
       response = SessionSchedulerService.new(session: @session).update_session_date
-      response = response.merge(cancelled)
-      return response
+      if response == nil
+        cancelled = {cancelled: "Last Session Cancelled. We recommend that the DM makes a new session with the players' updated availabilites."}
+      else
+        response = response.merge(cancelled)
+        return response
+      end
     elsif @session.confirmed?
       return response = { success: "Session confirmed for #{@session.date}" }
     end
   end
+
+  private
+
+  def update_character_sessions
+    @session.character_sessions.each do |character_session|
+      character_session.status = "pending"
+      character_session.save
+    end
+  end
+
 
 
 

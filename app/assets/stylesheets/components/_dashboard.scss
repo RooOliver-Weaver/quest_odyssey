@@ -38,9 +38,9 @@
   }
 
   .title {
-    position: absolute;
     justify-self: center;
-    top: 10px;
+    display: flex;
+    justify-content: space-between;
     margin: 0 auto;
     color: white;
   }
@@ -107,9 +107,14 @@ transition: all .2s ease-in-out;
   z-index: 100;
 }
 
-// .sessions {
-//   flex: 1;
-//   width: 30%;
-//   left: 40%;
-//   margin: 0 auto;
-// }
+.sessions {
+  flex: 1;
+  width: 30%;
+  left: 40%;
+  margin: 0 auto;
+}
+.char-title {
+  display: flex;
+  justify-content: space-between;
+}
+

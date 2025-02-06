@@ -5,12 +5,12 @@ export default class extends Controller {
 
   connect() {
     this.setActiveOnPageLoad();
-    console.log("Navbar controller connected");
-    console.log("Home Target: ", this.homeTarget);
-    console.log("Characters Target: ", this.charactersTarget);
-    console.log("Campaigns Target: ", this.campaignsTarget);
-    console.log("Calendar Target: ", this.calendarTarget);
-    console.log("Navbar Target: ", this.navbarTarget);
+    // console.log("Navbar controller connected");
+    // console.log("Home Target: ", this.homeTarget);
+    // console.log("Characters Target: ", this.charactersTarget);
+    // console.log("Campaigns Target: ", this.campaignsTarget);
+    // console.log("Calendar Target: ", this.calendarTarget);
+    // console.log("Navbar Target: ", this.navbarTarget);
   }
 
   toggle(event) {

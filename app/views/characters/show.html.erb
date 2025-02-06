@@ -2,9 +2,7 @@
 <div class= "container">
 <div class="border-container">
     <div class="image-container-character">
-      <%= link_to characters_path, class: "back-btn-char-show" do  %>
-        <i class="fa-regular fa-hand-point-left"></i>
-      <% end %>
+    <a class="back-btn-char-show" href="javascript:history.back()"><i class="fa-regular fa-hand-point-left"></i></a>
       <div class="character-image">
         <% if @character.portrait.attached? %>
           <%= cl_image_tag @character.portrait.key, class: "char-image" %>

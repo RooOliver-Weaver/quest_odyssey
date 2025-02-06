@@ -18,9 +18,7 @@ class SessionSchedulerService
   end
 
   def update_session_date
-
     @session.relay_count -= 1
-
     if @session.relay_count.zero?
       @session.destroy!
       SessionMessagesService.new(@session).no_date_found
@@ -30,10 +28,10 @@ class SessionSchedulerService
     end
   end
 
+
   private
 
   def handle_availability_response(response)
-    # Create a deep copy of the response object to avoid unintended modifications
     response = response.deep_dup
     log_debug("\nResponse object while in handle_availability", response)
 
@@ -64,12 +62,11 @@ class SessionSchedulerService
 
 
   def reschedule_session
-
     best_date = @session.player_availability.max_by { |_date, votes| votes }&.first
     log_debug("\nPlayer Availability while in reschedule_session",@session.player_availability)
-
-    return  error_response("No more available time slots found. Players should update availability.") unless best_date
     log_debug("\n Date to be removed while in reschedule session",best_date)
+    return  error_response("No more available time slots found. Players should update availability.") unless best_date
+
 
     new_player_availability = @session.player_availability.tap { |h| h.delete(best_date) }
     log_debug("\nPlayer Availability updates",new_player_availability)
@@ -81,24 +78,24 @@ class SessionSchedulerService
     log_debug("\nPlayer Availability in the save session method",response)
     @session.player_availability = response
     best_date = response.max_by { |_date, votes| votes }&.first
-    log_debug("\n Best Date in save session ",@session.player_availability)
+    log_debug("\n Best Date in save session ", best_date)
 
 
     unless best_date
-      Rails.logger.debug "DEBUG: No best date found - #{response.inspect}"
+      Rails.logger.debug "DEBUG: No best date found - #{best_date.inspect}"
       @session.destroy!
       return error_response("No suitable date found. Please tell players to update their availability.")
     end
 
     @session.date = best_date
     @session.status = "pending"
-    if @session.save
+    if @session.update!
       log_debug("\n #{@sesion} has now been saved",@session)
       SessionMessagesService.new(@session).generate_invites
       SessionStatusService.new(@session).update_char_sessions_to_pen
-      success_response("Session created for #{@session.date}. Invites sent.")
+      return success_response("Session created for #{@session.date}. Invites sent.")
     else
-      error_response("Failed to create session. Unknown error (Blame the Old Gods).")
+      return error_response("Failed to create session. Unknown error (Blame the Old Gods).")
     end
   end
 

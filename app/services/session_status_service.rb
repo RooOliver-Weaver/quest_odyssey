@@ -16,9 +16,9 @@ class SessionStatusService
     end
     if confirmed_players == @session.character_sessions.length
       SessionMessagesService.new(@session).all_confirmed
-      @session.update!(status: "confirmed")
+      @session.status = "confirmed"
+      @session.update!
     end
-
   end
 
   def confirm_session(status)
@@ -28,8 +28,8 @@ class SessionStatusService
     SessionMessagesService.new(@session).session_confirm_or_reject(status)
 
     if @session.cancelled?
+      update_char_sessions_to_cancel
       cancelled = { cancelled: "Session cancelled. Quest Odyssey will try and find the next best slot"}
-      update_char_sessions_to cancel
       response = SessionSchedulerService.new(session: @session).update_session_date
       if response == nil
         cancelled = {cancelled: "Last Session Cancelled. We recommend that the DM makes a new session with the players' updated availabilites."}

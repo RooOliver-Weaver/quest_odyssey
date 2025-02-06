@@ -73,8 +73,8 @@
         </div>
 
         <div class="tab-pane fade " id="notes" role="tabpanel" aria-labelledby="notes">
-            <div id="notes_list">
             <p ><strong>Party Notes:</strong></p>
+            <div id="notes_list">
               <p><%= (simple_format(@campaign.notes) || "No party notes yet") %></p>
             </div>
             <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#partyNoteModal">
@@ -83,8 +83,8 @@
         </div>
 
         <div class="tab-pane fade" id="dm-notes" role="tabpanel" aria-labelledby="dm-notes">
-            <div id="dm_notes_list">
             <p><strong>DM Notes:</strong></p>
+            <div id="dm_notes_list">
               <p><%= (simple_format(@campaign.dm_notes) || "No DM notes yet") %></p>
             </div>
             <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#dmNoteModal">
@@ -94,8 +94,8 @@
 
         <% if @personal_notes_character %>
           <div class="tab-pane fade" id="personal-notes" role="tabpanel" aria-labelledby="personal-notes">
-              <div id="personal_notes_list">
               <p><strong>Personal Notes:</strong></p>
+              <div id="personal_notes_list">
                 <p><%= (simple_format(@personal_notes_character.try(:personal_notes)) || "No personal notes yet") %></p>
               </div>
               <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#personalNoteModal">

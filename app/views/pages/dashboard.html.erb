@@ -15,7 +15,11 @@
             <%= link_to campaign_path(campaign) do %>
               <div class="campaign-card">
                 <div class="campaign-card-image">
-                  <%= image_tag campaign.image, class: "thumbnail" %>
+                  <% if campaign.image.attached? %>
+                    <%= cl_image_tag campaign.image.key, alt: "#{campaign.name} image", class: "thumbnail" %>
+                  <% else %>
+                    <%= image_tag('dnd_camp.png', alt: 'DnD Image',class: "thumbnail") %>
+                  <% end %>
                 </div>
                 <div class="campaign-card-content">
                   <h5 class="campaign-card-title"><%= campaign.name %></h5>
@@ -39,13 +43,17 @@
         <% end %>
     </div>
 
-  <div class="characters-list">
-    <div class="characters char-title">
+    <div class="characters-list">
+      <div class="characters char-title">
         <% @characters.each do |character| %>
           <%= link_to character_path(character) do %>
             <div class="character-card" >
               <div class="character-card-image">
-                <%= image_tag character.portrait, class: "thumbnail" %>
+                <% if character.portrait.attached? %>
+                  <%= cl_image_tag character.portrait.key, class: "thumbnail" %>
+                <% else %>
+                  <%= image_tag('default_character.jpeg', alt: 'DnD Image',class: "thumbnail") %>
+                <% end %>
               </div>
               <div class="character-card-content">
                 <h5 class="character-card-title"><%= character.name %></h5>
@@ -170,4 +178,5 @@
 
     </div>
   </div>
+</div>
 </div>

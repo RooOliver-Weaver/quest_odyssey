@@ -1,4 +1,4 @@
-#inviteModal{
+.modal{
   margin: auto;
   h4{
     background: linear-gradient(90deg, #ffd700, #ffac00, #ffcc33, #ffd700);
@@ -24,4 +24,12 @@ margin-top: 1.5rem;
 .invite-btn{
   margin-left: 37%;
   margin-top: 1.5rem;
+}
+.notes-box{
+  background-color: rgba(0, 0, 0, 0.101);
+}
+.notes-box:focus {
+  outline: none; /* Removes default focus outline */
+  border-color: var(--green); /* Change border color */
+  box-shadow: 0 0 8px rgba(var(--green), 0.5); /* Soft green glow */
 }

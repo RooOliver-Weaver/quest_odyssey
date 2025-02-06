@@ -107,11 +107,9 @@
 
 
 #party-modal {
-  position: absolute;
+  position: relative;
   height: 35px;
   font-size: 25px;
-  right: 215px;
-  top: 400px;
   color: var(--yellow);
   background-color: var(--burgundy);
   border: 1px solid;
@@ -124,4 +122,7 @@
 #party-modal:hover {
   color: var(--gray-dark);
   background-color: var(--yellow);
+}
+.note-btn-container{
+  display: flex;
 }

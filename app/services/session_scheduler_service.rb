@@ -99,10 +99,14 @@ class SessionSchedulerService
           character_session.update!(status: "pending")  # Use update! instead of save!
         end
       end
-      
+
       day_and_timeslot = @session.date.split
       timeslot = day_and_timeslot.last # “morning”, “midday”, or “evening”
       session_date = Date.parse(@session.date)
+
+      if session_date <= Date.today
+        session_date = session_date + 1.week
+      end
 
       success_response("Session created for #{session_date.strftime('%A, %d %b %Y')} at #{timeslot}. Invites sent.")
 

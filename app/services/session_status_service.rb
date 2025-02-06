@@ -42,25 +42,6 @@ class SessionStatusService
     end
   end
 
-  def update_char_sessions_to_pen
-    @session.campaign.users.each do |user|
-      user.campaign_characters.each do |campaign_character|
-        existing_character_session = CharacterSession.find_by(session: @session, campaign_character: campaign_character)
-        if existing_character_session
-          existing_character_session.update!(status: "pending")
-        else
-          CharacterSession.create!(
-            session: @session,
-            campaign_character: campaign_character, # Assign the correct character
-            status: "pending"
-          )
-        end
-      end
-    end
-  end
-
-
-
   private
 
   def update_char_sessions_to_cancel

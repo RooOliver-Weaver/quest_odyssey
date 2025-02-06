@@ -54,7 +54,6 @@ class SessionAvailabilityService
       Rails.logger.debug "DEBUG: Should appear of if ALL PLAYERS have not provided their availability"
       return { all_missing: "What a laggardly group of adventurers you have chosen. None have provided their availability. Chastise them messaging them." }
     else
-      Rails.logger.debug "DEBUG: Should appear if ALL PLAYERS HAVE PROVIDED their availability #{player_availability}"
       return player_availability
     end
   end
@@ -73,10 +72,10 @@ class SessionAvailabilityService
 
 
   def log_debug(message, object = nil)
-    DEBUG_LOGGER.debug "DEBUG: #{message}"
-    DEBUG_LOGGER.debug "DEBUG: Object class - #{object.class}" if object
+    Rails.logger.debug "DEBUG: #{message}"
+    Rails.logger.debug "DEBUG: Object class - #{object.class}" if object
     Rails.logger.debug "DEBUG: message object keys - #{object.keys}" if object.is_a?(Hash)
-    DEBUG_LOGGER.debug "DEBUG: Object content - #{object.inspect}\n\n" if object
+    Rails.logger.debug "DEBUG: Object content - #{object.inspect}\n\n" if object
   end
 
 end

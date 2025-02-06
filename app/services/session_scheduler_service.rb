@@ -89,10 +89,15 @@ class SessionSchedulerService
 
     @session.date = best_date
     @session.status = "pending"
-    if @session.update!
+    if @session.save!
       log_debug("\n #{@sesion} has now been saved",@session)
-      SessionMessagesService.new(@session).generate_invites
-      SessionStatusService.new(@session).update_char_sessions_to_pen
+      if @session.character_sessions.empty?
+        SessionMessagesService.new(@session).generate_invites
+      else
+        @session.character_sessions.each do |character_session|
+          character_session.update!(status: "pending")  # Use update! instead of save!
+        end
+      end
       return success_response("Session created for #{@session.date}. Invites sent.")
     else
       return error_response("Failed to create session. Unknown error (Blame the Old Gods).")
@@ -111,10 +116,10 @@ class SessionSchedulerService
   end
 
   def log_debug(message, object = nil)
-    DEBUG_LOGGER.debug "DEBUG: #{message}"
-    DEBUG_LOGGER.debug "DEBUG: Object class - #{object.class}" if object
+    Rails.logger.debug "DEBUG: #{message}"
+    Rails.logger.debug "DEBUG: Object class - #{object.class}" if object
     Rails.logger.debug "DEBUG: message object keys - #{object.keys}" if object.is_a?(Hash)
-    DEBUG_LOGGER.debug "DEBUG: Object content - #{object.inspect}\n\n" if object
+    Rails.logger.debug "DEBUG: Object content - #{object.inspect}\n\n" if object
   end
 
 end

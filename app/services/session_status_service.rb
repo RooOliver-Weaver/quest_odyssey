@@ -15,7 +15,7 @@ class SessionStatusService
       end
     end
     if confirmed_players == @session.character_sessions.length
-      SessionMessagesService.new(@session).get_dm_approval
+      SessionMessagesService.new(@session).all_confirmed
     end
 
   end

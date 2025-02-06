@@ -59,15 +59,9 @@
           <% end %>
         </div>
       </div>
-  </div>
+    </div>
+</div>
 
-  <% if !@messages.empty?%>
-  <h3>Player Notfications</h3>
-    <% Message.where(user: current_user, message_type: "player_notification").each do |message| %>
-      <p><%= message.content %></p>
-
-    <% end %>
-  <% end %>
 <div class="invites">
     <div class="pending-invites">
       <h4 class="title">Pending Invites</h4>
@@ -89,6 +83,7 @@
       <% @pending_schedule_invites.each do |invite| %>
         <p><%= invite.session.campaign.user.nickname %> has called you to adventure on <%= link_to invite.session.date, campaign_sessions_path(invite.session)%>!</p>
 
+
         <%= form_with url: campaign_session_character_session_path(invite.session.campaign.id, invite.session.id, invite.id), method: :patch, local: true do |form| %>
           <p>Return to the adventure? </p>
           <%= form.hidden_field :status, value: "confirmed" %>
@@ -105,20 +100,41 @@
   <div class="dm-approvals">
     <h4 class="title">DM Approvals</h4>
     <div class="invite-content">
-        <% @dm_messages.each do |message| %>
-          <p><%= message.content %></p>
 
-          <%= form_with url: session_approval_path(message.session), method: :patch, local: true do |form| %>
+      <%if @dm_sessions_cancellations.any?%>
+        <% @dm_sessions_cancellations.each do |session, message| %>
+          <p><%= message %></p>
+
+          <%= form_with url: session_approval_path(session), method: :patch, local: true do |form| %>
             <%= form.hidden_field :status, value: "confirmed" %>
             <%= form.submit "Approve", class: "cta-btn" %>
           <% end %>
 
           <%= button_to "Decline",
-                        session_approval_path(message.session),
-                        method: :patch,
-                        params: { status: "cancelled" },
-                        data: { confirm: "Are you sure you want to cancel this session?" } %>
+              session_approval_path(session),
+              method: :patch,
+              params: { status: "cancelled" },
+              data: { confirm: "Are you sure you want to cancel this session?" } %>
         <% end %>
+      <%end%>
+
+      <%if @dm_sessions_all_accepted.any?%>
+        <% @dm_sessions_all_accepted.each do |session, message | %>
+          <p><%= message %></p>
+
+          <%= form_with url: session_approval_path(session), method: :patch, local: true do |form| %>
+            <%= form.hidden_field :status, value: "confirmed" %>
+            <%= form.submit "Approve" %>
+          <% end %>
+
+          <%= button_to "Decline",
+            session_approval_path(session),
+            method: :patch,
+            params: { status: "cancelled" },
+            data: { confirm: "Are you sure you want to cancel this session?" } %>
+        <% end %>
+      <%end%>
+
       </div>
     </div>
     <div class="joined-campaigns">

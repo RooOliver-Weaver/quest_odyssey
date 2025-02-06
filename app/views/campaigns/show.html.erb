@@ -74,34 +74,39 @@
 
         <div class="tab-pane fade " id="notes" role="tabpanel" aria-labelledby="notes">
           <p ><strong>Party Notes:</strong></p>
-          <div id="notes_list">
-            <p><%= (simple_format(@campaign.notes) || "No party notes yet") %></p>
+          <div class="note-btn-container">
+            <div id="notes_list">
+              <p><%= (simple_format(@campaign.notes) || "No party notes yet") %></p>
+            </div>
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#partyNoteModal">
+              <i class="fa-solid fa-plus" id="party-modal"></i>
+            </button>
           </div>
-          <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#partyNoteModal">
-            <i class="fa-solid fa-plus" id="party-modal"></i>
-          </button>
         </div>
 
         <div class="tab-pane fade" id="dm-notes" role="tabpanel" aria-labelledby="dm-notes">
           <p><strong>DM Notes:</strong></p>
-          <div id="dm_notes_list">
-            <p><%= (simple_format(@campaign.dm_notes) || "No DM notes yet") %></p>
-          </div>
-          <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#dmNoteModal">
-            <i class="fa-solid fa-plus" id="party-modal"></i>
-          </button>
+            <div class="note-btn-container">
+              <div id="dm_notes_list">
+                <p><%= (simple_format(@campaign.dm_notes) || "No DM notes yet") %></p>
+              </div>
+              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#dmNoteModal">
+                <i class="fa-solid fa-plus" id="party-modal"></i>
+              </button>
+            </div>
         </div>
 
         <% if @personal_notes_character %>
           <div class="tab-pane fade" id="personal-notes" role="tabpanel" aria-labelledby="personal-notes">
             <p><strong>Personal Notes:</strong></p>
-
-            <div id="personal_notes_list">
-              <p><%= (simple_format(@personal_notes_character.try(:personal_notes)) || "No personal notes yet") %></p>
+            <div class="note-btn-container">
+              <div id="personal_notes_list">
+                <p><%= (simple_format(@personal_notes_character.try(:personal_notes)) || "No personal notes yet") %></p>
+              </div>
+              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#personalNoteModal">
+                <i class="fa-solid fa-plus" id="party-modal"></i>
+              </button>
             </div>
-            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#personalNoteModal">
-              <i class="fa-solid fa-plus" id="party-modal"></i>
-            </button>
           </div>
         <% end %>
 
@@ -177,7 +182,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="partyNoteModalLabel">Add Party Note</h5>
+        <h4 class="modal-title" id="partyNoteModalLabel">Add Party Note</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -185,7 +190,7 @@
                       method: :patch,
                       data: { turbo: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |form| %>
           <%= form.text_area :notes, value: "", class: "flexible-textarea notes-box", style: "color: white" %>
-          <%= form.submit "Save Party Note", class: "new-btn", data: { bs_dismiss: "modal" } %>
+          <%= form.submit "Save Party Note", class: "new-btn my-3", data: { bs_dismiss: "modal" } %>
         <% end %>
       </div>
     </div>
@@ -196,7 +201,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="dmNoteModalLabel">Add DM Note</h5>
+        <h4 class="modal-title" id="dmNoteModalLabel">Add DM Note</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -204,7 +209,7 @@
                       method: :patch,
                       data: { turbo: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |form| %>
           <%= form.text_area :dm_notes, value: "", class: "flexible-textarea notes-box", style: "color: white" %>
-          <%= form.submit "Save DM Note", class: "new-btn", data: { bs_dismiss: "modal" } %>
+          <%= form.submit "Save DM Note", class: "new-btn my-3", data: { bs_dismiss: "modal" } %>
         <% end %>
       </div>
     </div>
@@ -216,7 +221,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="personalNoteModalLabel">Add Personal Note</h5>
+          <h4 class="modal-title" id="personalNoteModalLabel">Add Personal Note</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -225,7 +230,7 @@
                         method: :patch,
                         data: { turbo: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |form| %>
             <%= form.text_area :personal_notes, value: "", class: "flexible-textarea notes-box", style: "color: white" %>
-            <%= form.submit "Add Personal Note", class: "new-btn", data: { bs_dismiss: "modal" } %>
+            <%= form.submit "Add Personal Note", class: "new-btn my-3", data: { bs_dismiss: "modal" } %>
           <% end %>
         </div>
       </div>

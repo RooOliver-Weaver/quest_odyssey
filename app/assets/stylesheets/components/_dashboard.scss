@@ -31,9 +31,9 @@
   }
 
   .title {
-    position: absolute;
     justify-self: center;
-    top: 10px;
+    display: flex;
+    justify-content: space-between;
     margin: 0 auto;
     color: white;
   }
@@ -101,4 +101,8 @@ transition: all .2s ease-in-out;
   width: 30%;
   left: 40%;
   margin: 0 auto;
+}
+.char-title {
+  display: flex;
+  justify-content: space-between;
 }

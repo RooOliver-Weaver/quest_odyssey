@@ -1,11 +1,10 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="edit-pass-pg">
+  <h2>Add Availability </h2>
+  <p>Select one or more day/time slots:</p>
 
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
-
-    <p>Select one or more day/time slots:</p>
-
     <div class="availability-container">
 
       <div class="availability-header">
@@ -46,10 +45,7 @@
       <%= f.input :password_confirmation,
                   required: false,
                   input_html: { autocomplete: "new-password" } %>
-      <%= f.input :current_password,
-                  hint: "we need your current password to confirm your changes",
-                  required: true,
-                  input_html: { autocomplete: "current-password" } %>
+    
     </div>
 
     <div class="form-actions">
@@ -61,9 +57,6 @@
 <% end %>
 
 
-  <div class="edit-pass-pg">
-    <p>Unhappy? </p>
-    <div><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-  </div>
-
-<%# <%= link_to "Back", :back %>
+  <p>Unhappy? </p>
+  <div><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+</div>

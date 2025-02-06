@@ -70,7 +70,11 @@
   </main>
 </div> %>
 
-<%= month_calendar do |date| %>
+<%= month_calendar(events: @sessions, attribute: :date) do |date, sessions| %>
   <%= date %>
+  <% sessions.each do |session| %>
+    <div class="session">
+      <%= session.status %> (Relay: <%= session.relay_count %>)
+    </div>
+  <% end %>
 <% end %>
-

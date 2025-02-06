@@ -15,7 +15,9 @@ class CampaignsController < ApplicationController
   def show
     @campaign_character = CampaignCharacter.new
     @message = Message.new
-    @personal_notes_character = current_user.campaign_characters.find_by(campaign: @campaign)
+    if current_user
+      @personal_notes_character = current_user.campaign_characters.find_by(campaign: @campaign)
+    end
   end
 
   def new

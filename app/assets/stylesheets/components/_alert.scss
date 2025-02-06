@@ -4,3 +4,13 @@
   right: 16px;
   z-index: 1000;
 }
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.flash-message {
+  animation: fadeOut 5s ease-in-out forwards;
+}

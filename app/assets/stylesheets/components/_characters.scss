@@ -2,6 +2,26 @@
   width: 60%;
   text-align: center;
   overflow-y: hidden;
+  position: relative
+}
+
+#new-character-plus {
+  position: absolute;
+  height: 47px;
+  font-size: 36px;
+  right: 160px;
+  top: 0;
+  color: var(--yellow);
+  border: 1px solid;
+  padding: 5px;
+  border-radius: 20px;
+  width: 50px;
+  transition:0.5s ease;
+}
+
+#new-character-plus:hover {
+  color: var(--gray-dark);
+  background-color: var(--yellow);
 }
 
 .characters-list {

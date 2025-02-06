@@ -231,12 +231,12 @@
   position: absolute;
   top: -5px;
   right: -5px;
-  font-size: 0.75rem;
+  font-size: 1rem;
 }
 
 #notifications_badge .badge {
   background-color: var(--yellow);
-  color: white;
+  color: var(--burgundy);
   padding: 0.25rem 0.5rem;
   border-radius: 50%;
 }

@@ -131,20 +131,30 @@
   cursor: default;
 }
 
+.bio-notes {
+  position: relative; // Allows absolute positioning inside
+  display: flex;
+  width: 38rem;
+  flex-direction: column; // Stacks text and button
+  max-height: 200px; // Adjust height as needed
+  overflow-y: auto; // Enables scrolling when content overflows
+}
+
 #bio-modal {
   position: absolute;
-  right: 26rem;
-  top: 34rem;
+  top: 10px; // Adjust as needed
+  right: 10px; // Adjust as needed
   height: 35px;
+  width: 35px;
   font-size: 25px;
   color: var(--yellow);
   background-color: var(--burgundy);
   border: 1px solid;
   padding: 5px;
   border-radius: 10px;
-  width: 35px;
-  transition:0.5s ease;
-  &:hover{
+  transition: 0.5s ease;
+
+  &:hover {
     color: var(--gray-dark);
     background-color: var(--yellow);
   }

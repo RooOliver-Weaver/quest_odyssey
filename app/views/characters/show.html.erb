@@ -117,15 +117,18 @@
           <%# <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="Bio-tab" tabindex="0"> %>
             <%# <%= @character.biography %>
           <%# </div> %>
+
           <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="Bio-tab" tabindex="0">
             <p ><strong>Bio:</strong></p>
-            <div>
+            <div class="bio-notes">
               <p><%= (simple_format(@character.biography) || "No bio yet!") %></p>
+
+              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#bioModal">
+                <i class="fa-solid fa-plus" id="bio-modal"></i>
+              </button>
             </div>
-            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#bioModal">
-              <i class="fa-solid fa-plus" id="bio-modal"></i>
-            </button>
           </div>
+
           <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="Equipment-tab" tabindex="0">
             <% @character.equipment.each do |item|  %>
               <ul><%= item['type'] %>:

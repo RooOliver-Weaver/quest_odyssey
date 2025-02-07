@@ -131,19 +131,26 @@
   cursor: default;
 }
 
+#home-tab-pane{
+  button{
+    display: flex;
+    justify-self: flex-end;
+    right: 10px;
+    top: 10px;
+    z-index: 1;
+    position: sticky;
+    height: 100%;
+    text-decoration: none;
+  }
+}
 .bio-notes {
   position: relative; // Allows absolute positioning inside
   display: flex;
   width: 38rem;
-  flex-direction: column; // Stacks text and button
-  max-height: 200px; // Adjust height as needed
-  overflow-y: auto; // Enables scrolling when content overflows
 }
 
 #bio-modal {
-  position: absolute;
-  top: 10px; // Adjust as needed
-  right: 10px; // Adjust as needed
+
   height: 35px;
   width: 35px;
   font-size: 25px;

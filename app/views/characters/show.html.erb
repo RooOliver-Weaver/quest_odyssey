@@ -120,12 +120,13 @@
 
           <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="Bio-tab" tabindex="0">
             <p ><strong>Bio:</strong></p>
-            <div class="bio-notes">
-              <p><%= (simple_format(@character.biography) || "No bio yet!") %></p>
-
-              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#bioModal">
+             <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#bioModal">
                 <i class="fa-solid fa-plus" id="bio-modal"></i>
               </button>
+            <div class="bio-notes">
+
+              <p><%= (simple_format(@character.biography) || "No bio yet!") %></p>
+
             </div>
           </div>
 

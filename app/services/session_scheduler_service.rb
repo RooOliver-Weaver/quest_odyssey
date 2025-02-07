@@ -104,7 +104,7 @@ class SessionSchedulerService
       timeslot = day_and_timeslot.last # “morning”, “midday”, or “evening”
       session_date = Date.parse(@session.date)
 
-      if session_date <= Date.today
+      if session_date < Date.today
         session_date = session_date + 1.week
       end
 

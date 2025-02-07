@@ -130,3 +130,22 @@
   opacity: 0.5;
   cursor: default;
 }
+
+#bio-modal {
+  position: absolute;
+  right: 26rem;
+  top: 34rem;
+  height: 35px;
+  font-size: 25px;
+  color: var(--yellow);
+  background-color: var(--burgundy);
+  border: 1px solid;
+  padding: 5px;
+  border-radius: 10px;
+  width: 35px;
+  transition:0.5s ease;
+  &:hover{
+    color: var(--gray-dark);
+    background-color: var(--yellow);
+  }
+}

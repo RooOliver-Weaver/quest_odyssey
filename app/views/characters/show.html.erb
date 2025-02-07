@@ -114,8 +114,17 @@
           </li>
         </ul>
         <div class="tab-content" id="myTabContent">
+          <%# <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="Bio-tab" tabindex="0"> %>
+            <%# <%= @character.biography %>
+          <%# </div> %>
           <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="Bio-tab" tabindex="0">
-            <%= @character.biography %>
+            <p ><strong>Bio:</strong></p>
+            <div>
+              <p><%= (simple_format(@character.biography) || "No bio yet!") %></p>
+            </div>
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#bioModal">
+              <i class="fa-solid fa-plus" id="bio-modal"></i>
+            </button>
           </div>
           <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="Equipment-tab" tabindex="0">
             <% @character.equipment.each do |item|  %>
@@ -143,6 +152,26 @@
             </ul>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="bioModal" tabindex="-1" aria-labelledby="bioModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="bioModalLabel">Add to your Bio</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with model: @character, url: add_bio_character_path(@character),
+                      method: :patch,
+                      data: { turbo: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |form| %>
+          <%= form.text_area :biography, value: @character.biography, class: "flexible-textarea notes-box", style: "color: white" %>
+          <%= form.submit "Save Bio", class: "new-btn my-3", data: { bs_dismiss: "modal" } %>
+        <% end %>
       </div>
     </div>
   </div>

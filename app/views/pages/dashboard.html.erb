@@ -10,7 +10,6 @@
 
     <div class="campaigns-list">
       <div class="campaigns">
-        <div class="">
           <% @campaigns.each do |campaign| %>
             <%= link_to campaign_path(campaign) do %>
               <div class="campaign-card">
@@ -55,12 +54,18 @@
                   <%= image_tag('default_character.jpeg', alt: 'DnD Image',class: "thumbnail") %>
                 <% end %>
               </div>
-              <div class="character-card-content">
-                <h5 class="character-card-title"><%= character.name %></h5>
-                <p class="character-card-text"><%= character.speciality %></p>
-                <p class="character-card-text"><%= character.race %></p>
-                <p class="character-card-text"><%= character.level %></p>
-                <%# <%= link_to 'View Character', character_path(character), class: 'btn btn-primary' %>
+               <div class="character-card-content">
+                <div class="dash-char-name">
+                  <h5 class="character-card-title"><%= character.name %></h5>
+                </div>
+                <div class="dash-char-info">
+                  <p class="character-card-text"><%= character.race %></p>
+                  <div class="hexagon2">
+                    <h4><%= character.level %></h4>
+                  </div>
+                  <p class="character-card-text"><%= character.speciality %></p>
+                </div>
+                <%# <p><%= link_to 'View Character', character_path(character), class: 'btn btn-primary' %>
               </div>
             </div>
           <% end %>
@@ -95,6 +100,7 @@
         <%= form_with url: campaign_session_character_session_path(invite.session.campaign.id, invite.session.id, invite.id), method: :patch, local: true do |form| %>
           <p>Return to the adventure? </p>
           <%= form.hidden_field :status, value: "confirmed" %>
+        <div class="dash-buttons">
           <%= form.submit "Accept" %>
         <% end %>
         <%= button_to "Decline",
@@ -102,6 +108,7 @@
                     method: :patch,
                     params: { status: "cancelled" },
                     data: { confirm: "Are you sure you want to decline this invite?" }, class: "form-button" %>
+        </div>
       <% end %>
     </div>
   </div>
@@ -114,16 +121,18 @@
         <p><%= message %></p>
 
         <%= form_with url: session_approval_path(session), method: :patch, local: true do |form| %>
+        <div class="dash-buttons">
           <%= form.hidden_field :status, value: "confirmed" %>
-          <%= form.submit "Approve", class: "cta-btn" %>
-        <% end %>
+            <%= form.submit "Approve", class: "cta-btn" %>
+          <% end %>
 
-        <%= button_to "Decline",
-            session_approval_path(session),
-            method: :patch,
-            params: { status: "cancelled" },
-            data: { confirm: "Are you sure you want to cancel this session?" } %>
-      <% end %>
+          <%= button_to "Decline",
+              session_approval_path(session),
+              method: :patch,
+              params: { status: "cancelled" },
+              data: { confirm: "Are you sure you want to cancel this session?" } %>
+          <% end %>
+        </div>
     <%end%>
 
     <%if @dm_sessions_all_accepted.any?%>
@@ -131,6 +140,7 @@
         <p><%= message %></p>
 
         <%= form_with url: session_approval_path(session), method: :patch, local: true do |form| %>
+        <div class="dash-buttons">
           <%= form.hidden_field :status, value: "confirmed" %>
           <%= form.submit "Approve" %>
         <% end %>
@@ -140,6 +150,7 @@
           method: :patch,
           params: { status: "cancelled" },
           data: { confirm: "Are you sure you want to cancel this session?" } %>
+        </div>
       <% end %>
     <%end%>
 
@@ -171,9 +182,11 @@
     <div class="sessions">
       <h5>Quests</h5>
       <p><% @sessions.each do |session| %>
-        <ul>
-        <li><%= session.date.to_date %>: <%= session.campaign.name %></li>
-        </ul>
+         <% if session.date.to_date >= Date.today %>
+          <ul>
+            <li><%= session.date.to_date %>: <%= session.campaign.name %></li>
+          </ul>
+        <% end %>
       <% end %></p>
 
     </div>

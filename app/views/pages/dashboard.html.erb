@@ -161,6 +161,9 @@
             <% @joined_campaigns.each do |campaign| %>
               <p>You are a member of <%= link_to campaign.campaign.name, campaign_path(campaign.campaign) %></p>
             <% end %>
+            <% @dm_sessions.where(status: "confirmed").each do |session| %>
+              <p> Your next DM session for <%= link_to session.campaign.name, campaign_path(session.campaign) %> is on next <%= "#{session.date}" %> </p>
+            <% end %>
           </div>
       </div>
     </div>

@@ -13,7 +13,6 @@ class SessionSchedulerService
 
     result = handle_availability_response(response)
     log_debug("\nResponse object after handle_availability", response)
-
     return result
   end
 
@@ -87,6 +86,18 @@ class SessionSchedulerService
       return error_response("No suitable date found. Please tell players to update their availability.")
     end
 
+    day_and_timeslot = best_date.split
+    timeslot = day_and_timeslot.last # “morning”, “midday”, or “evening”
+    session_date = Date.parse(best_date)
+
+    if session_date < Date.today
+      session_date = session_date + 1.week
+    end
+
+    new_date_str = session_date.strftime('%A, %d %b %Y') + " " + timeslot.to_s
+    best_date = new_date_str
+
+
     @session.date = best_date
     @session.status = "pending"
 
@@ -100,16 +111,7 @@ class SessionSchedulerService
         end
       end
 
-      day_and_timeslot = @session.date.split
-      timeslot = day_and_timeslot.last # “morning”, “midday”, or “evening”
-      session_date = Date.parse(@session.date)
-
-      if session_date < Date.today
-        session_date = session_date + 1.week
-      end
-
       success_response("Session created for #{session_date.strftime('%A, %d %b %Y')} at #{timeslot}. Invites sent.")
-
     else
       return error_response("Failed to create session. Unknown error (Blame the Old Gods).")
     end

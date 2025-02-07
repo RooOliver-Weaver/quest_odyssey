@@ -29,7 +29,6 @@
             <% end %>
           <% end %>
         </div>
-
       </div>
     </div>
   <div class="characters-container">
@@ -173,11 +172,13 @@
         <%= week_calendar(events: @sessions, attribute: :date, number_of_weeks: 1) do |date, sessions| %>
           <%= date %>
           <% sessions.each do |session| %>
-            <div class="session">
-              <ul>
-                <li><i class="fa-solid fa-shield"></i></li>
-              </ul>
-            </div>
+            <% if session.date.to_date >= Date.today %>
+              <div class="session">
+                <ul>
+                  <li><i class="fa-solid fa-shield"></i></li>
+                </ul>
+              </div>
+            <% end %>
           <% end %>
         <% end %>
       <div class="sessions">

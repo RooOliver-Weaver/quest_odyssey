@@ -90,12 +90,12 @@ class SessionSchedulerService
     timeslot = day_and_timeslot.last # “morning”, “midday”, or “evening”
     session_date = Date.parse(best_date)
 
-    if session_date <= Date.today
+    if session_date < Date.today
       session_date = session_date + 1.week
     end
 
     new_date_str = session_date.strftime('%A, %d %b %Y') + " " + timeslot.to_s
-best_date = new_date_str
+    best_date = new_date_str
 
 
     @session.date = best_date

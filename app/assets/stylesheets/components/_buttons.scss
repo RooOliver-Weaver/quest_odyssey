@@ -130,3 +130,39 @@
   opacity: 0.5;
   cursor: default;
 }
+
+#home-tab-pane{
+  button{
+    display: flex;
+    justify-self: flex-end;
+    right: 10px;
+    top: 10px;
+    z-index: 1;
+    position: sticky;
+    height: 100%;
+    text-decoration: none;
+  }
+}
+.bio-notes {
+  position: relative; // Allows absolute positioning inside
+  display: flex;
+  width: 38rem;
+}
+
+#bio-modal {
+
+  height: 35px;
+  width: 35px;
+  font-size: 25px;
+  color: var(--yellow);
+  background-color: var(--burgundy);
+  border: 1px solid;
+  padding: 5px;
+  border-radius: 10px;
+  transition: 0.5s ease;
+
+  &:hover {
+    color: var(--gray-dark);
+    background-color: var(--yellow);
+  }
+}

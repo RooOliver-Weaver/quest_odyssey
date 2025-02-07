@@ -64,7 +64,7 @@ class CampaignsController < ApplicationController
 
       if @campaign.update(notes: updated_notes)
         respond_to do |format|
-          format.turbo_stream { render partial: "campaigns/append_note", locals: { campaign: @campaign } }
+          format.turbo_stream { render partial: "campaigns/add_bio", locals: { campaign: @campaign } }
           format.html { redirect_to campaign_path(@campaign), notice: "Note added!" }
         end
       else

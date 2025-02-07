@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  max-height: 50vh;
+  height: 50%;
   width: 35%;
   display: flex;
   flex-direction: column;
@@ -41,6 +41,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    max-height: 25rem;
   }
 
   .campaigns-list::-webkit-scrollbar {
@@ -55,12 +56,15 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+    max-height: 20rem;
+    margin-top: 0.2rem;
   }
 
   .campaign-card {
     // background-color: var(--green);
     // padding: 20px;
-    margin: 20px;
+    margin-top: 10px;
+    margin: 0.2rem;
     height: 200px;
     width: 20rem;
     display: flex;

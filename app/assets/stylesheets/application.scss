@@ -55,12 +55,13 @@ a {
 }
 
 .page-content {
-  flex: 1;
+  flex: 0;
   margin-left: 6.25rem;
   // padding-left: 0.75rem;
   width: calc(100% - 6.25rem);
   transition: width var(--speed);
   height: 100vh;
+  overflow: hidden;
 }
 
 .dashboard-container {

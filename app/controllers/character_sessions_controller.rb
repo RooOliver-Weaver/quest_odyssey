@@ -2,8 +2,7 @@ class CharacterSessionsController < ApplicationController
 
   def update
     @character_session = CharacterSession.find(params[:id])
-    @character_session.update({status: params[:status]})
-    p @character_session
+    @character_session.status = params[:status]
     if @character_session.save!
       SessionStatusService.new(@character_session.session).checkstatusplayers
       redirect_to root_path(), notice: "The DM and your group have been notified of your ability to attend on this day"

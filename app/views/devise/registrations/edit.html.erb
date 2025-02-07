@@ -5,30 +5,51 @@
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
-    <div class="availability-container">
 
-      <div class="availability-header">
-        <% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |day| %>
-          <div class="day-header" data-day="<%= day.downcase %>"><%= day %></div>
-        <% end %>
-      </div>
+  <% start_of_week = Date.today.beginning_of_week(:monday) %>
+  <% end_of_week = start_of_week + 6.days %>
 
-      <div class="availability-slot">
-        <% ["Morning", "Midday", "Evening"].each do |time| %>
+  <div class="availability-container">
 
-          <% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |day| %>
-            <div class="slot day-block" data-day="<%= day.downcase %>">
-              <% time_slot = "#{day} #{time}" %>
-              <% checkbox_id = "availability_#{day.downcase}_#{time.downcase}" %>
-              <%= check_box_tag "user[availability][]", time_slot,(@user.availability || []).include?(time_slot), id: checkbox_id, class: "day-slot tag-selector", data: { day: day.downcase } %>
-              <%= label_tag checkbox_id, time %>
-            </div>
-          <% end %>
+    <!-- Display Week Range -->
+    <h3 class="week-range text-center my-4">
+      Week: <%= start_of_week.strftime("%B %d") %> - <%= end_of_week.strftime("%B %d, %Y") %>
+    </h3>
 
-        <% end %>
-      </div>
+    <div class="availability-header ">
+      <% (0..6).each do |i| %>
+        <% day_date = start_of_week + i.days %>
+        <div class="day-header" data-day="<%= day_date.strftime('%A').downcase %>">
+          <%= day_date.strftime('%A') %> <br> <%= day_date.strftime('(%d %b)') %>
+        </div>
+      <% end %>
     </div>
 
+    <div class="availability-slot">
+      <% ["Morning", "Midday", "Evening"].each do |time| %>
+        <% (0..6).each do |i| %>
+          <% day_date = start_of_week + i.days %>
+          <% day_name = day_date.strftime('%A') %>
+          <% time_slot = "#{day_name} #{time}" %>
+          <% checkbox_id = "availability_#{day_name.downcase}_#{time.downcase}" %>
+
+          <div class="slot day-block" data-day="<%= day_name.downcase %>">
+            <%= check_box_tag "user[availability][]", time_slot, (@user.availability || []).include?(time_slot), id: checkbox_id, class: "day-slot tag-selector", data: { day: day_name.downcase } %>
+            <%= label_tag checkbox_id, "#{time}" %>
+          </div>
+        <% end %>
+      <% end %>
+
+    </div>
+
+  </div>
+
+  <div class="d-flex justify-content-center mt-4">
+    <div class="available-box px-3 py-3 mt-2"></div>
+    <p>Selected as available</p>
+    <div class="unavailable-box px-3 mt-2 py-3"></div>
+    <p>Unavailable</p>
+  </div>
 
   <div class="form-new" data-controller="toggle">
     <div class="form-inputs d-none" data-toggle-target="form">

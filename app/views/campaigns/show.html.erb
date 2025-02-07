@@ -1,13 +1,22 @@
 <div class="camp-page-container">
   <div class="camp-container">
     <div class="camp-show-links">
-       <a class="back-btn-show" href="javascript:history.back()"><i class="fa-regular fa-hand-point-left"></i></a>
+      <a class="back-btn-show" href="<%=
+        if request.referer.present? &&
+          (URI(request.referer).path == new_campaign_path ||
+            URI(request.referer).path == edit_campaign_path ||
+            URI(request.referer).path == campaign_path(@campaign))
+        then campaigns_path
+        else request.referer
+        end %>">
+        <i class="fa-regular fa-hand-point-left"></i>
+      </a>
         <% if current_user == @campaign.user %>
         <% disable_button = @campaign.sessions.exists?(status: 'pending') %>
-          <a class="next-sess"
-            href="<%= campaign_sessions_path(@campaign) %>"
-            data-turbo-method="post"
-           <%= 'disabled="disabled"' if disable_button %>>
+          <% disable_button = @campaign.sessions.exists?(status: 'pending') %>
+          <a class="next-sess <%= 'disabled-link' if disable_button %>"
+            href="<%= disable_button ? '#' : campaign_sessions_path(@campaign) %>"
+            data-turbo-method="<%= disable_button ? '' : 'post' %>">
             <i class="fa-regular fa-calendar-plus"></i>
           </a>
         <% end %>

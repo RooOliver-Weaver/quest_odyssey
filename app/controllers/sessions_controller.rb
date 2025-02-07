@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
     notice_message << response[:cancelled] if response[:cancelled].present?
     notice_message << response[:success] if response[:success].present?
 
-    redirect_to campaign_path(@session.campaign), notice: notice_message.join("\n")
+    redirect_to root_path, notice: notice_message.join("\n")
   end
 
 
